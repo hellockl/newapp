@@ -52,7 +52,7 @@
         <div class="sh">
             <ul class="dh">
                 <li><a href="/">首页</a></li>
-                <li class="curli"><a href="javascript:;">个人中心</a></li>
+                <li class="licur"><a href="javascript:;">个人中心</a></li>
                 <li><a href="javascript:;">系统公告</a></li>
 
             </ul>
@@ -70,9 +70,9 @@
     <img src="/newapp/Public/web/img/icon_08.png" alt="">
     <a href="http://www.shanxinhui.com/index/user/deblocking.html"><img src="/newapp/Public/web/img/deblocking.png" alt=""></a>
     <a href="http://www.shanxinhui.com/index/user/improveUserInfo.html"><img src="/newapp/Public/web/img/icon_02.png" alt=""></a>
-    <a href="http://www.shanxinhui.com/index/user/modifyPassword.html"><img src="/newapp/Public/web/img/icon_03.png" alt=""></a>
-    <a href="javascript:isNotOpen('');"></a>
-    <a href="http://www.shanxinhui.com/index/user/applyClothes.html"></a>
+    <a href="<?php echo U('User/editPassword');?>"><img src="/newapp/Public/web/img/icon_03.png" alt=""></a>
+    <a href="#"></a>
+    <a href="#"></a>
     <a href="http://www.shanxinhui.com/index/user/openlink.html"><img src="/newapp/Public/web/img/icon_06.png" alt=""></a>
     <a href="http://www.shanxinhui.com/index/user/registerCenter.html"><img src="/newapp/Public/web/img/icon_07.png" alt=""></a>
     <span id="status_span" class="span1" style="padding-left: 8px;">已通过</span>

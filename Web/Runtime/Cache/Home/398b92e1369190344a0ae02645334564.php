@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -7,17 +7,17 @@
     <meta name="author">
     <title>个人中心-修改密码</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
-    <link rel="stylesheet" href="__PUBLIC__/web/css/header.css">
-    <link rel="stylesheet" href="__PUBLIC__/web/css/ydy.css">
-    <link rel="stylesheet" href="__PUBLIC__/web/css/recompose.css">
-    <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
-    <script src="__PUBLIC__/web/js/layer.js"></script>
-    <script type="text/javascript" src="__PUBLIC__/web/js/jsencrypt.js"></script>
-<script src="__PUBLIC__/web/js/common.js"></script>
-<script src="__PUBLIC__/web/js/main.js"></script>
-    <script src="__PUBLIC__/web/js/regexp_sxh.js"></script>
-    <script src="__PUBLIC__/web/js/recompose.js"></script>
+    <link rel="stylesheet" href="/newapp/Public/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+    <link rel="stylesheet" href="/newapp/Public/web/css/header.css">
+    <link rel="stylesheet" href="/newapp/Public/web/css/ydy.css">
+    <link rel="stylesheet" href="/newapp/Public/web/css/recompose.css">
+    <script type="text/javascript" src="/newapp/Public/web/js/jquery-1.7.2.min.js"></script>
+    <script src="/newapp/Public/web/js/layer.js"></script>
+    <script type="text/javascript" src="/newapp/Public/web/js/jsencrypt.js"></script>
+<script src="/newapp/Public/web/js/common.js"></script>
+<script src="/newapp/Public/web/js/main.js"></script>
+    <script src="/newapp/Public/web/js/regexp_sxh.js"></script>
+    <script src="/newapp/Public/web/js/recompose.js"></script>
 <!--    <script src="text/javascript">
         $(function(){
             $(".next_01").click(function(){
@@ -46,22 +46,22 @@
     <div class="head">
         <div class="head_l">
             <ul>
-                <li><a href="http://www.shanxinhui.com/index/user/ydy.html"><!--<img src="__PUBLIC__/web/img/LOGO.png" height="100%">--></a></li>
-                <li><!--<img src="__PUBLIC__/web/img/solgain.png" height="100%">--></li>
+                <li><a href="http://www.shanxinhui.com/index/user/ydy.html"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
+                <li><!--<img src="/newapp/Public/web/img/solgain.png" height="100%">--></li>
             </ul>
         </div>
         <div class="head_r">
             <div>
-                <ul><img src="__PUBLIC__/web/img/newicon_7.png"></ul>
+                <ul><img src="/newapp/Public/web/img/newicon_7.png"></ul>
                 <ul class="username">
-                    <li>{$user_info.user_name}</li>
+                    <li><?php echo ($user_info["user_name"]); ?></li>
                     <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
                 </ul>
             </div>
             <div>|</div>
             <div>
                 <ul>
-                    <li><img src="__PUBLIC__/web/img/icon_11.png"></li>
+                    <li><img src="/newapp/Public/web/img/icon_11.png"></li>
                     <a href="javascript:void(0);"><li class="tc">退出系统</li></a>
                 </ul>
             </div>
@@ -80,7 +80,7 @@
 </div>
 <div id="center">
     <div class="header_01">
-        <img src="__PUBLIC__/web/img/user.png">
+        <img src="/newapp/Public/web/img/user.png">
         <span class="spa1">个人中心 &gt;</span>
         <span class="spa2">修改密码</span>
         <a href="javascript:go(-1)"><span class="spa3">返回&gt;&gt;</span></a>
@@ -99,7 +99,7 @@
                     <b class="b_07">手机号码不能为空</b>
                     <b class="b_08">手机号码有误请重新输入</b>
 
-                    <input id="username" name="username" value="{$user_info.user_name}" type="hidden">
+                    <input id="username" name="username" value="<?php echo ($user_info["user_name"]); ?>" type="hidden">
                 </div>
                 <div class="one">
                     <span><b>*</b>原登录密码：</span><input placeholder="请输入原登录密码" type="password">
@@ -157,6 +157,9 @@
     </div>
 </div>
 
-<include file="Public:footer"/>
+<footer class="footer">
+    <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
+    <p>2016V2.0版本</p>
+</footer>
 </body>
 </html>
