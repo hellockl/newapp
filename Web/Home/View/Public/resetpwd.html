@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
+<link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/css.css">
+<title></title>
+</head>
+<body class="page_resetpwd">
+	<div class="all_boss loginback">
+    	<div class="thebox">
+        	<div class="title">重置密码</div>
+        	<ul class="theboxul locheck">
+            	<li class="lodiv">
+                	<span>注册手机：</span>
+                    <input id="lo_phone" class="lo_phone" type="text" placeholder="请输入手机号码" maxlength="11"/>
+                    <span class="loisno all_none">x 11位</span>
+                </li>
+				<li class="lodiv">
+                	<span>手机验证码：</span>
+                    <input class="lo_nonull phoneinput" type="text" placeholder="请输入验证码" maxlength="4"/>
+					<a href="javascript:;" class="all_markbtn u_btn u_btn_w150h30 u_btn_b3366CC" data-alltime="60" data-phone='lo_phone'>获取验证码</a>
+					<span class="loisno all_none">x</span>
+                </li>
+				<li class="lodiv">
+                	<span>新登录密码：</span>
+                    <input class="lo_pwd" type="password" placeholder="请输入密码" maxlength="18" data-pwdr='b'/>
+                    <span class="loisno all_none">x 6-18位</span>
+                </li>
+				<li class="lodiv">
+                	<span>确认登录密码：</span>
+                    <input class="lo_pwdr" type="password" placeholder="请再次输入登录密码" maxlength="18" data-pwdr='b'/>
+                    <span class="loisno all_none">x 不一致</span>
+                </li>
+				<li class="lodiv">
+                	<span>验证码：</span>
+                    <input class="lo_yzm" type="text" placeholder="" maxlength="4" id="loyzm"/>
+                    <div class="yzmbox" id="code"></div>
+                    <span class="loisno all_none">x</span>
+                </li>
+                <li>
+					<span> </span>
+                	<a href="javascript:;" class="u_btn u_btn_w117h30 u_btn_ghost" onClick="allobj.lobegincheck(this)">确定</a>
+                </li>
+            </ul>
+            
+        </div>
+    </div>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/vCode.js"></script>
+	<script src="js/all.js"></script>
+    <script src="js/js.js"></script>
+</body>
+</html>
+

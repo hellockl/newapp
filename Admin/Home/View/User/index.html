@@ -1,0 +1,56 @@
+
+<div class="wrapper">
+    <style>
+        .ajax-content { width: 80%;float: left; }
+        .index-user-redis { width: 20%;float: left; }
+        .index-user-redis h4{ font-weight:bold; margin-right: 20px; }
+    </style>
+    <!-- Main content -->
+    <section class="content">
+        <div class="box">
+            <div class="box-header" id="box-header">
+                <div class="navbar">
+                    <ul class="nav nav-tabs ul-edit" id="user">
+                        <volist name="city_list" id="vo">
+                            <li <if condition="$key eq 0"> class="active" </if> ><a href="javascript:void(0);" class="companyTable">{$vo}</a></li>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <div class="box-body <if condition="$_SESSION['user_info']['data_type'] eq 4"> ajax-content </if> " id="ajax-content"  >
+
+            </div>
+          <if condition="$_SESSION['user_info']['data_type'] eq 4">
+            <div class="box-body index-user-redis">
+              <div><h4>当前队列</h4></div>
+              <div id="ajax-user-redis"></div>
+            </div>
+          </if>
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<script type="text/javascript">
+    $(function(){
+        var link = "{:U('User/table')}";
+        pageLoad(link,'#ajax-content');
+
+        redis_list();
+
+        $('.companyTable').click(function(){
+            var city = $(this).text();
+            $('.company_city').hide();
+            $('#company_'+city).show();
+            $(this).parent().parent().children().removeClass('active');
+            $(this).parent().addClass('active');
+            redis_list();
+        })
+    });
+    function redis_list(){
+        if("{$_SESSION['user_info']['data_type']}" == 4){
+            var redis_link = "{:U('User/userRedis')}/city/"+$('#user li.active').children().text();
+            pageLoad(redis_link,'#ajax-user-redis');
+        }
+    }
+</script>

@@ -1,0 +1,71 @@
+<div class="con-left">合同类型：</div>
+<div class="con-right">
+    <if condition="$contract_info['contract_type'] eq 1">渠道
+        <elseif condition="$contract_info['contract_type'] eq 2"/>自营
+    </if>
+</div>
+<div class="con-left">总收入：</div>
+<div class="con-right" id="all_commission">{$commission_total}</div>
+
+<if condition="$contract_info['contract_type'] eq 1">
+    <div style="clear: both;"></div>
+    <div class="con-left">渠道名称：</div>
+    <div class="con-right" style="width: 82%;">{$contract_info['product_names']}</div>
+</if>
+
+<div class="con-left">借款人：</div>
+<div class="con-right">{$contract_info['borrower']}</div>
+<div class="con-left">借款人身份证：</div>
+<div class="con-right">{$contract_info['identity']}</div>
+
+<div class="con-left">户籍地址：</div>
+<div class="con-right" style="width: 82%;">{$contract_info['per_address']}</div>
+
+<div class="con-left">联系电话：</div>
+<div class="con-right">{$contract_info['phone']}</div>
+
+<div style="clear: both;"></div>
+<div class="con-left">联系地址：</div>
+<div class="con-right" style="width: 82%;">{$contract_info['address']}</div>
+
+<div class="con-left">借款金额：</div>
+<div class="con-right">{$contract_info['borrow_money']}</div>
+
+<div class="con-left">借款期限：</div>
+<div class="con-right">{$contract_info['duration']}</div>
+<div class="con-left">月利率：</div>
+<div class="con-right">{$contract_info['month_rate']} %</div>
+
+<div class="con-left">年利率：</div>
+<div class="con-right">{$contract_info['year_rate']} %</div>
+<div class="con-left">管理费：</div>
+<div class="con-right">{$contract_info['manger_money']}</div>
+
+<div class="con-left">还款方式：</div>
+<div class="con-right">
+    <if condition="$contract_info['pay_type'] eq 1">等额本息
+        <elseif condition="$contract_info['pay_type'] eq 2"/>先息后本
+        <elseif condition="$contract_info['pay_type'] eq 3"/>等本等息
+        <elseif condition="$contract_info['pay_type'] eq 4"/>其他
+    </if>
+</div>
+
+<div class="con-left">房产地址：</div>
+<div class="con-right" style="width: 82%;">{$contract_info['house_address']}</div>
+
+<div class="con-left">户龄：</div>
+<div class="con-right">{$contract_info['house_age']}</div>
+<div class="con-left">房产面积：</div>
+<div class="con-right">{$contract_info['house_area']}</div>
+
+<div class="con-left">房产估值：</div>
+<div class="con-right">{$contract_info['house_value']}</div>
+<div class="con-left">出借人信息：</div>
+<div class="con-right">{$contract_info['lender']}</div>
+
+<div class="con-left">放贷金额：</div>
+<div class="con-right">{$contract_info['give_money']}</div>
+<div class="con-left">放贷时间：</div>
+<div class="con-right input-group date datepicker">
+    {$contract_info['give_date']}
+</div>

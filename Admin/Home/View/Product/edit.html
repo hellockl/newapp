@@ -1,0 +1,99 @@
+<form id="contract_add_form" class="form" action="{:U('edit')}" method="Post">
+	<style>
+		.contract-content { width: 600px; max-height: 550px; overflow: auto }
+		.contract-content div{ display: block; vertical-align: middle; }
+		.contract-content .con-left { width: 18%; float: left; text-align: right; padding-right: 5px; font-weight: 700;height: 40px;}
+		.contract-content .con-right { width: 32%; float: left;height: 40px;clear:right}
+		.product-num { margin-bottom: 20px;padding-right: 10px; }
+	</style>
+	<div class="contract-content">
+		<input type="hidden" name="product_id" value="{$product_info['product_id']}"/>
+		<div class="con-left">分公司：</div>
+		<div class="con-right">
+			<select class="form-control" name="sub_company_id" >
+				<volist name="sub_company_list" id="vo" >
+					<option value="{$vo['department_id']}" <if condition="$product_info['sub_company_id'] eq $vo['department_id']">selected</if> >{$vo['name']}</option>
+				</volist>
+			</select>
+		</div>
+		<div class="con-left">机构名称：</div>
+		<div class="con-right"><input type="text" class="form-control" name="agency_name" value="{$product_info['agency_name']}"/></div>
+
+
+		<div class="con-left">合作时间：</div>
+		<div class="con-right"><input onclick="WdatePicker({dateFmt:'yyyy-MM-dd'})" id="datePicker" type="text" class="form-control" name="cooperate_time" value="{$product_info.cooperate_time|date='Y-m-d',###}" /></div>
+		<div class="con-left">状态：</div>
+		<div class="con-right">
+			<select class="form-control" name="status" id="status">
+				<option value="1">正常</option>
+				<option value="0">终止</option>
+			</select>
+		</div>
+
+
+		<div class="con-left">产品名称：</div>
+		<div class="con-right" style="width: 82%;"><input type="text" class="form-control" name="product_name" value="{$product_info['product_name']}"/></div>
+
+		<div class="con-left">对接人：</div>
+		<div class="con-right"><input type="text" class="form-control" name="agency_owner" value="{$product_info['agency_owner']}"/></div>
+		<div class="con-left">联系电话：</div>
+		<div class="con-right"><input type="text" class="form-control" name="agency_phone" value="{$product_info['agency_phone']}"/></div>
+
+		<div class="con-left">维护人：</div>
+		<div class="con-right"><input type="text" class="form-control" name="owner" value="{$product_info['owner']}"/></div>
+		<div class="con-left">联系电话：</div>
+		<div class="con-right"><input type="text" class="form-control" name="phone" value="{$product_info['phone']}"/></div>
+
+		<div class="con-left">产品类型：</div>
+		<div class="con-right" style="width: 82%;">
+			<select class="form-control" style="width: 32%;float: left;" name="type1">
+				<option value=""></option>
+				<option value="信贷">信贷</option>
+				<option value="抵押">抵押</option>
+			</select>
+			<select class="form-control" style="width: 32%;float: left;margin-left: 2%;" name="type2">
+				<option value=""></option>
+				<option value="消费贷">消费贷</option>
+				<option value="经营贷">经营贷</option>
+			</select>
+			<select class="form-control" style="width: 32%;float: left;margin-left: 2%;" name="type3">
+				<option value=""></option>
+				<option value="个人">个人</option>
+				<option value="企业">企业</option>
+			</select>
+		</div>
+
+		<div style="clear: both;"></div>
+		<div class="con-left">产品描述：</div>
+		<div class="con-right" style="width: 82%;height: auto;margin-bottom: 15px;">
+			<textarea rows="3" class="form-control" name="description">{$product_info['description']}</textarea>
+		</div>
+
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$('#status').val('{$product_info.status}');
+	datePicker('#datePicker',true);
+	$('#contract_add_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.errMsg);
+			var url = "{:U('index')}";
+			pageLoad(url,'#page-wrapper');
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+		if('' === $('input[name=product_name]').val()){
+			showError('机构名不能为空！');
+			return false;
+		}
+		return true;
+	}
+</script>

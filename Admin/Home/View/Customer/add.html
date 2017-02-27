@@ -1,0 +1,386 @@
+<style>
+    .page-add-customer{width:620px;margin-top: -10px}
+    .page-add-customer ul{padding: 0;margin: 0}
+    .page-add-customer .row{display:block;clear:both;margin:5px 0}
+    .page-add-customer .tab-content{height:385px;overflow: auto}
+    .page-add-customer .service-btn-box{margin-top: 30px;padding:20px;border-top:solid #ddd 1px }
+    .img{font-size: 30px; width: 60px;height: 70px;height: auto!important;min-height: 70px;overflow: hidden;line-height: 70px;text-align:center;padding: 2px;border: 1px solid #ccc}
+    .img img{margin: auto; width: 100%}
+    .col-2{}
+    .col-2 label,.col-2 input,.col-2 select{display: inline;font-weight: normal}
+    .col-2 label{display: block;float: left;width: 100px;line-height:30px}
+    .col-2 input,.col-2 select{width: 165px;}
+    .col-2 input[type='radio']{
+        width:30px;
+        line-height: 30px;
+    }
+</style>
+<div class="page-add-customer">
+    <form id="frmCustomer" action="{:U('add')}" method="post" class="form-horizontal">
+        <input type="hidden" name="customer_id" id="customer_id" value="{$data.customer_id}">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab_base_info" data-toggle="tab">基本信息</a></li>
+            <li><a href="#tab_estate_info" data-toggle="tab">房产信息</a></li>
+            <!--<notempty name="data">-->
+                <!--<li><a href="#tab_add_docs" data-toggle="tab">添加附件</a></li>-->
+                <!--<li><a href="#tab_docs" data-toggle="tab">附件列表</a></li>-->
+            <!--</notempty>-->
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane active" id="tab_base_info">
+                <div class="row customer_block">
+                    <div class="col-xs-6 col-2"><label>手机号码*</label>
+                        <empty name="data">
+                            <input type="number" class="form-control" tag="手机号码" truelength="11" id="telephonenumber" name="telephonenumber" value="" required>
+                            <else />
+                            {$data.telephonenumber}
+                        </empty>
+                    </div>
+                    <div class="col-xs-6 col-2">
+                        <label>客户姓名*</label>
+                        <input type="text" class="form-control" name="customer_name" id="customer_name" tag="客户姓名" maxlength="50" minlength="1" value="{$data.customer_name}" required/>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <!--<div class="col-xs-6 col-2"><label><small>客户等级*</small></label>-->
+                        <!--<select class="form-control" name="customer_level" id="customer_level">-->
+                            <!--<volist name="Think.config.CUSTOMER_LEVEL" id="vo">-->
+                                <!--<option value="{$vo}">&nbsp;&nbsp;{$vo}</option>-->
+                            <!--</volist>-->
+                        <!--</select>-->
+                    <!--</div>-->
+                    <div class="col-xs-6 col-2"><label><small>意向金额*</small></label>
+                        <input type="hidden" name="loan_amount" <notempty  name="data">value="{$data['loan_amount']}"</notempty >/>
+                        <input type="text" class="form-control" tag="意向金额" maxlength="10" minlength="1" id="loan_amount" <notempty  name="data">value="{$data['loan_amount']/10000}"</notempty > style="width: 130px;"/> 万元
+                    </div>
+                    <div class="col-xs-6 col-2"><label><small>有无房产*</small></label>
+                        <select class="form-control" name="house_status"  id="house_status">
+                            <option value="有">&nbsp;&nbsp;有</option>
+                            <option value="无">&nbsp;&nbsp;无</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-2">
+                        <label>手机分类</label>
+                        <select class="form-control" name="customer_classify" id="customer_classify">
+                            <volist name="Think.config.CUSTOMER_LEVEL" id="vo">
+                                <option value="{$vo}">&nbsp;&nbsp;{$vo}</option>
+                            </volist>
+                        </select>
+
+
+
+                        <!--<input class="form-control" name="customer_classify" id="customer_classify" value="<empty name="data">正常<else/>{$data.customer_classify}</empty>" disabled="disabled"/>-->
+                    </div>
+                    <div class="col-xs-6 col-2">
+                        <label>客户类型</label>
+                        <input class="form-control" name="customer_type" id="customer_type" value="<empty name="data">意向客户<else/>{$data.customer_type}</empty>" disabled="disabled"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>年龄</label>
+                        <input type="number" class="form-control" id="age" name="age" tag="年龄" maxlength="10" value="{$data.age}">
+                    </div>
+                    <div class="col-xs-6 col-2">
+                        <label>婚姻</label>
+
+                        <select class="form-control" name="marriage" id="marriage">
+                            <option value="已婚">&nbsp;&nbsp;已婚</option>
+                            <option value="未婚">&nbsp;&nbsp;未婚</option>
+                            <option value="离异">&nbsp;&nbsp;离异</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>身份证号码</label>
+                        <input type="text" class="form-control" maxlength="50" tag="身份证号码" name="id_card" value="{$data.id_card}">
+                    </div>
+                    <div class="col-xs-6 col-2"><label>户籍</label>
+
+                        <input type="text" class="form-control" id="province_huji" name="province_huji" maxlength="100" tag="户籍"
+                               value="{$data.province_huji}">
+                    </div>
+                </div>
+                <div class="row service-choose">
+                    <div class="col-xs-6 col-2">
+                        <label>客户性别</label>
+                        <input type="radio" name="sex" value="男" style="width:30px"> 男
+                        <input type="radio" name="sex" value="女" style="width:30px"> 女
+                    </div>
+                    <div class="col-xs-6 col-2">
+                        <label>备用联系方式</label>
+                        <input type="text" class="form-control" id="spare_phone" name="spare_phone" maxlength="100" tag="备用联系方式"
+                               value="{$data.spare_phone}">
+                    </div>
+                </div>
+
+                <div class="row service-choose">
+
+                    <div class="col-xs-6 col-2">
+                        <label>客户来源*</label>
+                        <empty name="data">
+                            <select name="customer_source" class="form-control customer-source" id="customer_source">
+                                <option value="线下">线下</option>
+                            </select>
+                            <else />
+                            {$data.customer_source}
+                        </empty>
+
+                    </div>
+                    <div class="col-xs-6 col-2">
+                        <label>渠道*</label>
+                        <empty name="data">
+                            <select name="utm_source" class="form-control utm-source" id="utm_source">
+                                <option value="录入">录入</option>
+                                <option value="京东">京东</option>
+                            </select>
+                            <else />
+                            {$data.utm_source}
+                        </empty>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-2">
+                        <label>客户地址</label>
+                        <select name="address[province]" id="province" class="adddata mustvalue form-control" style="width:150px;"></select>
+                        <select name="address[city]" id="city" class="adddata mustvalue form-control"  style="width:150px;"></select>
+                        <select name="address[area]" id="area" class="adddata mustvalue form-control" style="width:150px;"></select>
+                        <input type="text" class="form-control" placeholder="街道信息" name="address[street]" id="street" maxlength="100" tag="街道信息"
+                               value="{$data['customer_address']['3']}" style="width:304px;"/>
+                        <select name="quick_city" class="form-control" id="quickcity" onchange="quickselectcity('')" style="width:150px;">
+                            <option value="">快速选择城市</option>
+                            <volist name="quick_city" id="vo">
+                                <option value="{$vo}">&nbsp;&nbsp;{$vo}</option>
+                            </volist>
+                        </select>
+                    </div>
+                </div>
+                <div class="row service-remark ">
+                    <div class="col-xs-12 col-2"><label>个人信息备注</label>
+                        <textarea class="tarea form-control"  name="per_description" style="display: inline;width: 460px">{$data.per_description}</textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="tab_estate_info">
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>几套房</label>
+
+                        <select class="form-control" name="house_amount" id="house_amount">
+                            <volist name="house_amount" id="vo">
+                                <option value="{$vo}">&nbsp;&nbsp;{$vo}</option>
+                            </volist>
+                        </select>
+                    </div>
+
+                    <div class="col-xs-6 col-2">
+                        <label>房产类型</label>
+                        <input type="text" class="form-control" name="house_type" maxlength="100" tag="房产类型"
+                               id="house_type" value="{$data.house_type}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>房产估值</label>
+                        <input type="text" class="form-control" name="house_value" maxlength="50" tag="房产估值"
+                               id="house_value" value="{$data.house_value}">
+                    </div>
+
+                    <div class="col-xs-6 col-2"><label>房产面积</label>
+                        <input type="text" class="form-control" name="house_area" maxlength="50" tag="房产面积"
+                               id="house_area" value="{$data.house_area}">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>房龄</label>
+                        <input type="text" class="form-control" name="house_age" maxlength="50" tag="房龄"
+                               id="house_age" value="{$data.house_age}"></div>
+                    <div class="col-xs-6 col-2">
+                        <label>是否按揭</label>
+                        <input type="radio" name="house_loan" value="是" style="width: 30px"> 是
+                        <input type="radio" name="house_loan" value="否"  style="width: 30px" checked > 否
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-6 col-2"><label>是否备用房</label>
+
+                        <input type="radio" name="house_alone" value="是" style="width: 30px" > 是
+                        <input type="radio" name="house_alone" value="否" style="width: 30px" checked> 否
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-2"><label>房产所在区域</label>
+
+                        <select name="address[provinces]" id="provinces"
+                                class="adddata mustvalue form-control" style="width:150px;"></select>
+                        <select name="address[citys]" id="citys" class="adddata mustvalue form-control" style="width:150px;"></select>
+                        <select name="address[areas]" id="areas" class="adddata mustvalue form-control" style="width:150px;"></select>
+                        <input type="text" class="form-control" placeholder="街道信息" name="address[streets]" id="streets" maxlength="200" tag="房产街道信息"
+                               value="{$data['house_location']['3']}" style="width:304px;"/>
+                        <select name="quick_citys" class="form-control" id="quickcitys" onchange="quickselectcity('s')" style="width:150px;">
+                            <option value="">&nbsp;&nbsp;快速选择城市</option>
+                            <volist name="quick_city" id="vo">
+                                <option value="{$vo}">&nbsp;&nbsp;{$vo}</option>
+                            </volist>
+                        </select>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="service-btn-box">
+            <button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> 提交</button>
+            <button type="button" onclick="closeDlg();" class="btn btn-default pull-left"><i class="fa fa-times"></i> 关闭</button>
+        </div>
+    </form>
+</div>
+<script src="__ROOT__/assets/js/PCASClass.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        new PCAS("address[province]", "address[city]", "address[area]", "{$data['customer_address']['0']}", "{$data['customer_address']['1']}", "{$data['customer_address']['2']}");
+        new PCAS("address[provinces]", "address[citys]", "address[areas]", "{$data['house_location']['0']}", "{$data['house_location']['1'] }", "{$data['house_location']['2']}");
+        //快速选择城市
+        var telephonenumber = trim($("#telephonenumber").val());
+        $("#telephonenumber").on("blur", function () {
+            var telephonenumber = trim($("#telephonenumber").val());
+            if ((isNaN(telephonenumber) || telephonenumber.length != 11) && telephonenumber != undefined) {
+                showWarning('手机号码格式不正确！');
+                //$(this).focus();
+                $(this).parent().addClass('has-warning');
+                return false;
+            }
+            if (checktelphone(telephonenumber, "{$data.customer_id}") == true) {
+                showWarning('手机号码 ' + telephonenumber + ' 已存在！');
+                //$(this).focus();
+                $(this).parent().addClass('has-warning');
+            } else {
+                $(this).parent().removeClass('has-warning');
+
+            }
+        });
+        $("#loan_amount").on("blur",function(){
+            var loan_amount = $(this).val();
+            loan_amount = loan_amount*10000;
+            $(this).prev().val(loan_amount);
+        })
+    });
+
+    //检查手机号 存在返回true
+    function checktelphone(telephonenumber,customer_id){
+        var flag = false;
+        var data = {"tel":telephonenumber,"customer_id":customer_id};
+        $.ajax({
+            type: "POST",
+            url: "{:U('Phone/checkTelephone')}",
+            data: data,
+            timeout: 10,
+            dataType: "json",
+            async: false,
+            success: function(msg) {
+                flag = msg.status;
+            }});
+        return flag;
+    }
+
+
+    $('#frmCustomer').ajaxForm({success:success,beforeSend:checkForm});
+    function checkForm(){
+
+        if(checkInputLength('#frmCustomer')===false){return false;}
+
+
+        var customer_name = $("#customer_name").val();
+        var telephonenumber = $("#telephonenumber").val();
+        var customer_id = $("#customer_id").val();
+        var loan_amount = $("#loan_amount").val();
+
+        var marriage = $("#marriage").val();
+
+
+        if((isNaN(telephonenumber) || telephonenumber.length != 11) && telephonenumber != undefined){
+            showError("手机号码格式不正确");
+            $("#telephonenumber").parent().addClass('has-error');
+            $("#telephonenumber").focus();
+            return false;
+        }else{
+            $("#telephonenumber").parent().removeClass('has-error');
+        }
+        if('' === customer_name){
+            showError('客户姓名不能为空！');
+            $("#customer_name").parent().addClass('has-error');
+            $("#customer_name").focus();
+            return false;
+        }else{
+            $("#customer_name").parent().removeClass('has-error');
+        }
+        if(isNaN(loan_amount)){
+            showError("意向金额必须是数字！");
+            $("#loan_amount").focus();
+            return false;
+        }
+    }
+    function success(data){
+        if(data.errNum===0){
+            showSuccess(data.retData);
+            closeDlg();
+            pageLoad("{:U('indexTable')}",'#ajax-content');
+        }else{
+            showError(data.errMsg);
+        }
+    }
+
+    //快速选择城市
+    function quickselectcity(s)
+    {
+        var v = $("#quickcity"+s).val();
+        var province  = "province"+s;
+        var city  = "city"+s;
+        var area  = "area"+s;
+
+        if(v == '上海市' || v=='北京市'){
+            $('#'+province).val(v).trigger('change');
+        }else{
+            if(v == '深圳市'){
+                $('#'+province).val('广东省').trigger('change');
+                $('#'+city).val(v).trigger('change');
+                //new PCAS( "address[province"+s+"]","address[city"+s+"]","address[area"+s+"]","广东省",v,"");
+            }else if(v == '郑州市'){
+                $('#'+province).val('河南省').trigger('change');
+                $('#'+city).val(v).trigger('change');
+                //new PCAS("address[province"+s+"]","address[city"+s+"]","address[area"+s+"]","河南省",v,"");
+            }else if(v == '苏州市'){
+                $('#'+province).val('江苏省').trigger('change');
+                $('#'+city).val(v).trigger('change');
+                //new PCAS("address[province"+s+"]","address[city"+s+"]","address[area"+s+"]","河南省",v,"");
+            }else{
+                $('#'+province).val('浙江省').trigger('change');
+                $('#'+city).val(v).trigger('change');
+                //new PCAS("address[province"+s+"]","address[city"+s+"]","address[area"+s+"]","浙江省",v,"");
+            }
+        }
+    }
+</script>
+<notempty name="data">
+    <script>
+        $("#customer_level").val("{$data.customer_level}");
+        $("#marriage").val("{$data.marriage}");
+        $("#house_status").val("{$data.house_status}");
+        $("#house_amount_sale").val("{$data.house_amount}");
+//        $("#utm_source").val("{$data.utm_source}");
+//        $("#customer_source").val("{$data.customer_source}");
+        $("#customer_classify").val("{$data.customer_classify}");
+        $("input:radio[name = 'house_alone'][value='{$data.house_alone}']").attr("checked", "checked");
+        $("input:radio[name = 'house_loan'][value='{$data.house_loan}']").attr("checked", "checked");
+        $("input:radio[name = 'sex'][value='{$data.sex}']").attr("checked", "checked");
+    </script>
+</notempty>

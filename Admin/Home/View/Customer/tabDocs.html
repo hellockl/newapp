@@ -1,0 +1,27 @@
+<volist name="upfileinfos" id="vo">
+	<div class="row">
+		<div class="col-xs-1">
+			{$i}
+		</div>
+		<div class="col-xs-2">
+			<div class="img">
+				<i class="fa fa-picture-o"></i>
+			</div>
+		</div>
+		<div class="col-xs-5">{$vo.document_c_name_header} {$vo.document_c_name}</div>
+		<div class="col-xs-4">
+			<a target="_self"  href="{:U('Document/previewDocument','id='.$vo['rc_document_id'])}" class="litebox" data-litebox-group="group-file" data-litebox-text="{$vo['document_c_name_header']} {$vo['document_c_name']}">预览</a>
+			<a target="_blank" href="{:U('Document/downloadDocument','id='.$vo['rc_document_id'])}">下载</a>
+		</div>
+	</div>
+</volist>
+<script type="text/javascript">
+	$('.litebox').liteBox({
+		revealSpeed: 400,
+		background: 'rgba(0,0,0,.8)',
+		overlayClose: true,
+		escKey: true,
+		navKey: true,
+		errorMessage: '图片加载失败.'
+	});
+</script>

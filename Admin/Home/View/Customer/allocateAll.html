@@ -1,0 +1,137 @@
+<style type="text/css">
+    .pagination {width: 100%;text-align: center; margin: 0; }
+    .pagination ul>li{display: inline;}
+</style>
+<form id="allocate_form" class="form" action="{:U('allocateAll')}" method="Post">
+    <input type="hidden" name="customer_ids" value="{$_GET['customer_ids']}">
+    <input type="hidden" name="owner_user_name" id="owner_user_name" value="">
+    <div class="clearfix" id="kongjian">
+        <ul class="nav pull-left">
+            <li class="pull-left">
+                <select class="form-control" id="d_department_id" name="department_id" >
+                    <option value="">全部</option>
+                    <volist name="department_list" id="temp">
+                        <option value="{$temp.department_id}" >{$temp.name}</option>
+                    </volist>
+                </select>
+            </li>
+            <li class="pull-left" >
+                <input class="form-control" id="d_name" type="text" name="name" placeholder=" 姓名"/>
+            </li>
+            &nbsp; <button type="button" class="btn btn-default" onclick="d_changeContent(1)">筛选</button>
+        </ul>
+    </div>
+    <table class="table table-hover table-condensed" style="width: 600px">
+        <thead>
+        <th>&nbsp;</th>
+        <th>员工姓名</th>
+        <th>部门</th>
+        <th>性别</th>
+        <th>手机号</th>
+        <th>邮箱</th>
+        </thead>
+        <tbody id="search_result">
+        <volist name="user_list" id="vo">
+            <tr>
+                <td><input type="radio" name="owner_user_id" value="{$vo['user_id']}" onclick="get_owner_user_name()" /> </td>
+                <td>{$vo['name']}</td>
+                <td>{$vo['department_name']}</td>
+                <td>{$vo['sex']}</td>
+                <td>{$vo['telephone']}</td>
+                <td>{$vo['email']}</td>
+            </tr>
+        </volist>
+        </tbody>
+        <tfoot id="footers">
+        <tr>
+            <td colspan="6">
+                <div style="position: relative;float:left;margin-top: 10px;" >
+                    <button type="submit" class="btn btn-primary btn-sm"><i class="fa fa-check"></i> 确定</button>
+                </div>
+                <div class="pagination" style="float:right;margin-top:-25px;text-align:right;">
+                    <span id="counts">{$count}</span> 条记录 <span id="ps">1</span> / <span id="total_pages">{$total}</span>页
+                    <ul id="changepages" style="display: inline">
+                        <li><span class='current'>首页</span></li>&nbsp;<li><span>« 上一页</span></li>&nbsp;
+                        <if condition="1 lt $total">
+                            <li><a class="page" href="javascript:void(0)" rel="2">下一页 »</a></li>
+                            <else />
+                            <li><span>下一页 »</span></li>
+                        </if>
+                    </ul>
+                </div>
+
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</form>
+<script type="text/javascript">
+    function  get_owner_user_name() {
+        var owner_user_name=$('input[name="owner_user_id"]:checked').parent().next().text();
+        $('#owner_user_name').val(owner_user_name);
+    }
+    $('#allocate_form').ajaxForm({success:success});
+    function success(data){
+        if(data.errNum==0){
+            showSuccess(data.errMsg);
+            closeDlg();
+        }else{
+            showError(data.errMsg);
+        }
+    }
+    $('.page').click(function(){
+        var a = $(this).attr('rel');
+        d_changeContent(a);
+    });
+    function d_changeContent(p){
+        $('#footers').removeClass('hide');
+        var department_id = $('#d_department_id').val();
+        var name = $('#d_name').val();
+        $.ajax({
+            type:'get',
+            url:'{:U("User/getUserTable")}?department_id='+department_id+'&name='+name+'&p='+p,
+            async:false,
+            success:function(data){
+                var temp = '';
+                if(data.status == 0){
+                    $.each(data.data.list, function(k, v){
+                        temp += "<tr><td><input type='radio' name='owner_user_id' value='"+v.user_id+"'onclick='get_owner_user_name()' /></td>";
+                        temp += "<td>"+v.name+"</td>";
+                        temp += "<td>"+v.department_name+"</td>";
+                        temp += "<td>"+v.sex+"</td>";
+                        temp += "<td>"+v.telephone+"</td>";
+                        temp += "<td>"+v.email+"</td>";
+                        temp += "</tr>";
+                    });
+                    var changepage = "";
+                    if(data.data.p == 1){
+                        changepage = "<li><span class='current'>首页</span></li>&nbsp;<li><span>« 上一页</span></li>&nbsp;&nbsp;";
+                        if(data.data.p < data.data.total){
+                            changepage += "<li><a class='page' href='javascript:void(0)' rel='"+(parseInt(data.data.p)+1)+"'>下一页 »</a></li>";
+                        }else{
+                            changepage += "<li><span>下一页 »</span></li>";
+                        }
+                    }else if(data.data.p == data.data.total){
+                        changepage = "<li><a class='page' href='javascript:void(0)' rel='1'>首页</a></li>&nbsp;<li><a class='page' href='javascript:void(0)' rel='"+(data.data.p-1)+"'>« 上一页</a></li>&nbsp;&nbsp;<li><span>下一页 »</span></li>";
+                    }else{
+                        changepage = "<li><a class='page' href='javascript:void(0)' rel='1'>首页</a></li>&nbsp;<li><a class='page' href='javascript:void(0)' rel='"+(data.data.p-1)+"'>« 上一页</a></li>&nbsp;&nbsp;<li><a class='page' href='javascript:void(0)' rel='"+(parseInt(data.data.p)+1)+"'>下一页 »</a></li>";
+                    }
+                    $('#search_result').html(temp);
+                    $('#ps').html(data.data.p);
+                    $('#changepages').html(changepage);
+                    $('#counts').html(data.data.count);
+                    $('#total_pages').html(data.data.total);
+                    $('.page').click(function(){
+                        var a = $(this).attr('rel');
+                        d_changeContent(a);
+                    });
+                }else{
+                    $('#search_result').html('<tr><td colspan="4">查不到筛选结果</td></tr>');
+                    $('#footers').addClass('hide');
+                }
+            },
+            dataType:'json'
+        });
+    }
+</script>
+

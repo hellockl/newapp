@@ -1,0 +1,350 @@
+<form id="contract_add_form" class="form" action="{:U('tabContractInfo')}" method="Post">
+	<style>
+		.contract-content { width: 600px; }
+		.contract-content .con-left { width: 18%; float: left; text-align: right; padding-right: 5px; font-weight: 700;height: 40px;}
+		.contract-content .con-right { width: 32%; float: left;height: 40px;clear:right}
+	</style>
+	<div class="contract-content">
+		<div style="max-height: 380px; overflow-y: auto; overflow-x:hidden;">
+			<input type="hidden" name="contract_id" value="{$contract_info['contract_id']}"/>
+			<div class="con-left">借款人*：</div>
+			<div class="con-right"><input type="text" class="form-control" name="borrower" value="{$contract_info['borrower']}" /></div>
+			<div style="clear: both"></div>
+			<div class="con-left">身份证*：</div>
+			<div class="con-right"><input type="text" class="form-control" name="identity" value="{$contract_info['identity']}"/></div>
+
+			<div class="con-left">联系电话*：</div>
+			<div class="con-right"><input type="text" class="form-control" name="phone" value="{$contract_info['phone']}" /></div>
+			<div class="con-left">户籍地址*：</div>
+			<div class="con-right" style="width: 82%;"><input type="text" class="form-control" name="per_address" value="{$contract_info['per_address']}"/></div>
+
+
+			<div style="clear: both;"></div>
+			<div class="con-left">联系地址*：</div>
+			<div class="con-right" style="width: 82%;"><input type="text" class="form-control" name="address" value="{$contract_info['address']}"/></div>
+
+			<div class="con-left">合同类型*：</div>
+			<div class="con-right">
+				<if condition="$contract_info['contract_type'] eq 1">渠道
+					<elseif condition="$contract_info['contract_type'] eq 2"/>自营
+				</if>
+			</div>
+
+
+
+			<div class="con-left">产品类型*：</div>
+			<div class="con-right">
+				<select class="form-control" name="product_type" id="product_type">
+					<option value="信用">信用</option>
+					<option value="赎楼">赎楼</option>
+					<option value="抵押">抵押</option>
+				</select>
+			</div>
+
+			<div style="clear: both;"></div>
+			<div id="product_type_div">
+				<div class="con-left">产品名称*：</div>
+				<div>
+					<span class="product-list-dialog" id="product-list-dialog" style="color: red;cursor: pointer">点击选择</span>
+					<input type="hidden" class="form-control" name="product_name" id="product_name" value="{$contract_info.product_name|trim=','}" style="width: 80%;float: right;"/>
+					<div id="product_type_name" style="max-height:80px;overflow: auto">
+						<volist name="contract_info.product_type_name" id="ptn">
+							<span class="btn btn-info" style="margin: 5px;padding: 0 3px">{$ptn}</span>
+
+						</volist>
+					</div>
+				</div>
+			</div>
+
+
+			<div style="clear: both;"></div>
+
+			<div class="con-left">借款金额*：</div>
+			<div class="con-right">
+				<div class="input-group">
+					<input type="text" class="form-control" name="borrow_money"
+						   value="<empty name="contract_info">0<else/>{$contract_info['borrow_money']}</empty>" />
+					<span class="input-group-addon">元</span>
+				</div>
+			</div>
+			<div class="con-left">借款期限*：</div>
+			<div class="con-right"><input type="text" class="form-control" name="duration" value="<empty name="contract_info">0<else/>{$contract_info['duration']}</empty>" /></div>
+
+
+			<div class="con-left">月利率*：</div>
+			<div class="con-right">
+				<div class="input-group">
+					<input type="text" maxlength="10" minlength="1" tag="月利率" class="form-control" name="month_rate" id="month_rate" value="<empty name="contract_info">0<else/>{$contract_info['month_rate']}</empty>">
+					<span class="input-group-addon">%</span>
+				</div>
+			</div>
+			<div class="con-left">年利率*：</div>
+			<div class="con-right">
+				<div class="input-group">
+					<input type="text" maxlength="10" minlength="1" tag="年利率" class="form-control" name="year_rate" id="year_rate"  value="<empty name="contract_info">0<else/>{$contract_info['year_rate']}</empty>">
+					<span class="input-group-addon">%</span>
+				</div>
+			</div>
+			<script>
+				$('#month_rate').change(function(){
+					var input_val=$(this).val();
+					if(input_val==""){
+						$('#year_rate').val("");
+					}else{
+						var patrn=/^[0-9]+(.[0-9]{1,2})?$/;
+						if (!patrn.exec(input_val)) {
+							$(this).val('');
+							$('#year_rate').val("");
+							showError("请输入正确格式的数据");
+						}else {
+							var year_rate=parseFloat(input_val)*12;
+							$('#year_rate').val(year_rate.toFixed(2));
+						}
+					}
+				});
+				$('#year_rate').change(function(){
+					var input_val=$(this).val();
+					if(input_val==""){
+						$('#month_rate').val("");
+					}else{
+						var patrn=/^[0-9]+(.[0-9]{1,2})?$/;
+						if (!patrn.exec(input_val)) {
+							$(this).val('');
+							$('#month_rate').val("");
+							showError("请输入正确格式的数据");
+						}else {
+							var year_rate=parseFloat(input_val)/12;
+							$('#month_rate').val(year_rate.toFixed(2));
+						}
+					}
+				});
+			</script>
+
+			<div class="con-left">服务费*：</div>
+			<div class="con-right">
+				<div class="input-group">
+					<input type="text" class="form-control" name="service_money"
+						   value="<empty name="contract_info">0<else/>{$contract_info['service_money']}</empty>" />
+					<span class="input-group-addon">元</span>
+				</div>
+			</div>
+
+			<div class="con-left" id="manger_money_tag" style="display: none">管理费(元)：</div>
+			<div class="con-right"><input type="text" class="form-control" id="manger_money" name="manger_money" value="<empty name="contract_info">0<else/>{$contract_info['manger_money']}</empty>" style="display: none" /></div>
+
+
+			<div style="clear: both;"></div>
+			<div class="con-left">还款方式：</div>
+			<div class="con-right">
+				<select class="form-control" name="pay_type" id="pay_type">
+					<option value="1">等额本息</option>
+					<option value="2">先息后本</option>
+					<option value="3">等本等息</option>
+					<option value="4">其他</option>
+				</select>
+			</div>
+
+			<div style="clear: both;"></div>
+			<div class="con-left">房产地址：</div>
+			<div class="con-right" style="width: 82%;"><input type="text" class="form-control" name="house_address" value="{$contract_info['house_address']}" /></div>
+
+			<div class="con-left">户龄：</div>
+			<div class="con-right"><input type="number" class="form-control" name="house_age" value="<empty name="contract_info">0<else/>{$contract_info['house_age']}</empty>" /></div>
+			<div class="con-left">房产面积：</div>
+			<div class="con-right"><input type="number" class="form-control" name="house_area" value="<empty name="contract_info">0<else/>{$contract_info['house_area']}</empty>" /></div>
+
+			<div style="clear: both;"></div>
+			<div class="con-left">房产估值：</div>
+			<div class="con-right"><input type="number" class="form-control" name="house_value" value="<empty name="contract_info">0<else/>{$contract_info['house_value']}</empty>" /></div>
+			<div class="con-left" id="channel_name_tag" style="display: none">出借人信息：</div>
+			<div class="con-right"><input type="text" class="form-control" name="channel_name" id="channel_name" value="{$contract_info['channel_name']}" style="display: none"/></div>
+			<div style="clear: both;"></div>
+
+			<div class="con-left">放贷金额*：</div>
+			<div class="con-right">
+				<div class="input-group">
+					<input type="text" class="form-control" name="give_money"
+						   value="<empty name="contract_info">0<else/>{$contract_info['give_money']}</empty>"/>
+					<span class="input-group-addon">元</span>
+				</div>
+			</div>
+			<div class="con-left">放贷时间*：</div>
+			<div class="con-right">
+				<input  id="datePicker" name="give_time" class="form-control Wdate2" type="text" value="{$contract_info['give_date']}">
+			</div>
+
+			<div id="give_money_two_div" style="display: none">
+				<div class="con-left">放贷金额二：</div>
+				<div class="con-right">
+					<div class="input-group">
+						<input type="number" class="form-control" name="give_money_two"
+							   value="<empty name="contract_info">0<else/>{$contract_info['give_money_two']}</empty>"/>
+						<span class="input-group-addon">元</span>
+					</div>
+				</div>
+
+				<div class="con-left">放贷时间二：</div>
+				<div class="con-right">
+					<input  id="datePickerTwo" name="give_time_two" class="form-control Wdate2" type="text" value="{$contract_info['give_time_two']}">
+				</div>
+			</div>
+
+
+			<div class="con-left">到期时间*：</div>
+			<div class="con-right">
+				<input  id="expireTime" name="expire_time" class="form-control Wdate2" type="text" value="{$contract_info['expire_time']}">
+			</div>
+		</div>
+
+		<div style="text-align: center;margin-top: 10px;border-top: solid #ddd 1px;padding-top: 5px">
+			<span class="pull-left"><i class="fa fa-info"></i> 提示：编辑更多信息，请使用窗口的滚动条 </span>
+			<button type="submit" class="btn btn-primary pull-right"><i class="fa fa-save"></i> 保存</button>
+
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$(function () {
+		$("#product_type").val("{$contract_info['product_type']}");
+		window.selected_product = {$contract_info.product_type_name|json_encode} || {};
+		$("#pay_type").val("{$contract_info['pay_type']}");
+
+		var product_type_div='show';
+		if("{$contract_info['contract_type']}"==2){
+			$('#give_money_two_div').show();
+			$('#product_type_div').hide();
+			var product_type_div='hidden';
+		}
+		datePicker('#datePicker',true);
+		datePicker('#datePickerTwo',true);
+		datePicker('#expireTime',true);
+	});
+
+	$('#contract_add_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			var url = "{:U('index')}";
+			pageLoad(url,'#page-wrapper');
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+		if('' === $('input[name=borrower]').val()){
+			showError('借款人不能为空！');
+			return false;
+		}
+		if('' === $('input[name=identity]').val()){
+			showError('身份证不能为空！');
+			return false;
+		}
+		if('' === $('input[name=phone]').val()){
+			showError('联系电话不能为空！');
+			return false;
+		}
+		if('' === $('input[name=per_address]').val()){
+			showError('户籍地址不能为空！');
+			return false;
+		}
+		if('' === $('input[name=address]').val()){
+			showError('联系地址不能为空！');
+			return false;
+		}
+		if('' === $("#contract_type").val()){
+			showError('请选择合同类型！');
+			return false;
+		}
+		if('' === $("#product_type").val()){
+			showError('请选择产品类型！');
+			return false;
+		}
+		if('' === $('input[name=borrow_money]').val()){
+			showError('借款金额不能为空！');
+			return false;
+		}
+		if('' === $('input[name=duration]').val()){
+			showError('借款期限不能为空！');
+			return false;
+		}
+		if('' === $('input[name=month_rate]').val()){
+			showError('月利率不能为空！');
+			return false;
+		}
+		if('' === $('input[name=year_rate]').val()){
+			showError('年利率不能为空！');
+			return false;
+		}
+		if('' === $('input[name=service_money]').val()){
+			showError('服务费不能为空！');
+			return false;
+		}
+		if('' === $('input[name=give_money]').val()){
+			showError('放款金融不能为空！');
+			return false;
+		}
+		if('' === $('input[name=give_time]').val()){
+			showError('放款时间不能为空！');
+			return false;
+		}
+		if('' === $('input[name=expire_time]').val()){
+			showError('到期时间不能为空！');
+			return false;
+		}
+		if(product_type_div=='show'){
+			if('' === $('input[name=product_name]').val()){
+				showError('请选择产品名称！');
+				return false;
+			}
+		}
+	}
+
+
+	$('.product-list-dialog').click(function () {
+		var url="{:U('product/productSelect')}";
+		openAjaxDialog('产品选择列表', url, 1, 'nav');
+	});
+
+
+	$("#contract_type").bind("change",function(){
+		if($(this).val()==2){
+			$('#product_type_div').hide();
+			product_type_div='hidden';
+
+			$('#give_money_two_div').show();
+			//自营的有出借人信息
+			$('#channel_name').show();
+			$('#channel_name_tag').show();
+		}else{
+			$('#product_type_div').show();
+			product_type_div='show';
+
+			$('#give_money_two_div').hide();
+			//渠道的没有出借人信息
+			$('#channel_name').hide();
+			$('#channel_name_tag').hide();
+		}
+		showMangerMoney();
+	});
+
+	$("#product_type").bind("change",function(){
+		showMangerMoney();
+	});
+
+
+	if("{$contract_info['contract_type']}"==2&&"{$contract_info['product_type']}"=='信用'){
+		$('#manger_money').show();
+		$('#manger_money_tag').show();
+	}
+
+	function showMangerMoney(){
+		if($('#contract_type').val()==2&&$('#product_type').val()=='信用'){
+			$('#manger_money').show();
+			$('#manger_money_tag').show();
+		}else{
+			$('#manger_money').hide();
+			$('#manger_money_tag').hide();
+		}
+	}
+</script>

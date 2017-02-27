@@ -1,0 +1,204 @@
+<style>
+	.page-add-customer{width:620px;margin-top: -10px}
+	.page-add-customer ul{padding: 0;margin: 0}
+	.page-add-customer .row{display:block;clear:both;margin:5px 0}
+	.page-add-customer .service-btn-box{margin-top: 30px;padding:20px;border-top:solid #ddd 1px }
+	.img{font-size: 30px; width: 60px;height: 70px;height: auto!important;min-height: 70px;overflow: hidden;line-height: 70px;text-align:center;padding: 2px;border: 1px solid #ccc}
+	.img img{margin: auto; width: 100%}
+	.col-2{}
+	.col-2 label,.col-2 input,.col-2 select{display: inline;font-weight: normal}
+	.col-2 label{display: block;float: left;width: 100px;line-height:30px;font-weight: 700}
+	.col-2 input,.col-2 select{width: 165px;}
+	.col-2 input[type='radio']{
+		width:30px;
+		line-height: 30px;
+	}
+	.tab-content{height:360px;overflow: auto}
+</style>
+<div class="page-add-customer">
+	<ul class="nav nav-tabs" style="margin-bottom: 15px;">
+		<li class="active"><a href="#tab_agreement_add" data-toggle="tab">协议信息</a></li>
+		<li><a href="#tab_base_info" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabBaseInfo')}">客户信息</a></li>
+		<li><a href="#tab_estate_info" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabEstateInfo')}">房产信息</a></li>
+		<li><a href="#tab_docs" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabDocs')}">附件列表</a></li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane active" id="tab_agreement_add">
+			<form id="agreement_edit_form" class="form" action="{:U('edit')}" method="Post">
+				<style>
+					.agreement-content { width: 600px; height: 400px; overflow-y: auto; overflow-x: hidden;}
+					.agreement-content .con-left { width: 18%; float: left; text-align: right; padding-right: 5px; font-weight: 700;height: 40px;}
+					.agreement-content .con-right { width: 32%; float: left;height: 40px;}
+					.customer-info {width: 82%; float: left;min-height: 40px;height: auto!important;height: 40px;overflow: hidden;border: 1px solid #ddd;margin-bottom: 5px; }
+					.customer-info .con-left { width: 22%; line-height: 30px;float: left; text-align: right; padding-right: 5px; font-weight: 700;height: 30px;}
+					.customer-info .con-right { width: 70%; float: left;height: 30px;line-height: 30px;}
+				</style>
+				<div class="agreement-content">
+					<input name="agreement[agreement_id]" type="hidden" value="{$info.agreement.agreement_id}">
+					<div class="con-left">客户：</div>
+					<div class="con-right">
+						<input type="hidden" name="agreement[customer_id]" id="customer_id" value="{$info.agreement.customer_id}">
+						{$customer[customer_name]}
+					</div>
+					<div style="clear:both"></div>
+
+					<div class="con-left">协议编号*：</div>
+					<div class="con-right">{$info.agreement.number}</div>
+					<div class="con-left">产品类型：</div>
+					<div class="con-right">{$info.agreement.product_type}</div>
+					<!--<div style="clear:both;height: 1px;border: none;margin-bottom: 25px;background-color: #ddd"></div>-->
+
+
+					<div class="con-left">借款人*：</div>
+					<div class="con-right">{$info.agreement.borrower}</div>
+					<div class="con-left">电话*：</div>
+					<div class="con-right">{$info.agreement.telephone}</div>
+					<div class="con-left">证件号*：</div>
+					<div class="con-right">{$info.agreement.identity}</div>
+
+
+					<!--<div style="clear:both;height: 1px;border: none;margin-bottom: 25px;background-color: #ddd"></div>-->
+
+					<div class="con-left">拟借款金额*：</div>
+					<div class="con-right">{$info.agreement.plan_money}</div>
+					<div class="con-left">费率：</div>
+					<div class="con-right">{$info.agreement.rate}</div>
+					<div class="con-left">佣金*：</div>
+					<div class="con-right">{$info.agreement.commission}</div>
+
+					<!--<div style="clear:both;height: 1px;border: none;margin-bottom: 25px;background-color: #ddd"></div>-->
+
+					<div class="deposit_div">
+						<div class="con-left">预付款：</div>
+						<div class="con-right">{$info.receivables.deposit}</div>
+						<div style="clear:both;"></div>
+
+
+
+						<div class="con-left">支付类型：</div>
+						<div class="con-right">{$info.receivables.pay_type}</div>
+
+						<div class="con-left">支付日期：</div>
+						<div class="con-right">
+							<div class="customer_master_field_value">{$info.receivables.pay_time|date='Y-m-d',###}</div>
+						</div>
+
+						<div class="con-left">付款人：</div>
+						<div class="con-right">{$info.receivables.payee}</div>
+						<div class="con-left">付款账户：</div>
+						<div class="con-right">{$info.receivables.payee_account}</div>
+
+
+					</div>
+				</div>
+				<!--<div style="clear:both;"></div>-->
+				<!--<div style="text-align: center;">-->
+					<!--<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="关闭">-->
+				<!--</div>-->
+			</form>
+		</div>
+
+
+		<div class="tab-pane" id="tab_base_info"></div>
+		<div class="tab-pane" id="tab_estate_info"></div>
+		<div class="tab-pane" id="tab_docs"></div>
+	</div>
+</div>
+<script type="text/javascript">
+	datePicker('#datePicker',true);
+	$("#receivables_pay_type").val("{$info.receivables.pay_type}");
+	$('#agreement_edit_form').ajaxForm({success:success,beforeSend:checkForm});
+	function success(data){
+		if(data.errNum==0){
+			showSuccess(data.retData);
+			closeDlg();
+			var link = "{:U('table')}/p/"+$('.current').text();
+			pageLoad(link,'#page-contents');
+		}else{
+			showError(data.errMsg);
+		}
+	}
+	function checkForm(){
+
+		if($.trim($('#customer_id').val()) == ''){
+			showWarning('没有选择客户！');
+			return false;
+		}
+		if($.trim($('#borrower').val()) == ''){
+			showWarning('借款人不能为空！');
+			return false;
+		}
+		if($.trim($('#telephone').val()) ==''){
+			showWarning('电话号不能为空！');
+			return false;
+		}
+		if($.trim($('#identity').val()) ==''){
+			showWarning('证件号不能为空！');
+			return false;
+		}
+		if($.trim($('#plan_money').val()) ==''){
+			showWarning('拟借款金额不能为空！');
+			return false;
+		}
+		if($.trim($('#commission').val()) ==''){
+			showWarning('佣金不能为空！');
+			return false;
+		}
+
+	}
+
+
+	$(".is_deposit").click(function(){
+		if($("input[class='is_deposit']").is(':checked')){
+			$('.deposit_div').show();
+		}else{
+			$('.deposit_div').hide();
+			$("input[name='deposit']").val('');
+		}
+	});
+
+	var plan = parseFloat($.trim($('#plan_money').val()));
+	var commission = parseFloat($.trim($('#commission').val()));
+	$('#plan_money').keyup(function(){
+		var val=parseFloat($.trim($(this).val()));
+		if(isNaN(val)){
+			showError("请正确填写值");
+			$(this).val(0);
+		}else{
+			plan = val;
+			if(plan && commission){
+				$('#rate').val((commission/plan).toFixed(2));
+			}else{
+				$('#rate').val(0);
+				$('#commission').val(0);
+			}
+		}
+	});
+	$('#commission').keyup(function(){
+		var val=parseFloat($.trim($(this).val()));
+		if(isNaN(val)){
+			showError("请正确填写值");
+			$(this).val(0);
+		}else{
+			commission = val;
+			if(plan){
+				$('#rate').val((commission/plan).toFixed(2));
+			}else{
+				$('#plan_money').val(0);
+				$('#rate').val(0);
+			}
+		}
+	});
+
+
+	$('.open_nav_tabs').click(function(){
+		var customer_id=$('#customer_id').val();
+		if(customer_id==""){showError("请先选择客户");return false;}
+		var tab_name=$(this).attr("href");
+		var url=$(this).attr("url");
+		if($(tab_name).text()==""){
+			var link = url+"?customer_id="+customer_id;
+			loadURL(link,tab_name);
+		}
+	});
+</script>

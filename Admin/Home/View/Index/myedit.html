@@ -1,0 +1,64 @@
+<form id="user_edit_form" class="form" action="{:U('myedit')}" method="Post">
+	<style>
+		.user-content { width: 600px; }
+		.user-content .con-left { width: 18%; float: left; text-align: right; padding-right: 5px; font-weight: 700;height: 40px;}
+		.user-content .con-right { width: 32%; float: left;height: 40px;}
+	</style>
+	<div class="user-content">
+		<input type="hidden" name="user_id" value="{$user_info['user_id']}" />
+		<div class="con-left">员工姓名：</div>
+		<div class="con-right">{$user_info['name']}</div>
+
+		<div class="con-left">所属部门：</div>
+		<div class="con-right">{$user_info['department_name']}</div>
+
+		<div class="con-left">性别：</div>
+		<div class="con-right">
+			<select name="sex" class="form-control">
+				<option value="男">男</option>
+				<option value="女" <if condition="$user_info['sex'] eq '女'">selected</if> >女</option>
+			</select>
+		</div>
+
+		<div class="con-left">状态：</div>
+		<div class="con-right">{$user_info['status_name']}</div>
+
+		<div class="con-left">邮箱：</div>
+		<div class="con-right"><input type="text" class="form-control" name="email" value="{$user_info['email']}" /></div>
+		<div class="con-left">手机号：</div>
+		<div class="con-right"><input type="text" class="form-control" name="telephone" value="{$user_info['telephone']}" /></div>
+
+		<div class="con-left">员工类别：</div>
+		<div class="con-right">{$user_info['type_name']}</div>
+		<div class="con-left">入职时间：</div>
+		<div class="con-right">{$user_info['employment_time']|date='Y-m-d',###}</div>
+
+		<div class="con-left">联系地址：</div>
+		<div class="con-right" style="width: 82%;"><input type="text" class="form-control" name="address" value="{$user_info['address']}"/></div>
+		<volist name="user_info['role_names']" id="vo">
+			<div>
+				<div class="con-left">角色：</div>
+				<div class="con-right" style="width: 82%;">{$vo}</div>
+			</div>
+		</volist>
+
+		<div style="text-align: center;">
+			<input type="submit" class="btn btn-success" name="submit" value="保存">&nbsp;&nbsp;&nbsp;
+			<input type="button" class="btn btn-primary" onclick="javascript:closeDlg();" value="取消">
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	$('#user_edit_form').ajaxForm({success:success});
+	function success(data){
+		if( 0 === data.errNum){
+			showSuccess(data.errMsg);
+			//var url = "{:U('/User/Index/index')}";
+			//pageLoad(url,'#page-wrapper');
+			closeDlg();
+		}else{
+			showError(data.errMsg);
+		}
+	}
+</script>
+					

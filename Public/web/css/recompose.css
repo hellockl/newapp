@@ -1,0 +1,486 @@
+a{
+    color: #666;
+}
+input{
+    outline: none;
+}
+#center{
+    width: 1220px;
+    height: 720px;
+    background: #fff;
+    margin:48px auto 50px;
+    box-shadow:0px 0px 25px #666;
+    position: relative;
+}
+.header_01{
+    height: 58px;
+    border-bottom:  1px solid #aaa; 
+    position: relative;
+}
+.header_01 img{
+    margin:30px 10px 0 30px;
+    display: inline-block;
+}
+.header_01 .spa1{
+    font-size: 20px;
+    position: absolute;
+    top:28px;
+}
+.header_01 .spa2{
+    position: absolute;
+    top:28px;
+    left: 165px;
+    color: #a70a13;
+    font-size: 20px;
+}
+.header_01 .spa3{
+    position: absolute;
+    top:28px;
+    right: 20px;
+    color: #a70a13;
+    font-size: 20px;
+}
+.inside{
+    width:1000px;
+    margin:60px auto 0px;
+    height: auto;
+}
+.psd{
+    height: 50px;
+    border-bottom:1px solid #000;
+    line-height: 48px;
+}
+ .psd li{
+    float: left;
+    color: #333;
+    margin-right: 48px;
+    cursor: pointer;
+    
+}
+ .psd li:nth-child(1){
+    border-bottom:3px solid #e99e1e;
+    color:#e99e1e;
+    background: none;
+ }
+
+
+
+
+ /*图形验证*/
+.patterning_code{
+	display:none;
+	width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+    position: absolute;
+    top: 278px;
+    border-radius: 2px;
+    padding: 20px;
+    left: 313px;
+	z-index:10;
+}
+.patterning_modal .queue_yan{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	padding-bottom:10px;
+	margin-bottom:40px;
+	font-size:18px;
+	border-bottom:1px solid #aaa; 
+}
+.patterning_code .patterning_modal > input{
+	padding-left:5px;
+	width:116px;
+	height:26px;
+	margin-left:10px;
+}
+.patterning_modal .patterning_img{
+	position:absolute;
+	top:95px;
+	left:158px;
+}
+.patterning_modal .patterning_img img{
+	cursor:pointer;
+}
+.patterning_modal .queue_click{
+	display: block;
+    padding: 8px 12px;
+    background: #b60001;
+    width: 80px;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 30px;
+    color: #fff;
+    border-radius: 3px;
+}
+.error>img{
+    width: 40px;
+    position: relative;
+    top: -240px;
+    left: 140px;
+    z-index: 3;
+    display: none;
+    cursor:pointer;
+    opacity:0.7;
+}
+.error>img:hover{
+    opacity:1;
+}
+
+
+ /*图形验证*/
+.patterning_code1{
+	display:none;
+	width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+    position: absolute;
+    top: 224px;
+    border-radius: 2px;
+    padding: 20px;
+    left: 313px;
+	z-index:10;
+}
+.patterning_modal1 .queue_yan1{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	padding-bottom:10px;
+	margin-bottom:40px;
+	font-size:18px;
+	border-bottom:1px solid #aaa; 
+}
+.patterning_code1 .patterning_modal1 input{
+	padding-left:5px;
+	width:116px;
+	height:26px;
+	margin-left:10px;
+}
+.patterning_modal1 .patterning_img1{
+	position:absolute;
+	top:95px;
+	left:158px;
+}
+.patterning_modal1 .patterning_img1 img{
+	cursor:pointer;
+}
+.patterning_modal1 .queue_click1{
+	display: block;
+    padding: 8px 12px;
+    background: #b60001;
+    width: 80px;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 30px;
+    color: #fff;
+    border-radius: 3px;
+}
+.error1>img{
+    width: 40px;
+    position: relative;
+    top: -240px;
+    left: 140px;
+    z-index: 3;
+    display: none;
+    cursor:pointer;
+    opacity:0.7;
+}
+.error1>img:hover{
+    opacity:1;
+}
+
+
+
+ /*************登录密码样式***********/
+ .content_01 div span{
+    font-size: 18px;
+    text-align: right;
+    display: inline-block;
+    width: 180px;
+}
+.content_01 div b{
+    margin-right: 9px;
+    color: #d60614;
+}
+.content_01 input{
+    display: inline-block;
+    width: 320px;
+    height: 40px;
+    padding-left: 10px;
+}
+.content_01 div{
+    margin-bottom: 15px;
+}
+.content_01 .one{
+    margin-top: 20px;
+}
+.content_01 .file_01 p,.qiyexinxi .file_02 p{
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    color: #666;
+    background: #e1e1e1;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.content_01 em{
+    color:#878787;
+    font-size: 14px;
+    font-style: normal;
+    margin-left: 10px;
+}
+.content_01 .yzm{
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    background: #eaa410;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    left: 432px;
+    z-index: 2;
+    cursor: pointer;
+    color: #fff;
+}
+.content_01 .one_03{
+    position: relative;
+    margin-bottom: 20px;
+}
+.content_01 .one_03 img{
+    position: absolute;
+    top:48px;
+    left: 185px;
+}
+.content_01 .one_03 .shadow{
+    width: 190px;
+    height: 40px;
+    position: absolute;
+    left: 510px;
+    z-index: 3;
+    top:0px;
+    opacity: 0.1;
+    display: none;
+}
+ .content_01 .one_04 input{
+    width: 134px;
+}
+ .content_01 .next_01{
+    width: 140px;
+    height: 40px;
+    background: #a90c17;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #f4f4f4;
+    display: inline-block;
+    margin-left: 175px;
+    border:none;
+    outline:none;
+}
+ .content_01 .next_01{
+    width: 140px;
+    height: 40px;
+    background: #a90c17;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #f4f4f4;
+    display: inline-block;
+    margin-left: 175px;
+    border:none;
+}
+.b_01,.b_02,.b_03,.b_04,.b_05,.b_06,.b_07,.b_08{
+    display: none;
+}
+.b_07,.b_08{
+    margin-left:200px; 
+}
+
+
+
+/*************二级密码样式***********/
+.content_02{
+    display: none;
+}
+.content_02 div span{
+    font-size: 18px;
+    text-align: right;
+    display: inline-block;
+    width: 180px;
+}
+.content_02 div b{
+    margin-right: 9px;
+    color: #d60614;
+}
+.content_02 input{
+    display: inline-block;
+    width: 320px;
+    height: 40px;
+    padding-left: 10px;
+}
+.content_02 div{
+    margin-bottom: 15px;
+}
+.content_02 .tow{
+    margin-top: 20px;
+}
+.content_02 .file_01 p,.qiyexinxi .file_02 p{
+    display: inline-block;
+    width: 130px;
+    height: 40px;
+    color: #666;
+    background: #e1e1e1;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+}
+.content_02 em{
+    color:#878787;
+    font-size: 14px;
+    font-style: normal;
+    margin-left: 10px;
+}
+.content_02 .yzm{
+    display: inline-block;
+    width: 180px;
+    height: 40px;
+    background: #eaa410;
+    text-align: center;
+    line-height: 40px;
+    position: absolute;
+    left: 432px;
+    z-index: 2;
+    cursor: pointer;
+    color: #fff;
+}
+.content_02 .tow_03 .shadow{
+    width: 190px;
+    height: 40px;
+    background: #666;
+    position: absolute;
+    left: 320px;
+    z-index: 3;
+    top:235px;
+    opacity: 0.1;
+    display: none;
+}
+.content_02 .tow_03{
+    position: relative;
+    margin-bottom: 30px;
+}
+.content_02 .tow_03 img{
+    position: absolute;
+    top:48px;
+    left: 185px;
+}
+ .content_02 .tow_04 input{
+    width: 134px;
+}
+ .content_02 .next_02{
+    width: 140px;
+    height: 40px;
+    background: #a90c17;
+    line-height: 40px;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 20px;
+    color: #f4f4f4;
+    display: inline-block;
+    margin-left: 175px;
+    border:none;
+}
+.b_09,.b_10,.b_11,.b_12,.b_13,.b_14,.b_15,.b_16{
+    display: none;
+}
+.b_16,.b_15{
+    margin-left:200px; 
+}
+
+footer{
+    width: 1220px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 15px;
+    color: #535952;
+}
+p:nth-child(1){
+    margin-bottom: 0;
+    display: inline-block;
+}
+p:nth-child(2){
+    margin-top: 3px;
+}
+
+
+
+/*遮罩*/
+.shadowBox{
+    width:100%;
+    height: 100%;
+    background: #666;
+    opacity:0.5;
+    position: fixed;
+    z-index: 9;
+    display: none;
+}
+.xiu{
+    position: absolute;
+    z-index: 10;
+    width:500px;
+    height: 500px;
+    background:#fff; 
+    top:50%;
+    left:50%;
+    margin-top: -250px;
+    margin-left: -250px;
+    display: none;
+}
+.xiu img{
+    margin:150px 20px 0 150px;
+    display: inline-block;
+}
+.xiu .p1{
+    display: inline-block;
+}
+.xiu .p2{
+    margin:30px 0 30px 150px;
+    font-size: 22px;
+}
+.xiu a{
+    color: #f00;
+    font-size: 22px;
+    margin:0px 0 20px 150px;
+}
+.xiu p{
+    font-size: 40px;
+}
+.xiu .p2{
+     font-size: 20px;
+}
+
+
+.content_01 .yzm,.content_02 .yzm{
+    background: #eaa410;
+    border-radius:3px;
+}
+.mobile_phone{
+    border:0px;
+    background:white;
+    font-size:16px;
+    color:black;
+}
+@media screen and (max-width: 1400px) {
+     #center{
+         margin: 50px 72px;
+    }
+}
+.jingbei{
+   color: #666;
+}

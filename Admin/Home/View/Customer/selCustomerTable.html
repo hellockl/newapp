@@ -1,0 +1,102 @@
+<table class="table table-hover table-condensed ">
+    <thead>
+    <tr>
+        <th>序号</th>
+        <th>客户</th>
+        <th>电话</th>
+        <th>需求金额</th>
+        <th>有无房产</th>
+        <th>手机分类</th>
+        <th width="60px">选择</th>
+    </tr>
+    </thead>
+    <tbody>
+    <foreach name="data.data" item="vo">
+        <tr>
+            <td>{$key+1}</td>
+            <td>{$vo.customer_name}</td>
+            <td>{$vo.telephonenumber}</td>
+            <td class="money-format">{$vo.loan_amount}</td>
+            <td>{$vo.house_amount}</td>
+            <td>{$vo.customer_classify}</td>
+            <td>
+                <a href="javascript:void(0);" class="sel btn btn-primary btn-sm" rel="{$vo.customer_id}" data-name="{$vo.customer_name}"><i
+                        class="fa fa-share"></i></a>
+            </td>
+        </tr>
+    </foreach>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="8" class="page-bar">
+            <div>
+                <span class="rows">共 {$totalRows} 条记录</span>
+                <a class="prev" href="javascript:void(0);">&lt;&lt;</a>
+                <span class="rows">{$p}/{$totalPages}</span>
+                <a class="next" href="javascript:void(0);">&gt;&gt;</a>
+            </div>
+        </td>
+    </tr>
+    </tfoot>
+</table>
+<script>
+
+    $('.sel').click(function(){
+        var customer_id = $(this).attr('rel');
+        var customer_name = $(this).attr('data-name');
+        $('#customer_id').val(customer_id);
+        $('#customer_name').val(customer_name);
+        $.post('{:U("Customer/getCustomer")}/id/'+customer_id, {}, function(data){
+            if(data['errNum'] === 0){
+                var city = data['retData']['city'];
+                var tel = data['retData']['telephonenumber'];
+                var loan_amount = data['retData']['loan_amount'];
+                var house_location = data['retData']['house_location'];
+                var house_amount = data['retData']['house_amount'];
+                $('.customer-info .city').html(city);
+                $('.customer-info .tel').html(tel);
+                $('.customer-info .loan_amount').html(loan_amount);
+                $('.customer-info .house_location').html(house_location);
+                $('.customer-info .house_amount').html(house_amount);
+                $('.customer-info').removeAttr('style');
+            }
+            closeDlg('nav');
+        }, 'json');
+    });
+
+    var p = '{$p}';
+    function getKeep(){
+        var keep = '';
+        var customer_name = $('input[name=customer_name]').val();
+        var telephonenumber = $('input[name=telephonenumber]').val();
+        if(customer_name){
+            keep += '/customer_name/'+ customer_name;
+        }
+        if(telephonenumber){
+            keep += '/telephonenumber/'+ telephonenumber;
+        }
+        return keep;
+    }
+
+    $('.prev').click(function(){
+        p--;
+        var keep = getKeep();
+        var link = "{:U('selCustomerTable')}/p/"+p + keep;
+        loadURL(link,'#ajax-content-sel');
+    });
+    $('.next').click(function(){
+        p++;
+        var keep = getKeep();
+        var link = "{:U('selCustomerTable')}/p/"+p + keep;
+        loadURL(link,'#ajax-content-sel');
+    });
+
+
+
+    $('.money-format').each(function () {
+        var $this = $(this);
+        var money = $this.text();
+        $this.text(formatCurrency(money));
+    });
+
+</script>

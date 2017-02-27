@@ -1,0 +1,27 @@
+<style>
+    .contract-index .form-control{width: 30%;}
+    .contract-index .input-group-btn{right: 36%;}
+</style>
+<div id="title-breadcrumb-option-demo" class="page-title-breadcrumb">
+    <div class="page-header pull-left">
+        <div class="page-title">回款记录列表</div>
+    </div>
+    <div class="page-header pull-right" style="margin-top: 8px">
+        <span class="btn btn-primary add_receivables" rel="{$_GET['contract_id']}"><i class="fa fa-plus"></i> 添加回款记录 </span>&nbsp;
+    </div>
+    <div class="clearfix"></div>
+</div>
+<div class="page-content" style="background-color: #FFF">
+
+</div>
+<script type="text/javascript">
+    $(function(){
+        $(".add_receivables").click(function(){
+            var id = $(this).attr('rel');
+            openAjaxDialog('添加合同','../Receivables/add/id/'+id,true);
+        });
+        var contract_id = $(".add_receivables").attr('rel');
+        var link = '../Receivables/table/contract_id/'+contract_id;
+        pageLoad(link,'.page-content');
+    });
+</script>

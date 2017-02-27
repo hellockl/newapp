@@ -1,0 +1,106 @@
+﻿#overlay{position:fixed;top:0;bottom:0;left:0;right:0;background:#000;z-index:100;opacity: 0.5;filter: alpha(opacity=0.5);display: none;}
+#full-img{display:none;position:fixed;top:50%;left:50%;margin-left:0;margin-top:0;z-index:999;}
+/*列表多项查询*/
+.cont{background: #efeff4;border-top: 1px solid #e5e5e5;width:calc(100% - 240px);}
+.pagea{padding: 0 20px;    position: relative;}
+.title{font-size: 14px;color: #333;}
+.title > a{font-size: 14px;color: #333;line-height: 52px;}
+.title a.cur{color: #3a60c1;}
+.seracha{position: absolute; width: 100%;top: 0;}
+.search{background: #fff;overflow: hidden;height: 78px;position: relative;z-index: 88;margin: 0 20px;}
+.search h3{font-size: 14px;color: #fff;line-height: 24px;background: #3a60c1;padding-left: 20px;height: 24px;}
+.search a.open{position: absolute;top: 44px;right: 10px;display: block;width: 45px;height: 22px;color: #fff;background: #3a60c1;text-align: center;line-height: 22px;border-radius: 2px;margin-left: 10px;}
+.condition{padding-right:20px;overflow: hidden;}
+.condition .sela{width: 118px;height: 22px;border: 1px solid #d3dae6;float: left;margin-right: 10px;overflow: hidden;position: relative;}
+.condition .sela select{width: 100%;height: 100%;border: none;font-size: 12px; color: #666;}
+.condition .inpa{width: 208px;}
+.condition  span{float: left;line-height: 24px;}
+.condition .inpa input{border: none;width: 178px;padding-left: 10px;line-height: 22px;}
+.condition .sp{float: left;overflow: hidden;margin: 20px 95px 10px 0;}
+.condition .sp:nth-child(6n){margin-left: 0;}
+.condition .sp em{float: left;color: #3a60c1;margin-right: 10px;}
+.condition .spa{margin-top: 20px;float: left;margin-right: 95px;}
+.condition .spa input{}
+.condition .inpa img{float: right;margin-right: 2px;}
+.ser_btn{text-align: center;margin: 10px 0 20px;}
+.ser_btn .btn,.condition .btn{display: inline-block;width: 72px;height: 24px;background: #3a60c1;text-align: center;color: #fff;line-height: 24px;margin:0 5px;border: none;cursor: pointer;border-radius: 4px;}
+.condition .btn{margin-top: 20px;height: 22px;line-height: 22px;position: absolute;right: 65px;}
+.order{background: #fff;overflow: hidden;margin: 85px 20px 0;border-top: 3px solid #3a60c1;}
+.order_list{/*margin: 0 20px;*/}
+.new_order{margin-top:0;}
+.order h3{line-height: 30px;color: #666;font-size: 14px;padding-left: 20px;border-bottom: 1px solid #d3dae6;}
+.order .order_btn{padding-right:20px;margin: 20px 0 10px;}
+.order .order_btn a{display: inline-block;width: 72px;height: 30px;background: #4c545f;font-size: 14px;color: #fff;border-radius: 2px;text-align: center;line-height: 30px;margin-right: 10px;}
+.order .order_btn a.lasta{float: right;margin-left:10px;margin-right: 0;width: 96px;background: #3a60c1}
+.order_list table tr th{color: #333;background: #efeff4;font-size:12px;}
+.order_list table tr td{color: #666;font-size:12px;}
+.order_list table tr td a{color: #3a60c1;font-size:12px;}
+.order_list table tr td input{padding: 3px;}
+.order_list table tr th:first-child input,.order_list table tr td:first-child input{display: none;}
+.order_list table tr th label,.order_list table tr td label{height: 20px;width: 20px; display: block;background: url(../images/icon/ch1.png) no-repeat center; background-size: 12px 12px; margin: 0 auto;}
+.order_list table tr th input:checked + label,.order_list table tr td input:checked + label{background: url(../images/icon/ch2.png) no-repeat center;  background-size: 12px 12px;}
+
+
+/*添加编辑详情*/
+.edit{margin-top: 20px;padding: 0 0px 10px;}
+.edit table tr:hover{background: #f1f4fb;}
+.edit table tr td{text-align: left;padding:0 0 0 20px;height: 36px;line-height: 36px;font-size: 14px;color: #333; }
+.edit table tr td:first-child{width: 165px;padding-left: 15px;}
+.edit table tr td input,.edit table tr td select{margin-right:10px;width: 172px;height: 22px;display:inline-block;border: 1px solid #d3dae6;padding-left: 6px;color: #666;}
+.edit table tr td select{width: 180px;height: 24px;}
+.edit table tr td .timedate{width: 178px;height: 22px;border: 1px solid #d3dae6;overflow: hidden;}
+.edit table tr td .timedate input{display: block;width: 154px;border: none;float: left;}
+.edit table tr.pic_card td{height:auto;}
+.edit table tr.pic_card td .pic_img{width: 176px;height: 92px;border:2px solid #d3dae6;float: left;margin: 10px 0;position: relative;}
+.edit table tr.pic_card td input{display: none;}
+.edit table tr.pic_card td label{width: 72px;height: 22px;float: left;background: #3a60c1;line-height: 22px;text-align: center;color: #fff;font-size: 12px; margin: 47px 20px;}
+.edit table tr.pic_card td img{width: 176px;height: 92px;position: absolute;top: 0;left: 0;display: none;z-index: 99;}
+
+.loading img{display: block;margin: 23% auto 0;}
+
+/*提示页*/
+.prompt{text-align: center;margin-top: 15%;}
+.prompt > img{display: block;margin: 0 auto}
+.prompt span{font-size: 24px;line-height: 57px;display: inline-block; color: #3ac14d;background: url(../images/suc2.png) no-repeat left center; padding-left: 70px; margin-top: 35px;}
+.prompt p{font-size: 20px; color: #333;margin-top: 12px;}
+.prompt p a,.prompt p em{font-size:20px;color: #3ac14d;margin: 0 3px; }
+.prompt p a:hover{color: #188c57;}
+.promptb span,.promptb p a,.promptb p em{color: #ea2a39;}
+.promptb span{background: url(../images/suc4.png) no-repeat left center;}
+.promptc span{background: url(../images/suc6.png) no-repeat left center;}
+.promptc span,.promptc p a,.promptc p em{color: #ff5a00;}
+
+@media screen and (max-width: 1600px) {
+.condition .spa{margin-right: 4%;}
+.condition .sp{margin-right: 4%;}
+.title > a{line-height: 42px;}
+}
+@media screen and (max-width: 1440px) {
+.condition .inpa{width: 188px;}
+.condition .inpa input{width: 130px;}
+}
+@media screen and (max-width: 1366px) {
+.condition .spa{margin-right: 4%;}
+.condition .sp{margin-right: 4%;}
+.condition .inpa{width: 168px;}
+.condition .inpa input{width: 150px;}
+.condition .inpa input.sdate{width: 130px;}
+}
+@media screen and (max-width: 1280px) {
+.condition .sp,.condition .spa{margin-right: 1%;}
+.title > a{font-size: 12px;line-height: 34px;}
+.prompt >img{width: 140px;}
+.prompt span{background-size: 38px 38px;font-size: 20px;padding-left: 50px;margin-top: 10px;}
+.prompt p{font-size: 16px;margin-top: 0;}
+.prompt p a,.prompt p em{font-size: 16px;}
+
+}
+@media screen and (max-width: 1152px) {
+.condition .inpa{width: 138px;}
+/*.condition .inpa input{width: 130px;}*/
+}
+@media screen and (max-width: 1024px) {
+.condition .inpa{width: 132px;}
+.condition .inpa input{width: 72px;}
+.condition .sela{width: 100px;}
+}

@@ -1,0 +1,53 @@
+<style>
+    .page-add-customer{width:620px;margin-top: -10px}
+    .page-add-customer ul{padding: 0;margin: 0}
+    .page-add-customer .row{display:block;clear:both;margin:0}
+    .page-add-customer .tab-content{height:260px;overflow: auto}
+    .page-add-customer .service-btn-box{margin-top: 30px;padding:20px;border-top:solid #ddd 1px }
+    .img{font-size: 30px; width: 40px;height: 20px;height: auto!important;min-height: 20px;overflow: hidden;line-height: 20px;text-align:center;padding: 2px;border: 1px solid #ccc}
+    .img img{margin: auto; width: 100%}
+    .col-2{}
+    .col-2 label,.col-2 input,.col-2 select{display: inline;font-weight: normal}
+    .col-2 label{display: block;float: left;width: 100px;line-height:26px;font-weight: 700}
+    .col-2 input,.col-2 select{width: 165px;}
+    .col-2 input[type='radio']{
+        width:30px;
+        line-height: 30px;
+    }
+</style>
+<div class="page-add-customer">
+    <input type="hidden" name="customer_id" id="customer_id" value="{$customer_id}">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#tab_base_info" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabBaseInfo')}">基本信息</a></li>
+        <li><a href="#tab_estate_info" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabEstateInfo')}">房产信息</a></li>
+        <li><a href="#tab_docs" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/tabDocs')}">附件列表</a></li>
+        <li><a href="#tab_customerWay" data-toggle="tab" class="open_nav_tabs" url="{:U('Customer/customerWay')}">分配日志</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="tab_base_info"></div>
+        <div class="tab-pane" id="tab_estate_info"></div>
+        <div class="tab-pane" id="tab_docs"></div>
+        <div class="tab-pane" id="tab_customerWay"></div>
+    </div>
+
+    <div class="service-btn-box">
+        <button type="button" onclick="closeDlg();" class="btn btn-default pull-right"><i class="fa fa-times"></i> 关闭</button>
+    </div>
+</div>
+<script type="text/javascript">
+    var customer_id=$('#customer_id').val();
+    var link = "{:U('Customer/tabBaseInfo')}?customer_id="+customer_id;;
+    loadURL(link,'#tab_base_info');
+
+    $('.open_nav_tabs').click(function(){
+        var customer_id=$('#customer_id').val();
+        if(customer_id==""){showError("请先选择客户");return false;}
+        var tab_name=$(this).attr("href");
+        var url=$(this).attr("url");
+        if($(tab_name).text()==""){
+            var link = url+"?customer_id="+customer_id;
+            loadURL(link,tab_name);
+        }
+    });
+</script>

@@ -1,0 +1,64 @@
+<div>
+    <style type="text/css">
+        .user-div h4 { font-weight:bold; float: left;margin-right: 20px;}
+        .user-div label {margin:10px 15px;}
+    </style>
+    <div class="user-div">
+        <h4>自动分配队列</h4>
+        <label><i class="fa fa-check-square-o"></i> 队列中 </label>
+        <label><i class="fa fa-square-o"></i> 未在队列中</label>
+    </div>
+    <div style="clear: both;"></div>
+    <volist name="user_list" id="vo" key="k">
+        <php>$city = $key;</php>
+        <div id="company_{$city}" class="company_city" <if condition="$k neq 1"> style="display: none;" </if> rel="{$city}">
+            <volist name="vo" id="vo2">
+                <dt style="margin-top: 20px;">{$key}</dt>
+                <volist name="vo2" id="vo3">
+                    <dd style="margin:3px 10px;float: left;">
+                        <input type="checkbox" class="redis" value="{$vo3['user_id']}" <if condition="$vo3['redis'] eq 1"> checked </if>  > {$vo3['name']}
+                    </dd>
+                </volist>
+                <dd style="clear: both;"></dd>
+            </volist>
+        </div>
+    </volist>
+</div>
+<div style="clear: both;"></div>
+<script type="text/javascript">
+    $(function(){
+        $('.redis').click(function () {
+            var object = $(this);
+            if($(this).is(':checked')){
+                add_redis(object);
+            }else{
+                del_redis(object);
+            }
+            setTimeout("redis_list()", 1000);
+        });
+        function del_redis(object) {
+            var user_id = object.val();
+            var city = object.parent().parent().attr('rel');
+            var url = "{:U('del_redis')}/city/"+city+"/id/"+user_id;
+            $.get(url, function (data) {
+                if(data.errNum==0){
+                    showSuccess(data.errMsg);
+                }else{
+                    showError(data.errMsg);
+                }
+            });
+        }
+        function add_redis(object) {
+            var user_id = object.val();
+            var city = object.parent().parent().attr('rel');
+            var url = "{:U('add_redis')}/city/"+city+"/id/"+user_id;
+            $.get(url, function (data) {
+                if(data.errNum==0){
+                    showSuccess(data.errMsg);
+                }else{
+                    showError(data.errMsg);
+                }
+            });
+        }
+    })
+</script>

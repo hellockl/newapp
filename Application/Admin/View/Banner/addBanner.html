@@ -1,0 +1,79 @@
+<form class="layui-form" >
+  <div class="layui-form-item">
+    <label class="layui-form-label">Banner名称</label>
+    <div class="layui-input-inline">
+      <input type="text" name="banner_name"  placeholder="请输入Banner名称" autocomplete="off" class="layui-input">
+    </div>
+
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">上传图片</label>
+    <div class="layui-input-inline">
+      <input type="file" name="file" class="layui-upload-file">
+      <input type="hidden" name="banner_img" id="image_path" value=""/>
+      <img id="img_upload" src="#" style="width: 200px;height: 100px;">
+    </div>
+  </div>
+  <div class="layui-form-item">
+    <label class="layui-form-label">状态</label>
+    <div class="layui-input-inline">
+      <input type="radio" name="status" value="1">可用
+      <input type="radio" name="status" value="2">禁用
+    </div>
+
+
+  </div>
+
+
+  <div class="layui-form-item">
+    <div class="layui-input-block">
+      <button class="layui-btn" lay-submit lay-filter="addmenu">立即提交</button>
+      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+    </div>
+  </div>
+</form>
+<script>
+  layui.use('upload', function(){
+    $ = layui.jquery;
+    layui.upload({
+      url: "{:U('Banner/upload')}"
+      ,title: '上传图片'
+      ,elem: '' //指定原始元素，默认直接查找class="layui-upload-file"
+      ,ext: 'jpg|png|gif|jpeg'
+      ,method: 'post' //上传接口的http类型
+      ,success: function(res){
+        if(res.status == 'error'){
+          layer.msg(res.msg);
+        }else{
+          $("#image_path").val(res.url);
+          img_upload.src = res.url;
+        }
+      }
+    });
+  });
+  layui.use('form', function(){
+    var form = layui.form(),
+            $ = layui.jquery
+    //监听提交
+    form.on('submit(addmenu)', function(data){
+
+      var datainfo = data.field;
+      var url = "{:U('Banner/addBanner')}";
+      $.post(url,datainfo,function(data){
+        if(data.status == 'error'){
+          layer.msg(data.msg,{icon: 5});//失败的表情
+          return;
+        }else if(data.status == 'success'){
+          layer.msg(data.msg, {
+            icon: 6,//成功的表情
+            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+          }, function(){
+            location.reload();
+          });
+        }
+      })
+
+      return false;//阻止表单跳转
+    });
+  });
+</script>

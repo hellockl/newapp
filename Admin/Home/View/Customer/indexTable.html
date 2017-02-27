@@ -1,0 +1,366 @@
+<style>
+    .retain-customer {
+        cursor: pointer
+    }
+
+.remove-customer{cursor: pointer}
+
+</style>
+<table class="table table-hover table-condensed">
+    <thead>
+    <tr>
+        <th width="40px"><input type="checkbox" class="check-all" /></th>
+        <th>客户</th>
+        <th>客户类型</th>
+
+        <th width="120px">手机号码</th>
+        <!--<th width="200px">客户状态</th>-->
+        <th>金额(万)</th>
+        <th>房产</th>
+        <th>来源</th>
+        <th>负责人</th>
+        <th><a href="javascript:void(0)" class="customer_order" rel="create_time" title="倒">创建时间 <i class="fa fa-angle-down"></i></a></th>
+        <th><a href="javascript:void(0)" class="customer_order" rel="receive_time" title="倒">分配时间 <i class="fa fa-angle-down"></i></a></th>
+        <th><a href="javascript:void(0)" class="customer_order" rel="communitime" title="倒">跟进时间 <i class="fa fa-angle-down"></i></a></th>
+        <!--<th>客户等级</th>-->
+        <th width="50px"><abbr title="点击列表图标,确定是否保留。" class="initialism">留</abbr>/配</th>
+
+        <th width="295px">操作</th>
+    </tr>
+    </thead>
+    <tbody><input type="hidden" id="url" value="{$_SERVER['REQUEST_URI']}" />
+    <foreach name="data.data" item="vo">
+        <tr id="tr_{$vo.customer_id}">
+            <td id="customer_type_td_1">
+                <if condition="$vo.customer_type eq '意向客户'">
+                    <input type="checkbox" class="check-list" name="customer_id[]" value="{$vo.customer_id}" />
+                </if>
+            </td>
+            <td><small>
+                <if condition="$vo.sex eq '男'">
+                [先生]
+                <elseif condition="$vo.sex eq '女'"/>
+                [女士]
+                </if></small>
+                <a href="javascript:void(0)" class="view-customer" rel="{$vo.customer_id}">{$vo.customer_name}</a>
+                <if condition="($vo.customer_type eq '意向客户') AND ($vo.owner_user_id eq session('user_info.user_id'))">
+                    <span class="fa fa-user-times remove-customer" data-toggle="tooltip" data-placement="top" title="点击扔回公盘" data-id="{$vo.customer_id}"></span>
+                </if>
+            </td>
+            <td>{$vo.customer_type}</td>
+
+            <td>{$vo.telephonenumber}</td>
+            <td class="money-format">{$vo['loan_amount']/10000}</td>
+            <td>{$vo.house_status}</td>
+            <td>{$vo.customer_source}</td>
+            <td>{$vo.owner_user_name}</td>
+            <td><if condition="$vo.create_time neq 0">
+                {$vo.create_time|date='Y-m-d H:i:s',###}
+                <else/>
+                空
+            </if></td>
+            <td>{$vo.receive_time|date='Y-m-d H:i:s',###}</td>
+
+            <td><if condition="$vo.communitime neq 0">
+                {$vo.communitime|date='Y-m-d H:i:s',###}
+                <else/>
+                空
+            </if></td>
+            <!--<td>{$vo.customer_level}</td>-->
+            <td id="customer_type_td_2">
+                <if condition="$vo.customer_type neq '意向客户'">
+
+                    <else/>
+                    <if condition="$vo.owner_user_id eq session('user_info.user_id')">
+                        <div class="retain-customer" data-id="{$vo.customer_id}">
+                            <if condition="$vo.retain eq 0">
+                                <span class="btn btn-default btn-sm" data-toggle="tooltip" title="点击保留">-</span>
+                                <else/>
+                                <span class="btn btn-success btn-sm" data-toggle="tooltip" title="点击取消保留">留</span>
+                            </if>
+                        </div>
+                        <else />
+                        <a href="javascript:void(0)" class="allocate btn btn-primary btn-sm" data-id="{$vo.customer_id}" data-name="{$vo.customer_name}" data-toggle="tooltip" title="点击手动分配客户">分</a>
+                    </if>
+                </if>
+            </td>
+            <td>
+                <button class="customerlog btn btn-sm <if condition='$vo.communitime eq 0'>btn-danger<else/>btn-success</if>"
+                        data-id="{$vo.customer_id}" data-url="{:U('communicationLog')}/id/{$vo.customer_id}"
+                        data-placement="left" data-original-title="">
+                <i class="fa fa-commenting-o"></i> 沟通</button>
+                </button>
+
+
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn btn-primary btn-sm edit-customer" rel="{$vo.customer_id}"><i class="fa fa-edit"></i> 编辑</a>
+
+                </div>
+
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn btn-info btn-sm add-agreement" rel="{$vo.customer_id}"><i class="fa fa-file-o"></i> 协议</a>
+                </div>
+                <div class="btn-group">
+                    <a href="javascript:void(0)" class="btn btn-warning btn-sm upload" rel="{$vo.customer_id}"><i class="fa fa-photo"></i> 附件</a>
+
+                </div>
+            </td>
+        </tr>
+    </foreach>
+    </tbody>
+    <thead>
+    <tr>
+        <td><input type="checkbox" class="check-all" /></td>
+        <td colspan="" ><a href="javascript:void(0)" class="btn btn-primary btn-sm" id="allocate-all"><i class="fa fa-check"></i> 批量分配</a></td>
+
+
+    </tr>
+    <tr>
+        <td colspan="13" class="page-bar">
+        <div>
+            <select name="perpage" id="perpage" class="form-control" style="width: 60px;height: 30px;padding:3px">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+
+        </div>
+            {$data.page}
+    </td></tr>
+    </thead>
+</table>
+<script>
+    $(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+        $(".customerlog").mouseenter(function(){
+            var $this =$(this);
+            var customer_id = $this.attr("data-id");
+            var title = $this.attr('data-original-title');
+            var url= "{:U('showCommunicationLog')}/id/"+customer_id;
+            $('.tooltip').remove();
+            if(!$this.hasClass('btn-danger') && title=='') {
+                $this.attr('data-original-title','加载中...');
+                $this.tooltip({html:true,trigger:'hover'}).tooltip('show');
+                $.get(url,function(html){
+                    $this.attr('data-original-title',html);
+                    $this.tooltip('show');
+                    return;
+                });
+            }
+            $this.tooltip({html:true,trigger:'hover'}).tooltip('show');
+        }).mouseout(function(){
+            var $this = $(this);
+            var tooltip = $('.tooltip').clone();
+            $('.tooltip').remove();
+            $this.after(tooltip);
+            $this.tooltip('show');
+            setTimeout(function(){
+                $(document).mouseover(function(e){
+                    var target = e.target;
+                    var div =$(target).parents('div').attr('class');
+                    if('tooltip-inner' !== div){
+                        tooltip.remove();
+                    }
+                });
+            },50);
+        });
+
+    });
+    $('.customer_order').each(function(){
+        var filed=$(this).attr('rel');
+        if($('#order_input').val()==filed){
+            if($('#pot_input').val()=='DESC'){
+                $(this).attr('title','顺');
+                var text = $(this).html();
+                text = text.replace('down','up');
+                $(this).html(text);
+            }
+        }
+    });
+
+//    移除客户到公盘
+    $('.remove-customer').click(function(){
+        var customer_id=$(this).attr('data-id');
+        var $this=$(this);
+        var url = "{:U('removeCustomer')}/customer_id/" + customer_id;
+        $.get(url, function (data) {
+            if(data.errNum==0){
+                showSuccess(data.retData);
+                $this.parents('tr').remove();
+            }else{
+                showError(data.errMsg);
+            }
+        });
+
+    });
+
+
+
+    $('.customer_order').click(function(){
+        var filed=$(this).attr('rel');
+        var pot='DESC';
+        if($(this).attr('title')=='倒'){
+            pot='DESC';
+        }else{
+            pot='ASC';
+        }
+        $('#order_input').val(filed);
+        $('#pot_input').val(pot);
+        var url = $('#url').val();
+
+        if(url.indexOf("?") > 0 ){
+            var link = url+"&orderby="+filed+"&pot="+pot;
+        }else{
+            var link = url+"?orderby="+filed+"&pot="+pot;
+        }
+        loadURL(link,'#ajax-content');
+    });
+
+/*    $("#customerlog_div").mouseover(function(){
+        $(this).tooltip({html:true}).tooltip('show');
+        var id = $(this).attr("rel");
+        var url= "{:U('showCommunicationLog')}/id/"+id;
+        openAjaxDialog('沟通日志', url, true, 'customerlog_div');
+    });*/
+
+    $("#customerlog_div").mouseout(function(){
+        closeDlg('customerlog_div');
+    });
+
+    $(".customerlog").mouseenter(function(){
+        var $this =$(this);
+        if($this.hasClass('btn-danger'))
+                return false;
+        var customer_id = $this.attr("data-id");
+        var title = $(this).attr('title');
+
+        var url= "{:U('showCommunicationLog')}/id/"+customer_id;
+        if(title == '') {
+            $.get(url,function(html){
+                $this.attr('title',html);
+            });
+        }
+
+    });
+    $('.customerlog').click(function(){
+        var customer_id = $(this).attr('data-id');
+        var url = '{:U("communicationLog")}/id/'+customer_id;
+        var title = $(this).attr('title');
+        openAjaxDialog(title,url);
+        $(this).parents('tr').addClass('success');
+    });
+    $('#perpage').val("{$data.perpage}");
+    $('#perpage').change(function () {
+        var perpage = $(this).val();
+        var url = $('#url').val();
+        var url = url+"&perpage=" + perpage;
+        loadURL(url,'#ajax-content');
+
+    })
+    $('#allocate-all').click(function () {
+        var customer_ids = '';
+        var num = 0;
+        $('.check-list').each(function () {
+            if($(this).is(':checked')){
+                var id = $(this).val();
+                customer_ids += id+',';
+                num++;
+            }
+        })
+        var url = "{:U('/Home/Customer/allocateAll')}/customer_ids/" + customer_ids;
+        openAjaxDialog('批量分配 < 已选客户：'+num+' 个 >', url, true);
+    })
+    $('.check-all').click(function(){
+        $('.check-list').prop('checked', $(this).prop("checked"));
+    });
+    $('.allocate').click(function () {
+        var id = $(this).attr("data-id");
+        var name = $(this).attr("data-name");
+        var url = "{:U('allocate')}?id=" + id;
+        openAjaxDialog('手动分配 < 客户：'+name+' >', url, true);
+    });
+
+    $('.view-customer').click(function () {
+        var id = $(this).attr("rel");
+        var url = "{:U('view')}/id/" + id;
+        openAjaxDialog('查看客户信息',url,1);
+    });
+
+    $('.edit-customer').click(function () {
+        var id = $(this).attr("rel");
+        var url = "{:U('add')}/id/" + id;
+        openAjaxDialog('编辑客户信息',url,1);
+    });
+
+    $(".upload").click(function(){
+        var customer_id = $(this).attr('rel');
+        openAjaxDialog('上传照片','{:U("Document/add")}/customer_id/'+customer_id,true);
+    });
+
+    //业务员和客户签居间协议
+    $('.add-agreement').click(function () {
+        var id = $(this).attr("rel");
+        var url = "{:U('Agreement/add')}/id/" + id;
+        openAjaxDialog('签居间协议', url, true);
+    });
+
+    //批量领取
+    $(".receive-customer").click(function () {
+        var id = $(this).attr("rel");
+        if (id < 1) {
+            showError('领取失败！');
+            return false;
+        }
+        var url = "{:U('receive')}/customer_id/" + id;
+        $.get(url, function (data) {
+            if(data.errNum==0){
+                showSuccess(data.retData);
+                var link = "{:U('self')}";
+                pageLoad(link, '#page-wrapper');
+            }else{
+                showError(data.errMsg);
+            }
+        });
+    })
+
+    //保留客户
+    $('.retain-customer').click(function () {
+        var $this = $(this);
+        var $cur_text = $this.find('span').text();
+        var id = $(this).attr("data-id");
+        if (id < 1) {
+            showError('非法操作！');
+            return false;
+        }
+        var retain = '<span class="btn btn-success btn-sm" title="点击取消保留">留</span>';
+        var unretain = '<span class="btn btn-default btn-sm" title="点击保留">-</span>';
+        var retain_url = "{:U('retain')}/customer_id/" + id;
+        var unretain_url = "{:U('unretain')}/customer_id/" + id;
+
+        var url = $cur_text === '留' ? unretain_url:retain_url;
+        var new_status = $cur_text === '留' ? unretain:retain;
+        var show_message = $cur_text === '留' ?'取消':'';
+        $.get(url, function (data) {
+            if(data.errNum==0){
+                showSuccess(data.retData);
+                $this.html(new_status);
+            }else{
+                showError(data.errMsg);
+            }
+        });
+    });
+
+    $('.agreement-list-dialog').click(function () {
+        var url = $(this).attr('data-url');
+        var name = $(this).attr('data-name');
+        var phone = $(this).attr('data-phone');
+        openAjaxDialog('居间协议列表 - '+name+' - '+phone, url, 1, 'box-header');
+    });
+//    $('.money-format').each(function () {
+//        var $this = $(this);
+//        var money = $this.text();
+//        $this.text(formatCurrency(money));
+//    });
+
+</script>

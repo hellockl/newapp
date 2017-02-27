@@ -1,0 +1,109 @@
+<div class="wrapper">
+    <section class="content">
+        <div class="box">
+            <div class="box-header" id="box-header">
+                <div class="navbar navbar-default">
+                    <form action="{:U('indexTable')}" id="frmSearch" class="navbar-form form-inline" method="get">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="customer_name" placeholder="姓名" class="input-sm" id="input-customer_namer" style="width:110px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="create_date" value="{$timegap}" placeholder="创建日期"  id="create_date" class="input-sm" style="width:190px";>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="telephonenumber" placeholder="手机号码" class="input-sm" id="input-telephonenumber" style="width:110px;">
+                            </div>
+                        </div>
+                        <!--<div class="form-group">
+                            <select name="customer_level" id="customer_level" class="input-sm">
+                                <option value="">客户等级</option>
+                                <foreach name="Think.config.CUSTOMER_LEVEL" item="vo">
+                                    <option value="{$vo}">&nbsp;&nbsp;{$vo}</option>
+                                </foreach>
+                            </select>
+                        </div>-->
+                        <div class="form-group">
+                            <select name="customer_type" id="customer_type" class="input-sm">
+                                <option value="">客户类型</option>
+                                <option value="意向客户">&nbsp;&nbsp;意向客户</option>
+                                <option value="协议客户">&nbsp;&nbsp;协议客户</option>
+                                <option value="成交客户">&nbsp;&nbsp;成交客户</option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group">
+                            <select name="customer_source" id="input-customer_source"  class="input-sm">
+                                <option value="">客户来源</option>
+                                <foreach name="customer_source" item="vo">
+                                    <option value="{$vo.customer_source}">{$vo.customer_source}</option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <!--<div class="form-group">
+                                <select name="house_location" id="house_location" class="form-control">
+                                    <option value="">房产所在区域</option>
+                                    <foreach name="quick_city" item="vo">
+                                        <option value="{$vo}">{$vo}</option>
+                                    </foreach>
+                                </select>
+                        </div>-->
+
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="agreement_number" placeholder="居间编号" id="input-agreement-id" class="input-sm" style="width:120px;">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="owner_user_name" placeholder="负责人姓名" class="input-sm" id="input-owner_user_name" style="width:110px;">
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="form-group">
+                            <button type="submit" id="button-filter" class="btn btn-default pull-right">
+                                <i class="fa fa-search"></i> 筛选
+                            </button>
+                        </div>
+                        <a type="button" href="{:U('add')}" class="btn btn-primary pull-right ajax-dialog" title="添加客户">
+                            <i class="fa fa-plus"></i> 添加客户
+                        </a>
+                    </form>
+                </div>
+            </div>
+            <div class="box-body">
+                <div id="ajax-content"> </div>
+            </div>
+
+            <input type="hidden" id="order_input" value="">
+            <input type="hidden" id="pot_input" value="">
+
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var link = "{:U('indexTable')}";
+        loadURL(link,'#ajax-content');
+        datePicker('#create_date');
+    });
+
+    $('#frmSearch').ajaxForm({beforeSend:checkForm,success:success});
+    function checkForm(){
+
+    }
+    function success(data){
+        $('#ajax-content').html(data);
+    }
+</script>
