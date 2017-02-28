@@ -24,16 +24,18 @@ class PublicController extends Controller {
         }
         $where['password'] = Md5(I('post.password'));
         $result = M('Users')->where($where)->find();
-        if($result['status']==1){
-            $this->error('该用户还未激活');
+        if($result){
+            if($result['status']==1){
+                $this->error('该用户还未激活');
+            }
+            if($result['status']==3){
+                $this->error('该用户还未激活');
+            }
+            session("user_info",$result);
+            $this->success('登录成功',__APP__.'/Home/Index/index');
+        }else{
+            $this->error('密码错误！');
         }
-        if($result['status']==3){
-            $this->error('该用户还未激活');
-        }
-        session("user_info",$result);
-        //session("user_name",$result['user_name']);
-
-        $this->success('登录成功',__APP__.'/Home/Index/index');
     }
 
 

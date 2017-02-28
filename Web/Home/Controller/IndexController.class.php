@@ -10,7 +10,7 @@ class IndexController extends BaseController {
     }
 
     public function test(){
-        var_dump($_SESSION['user_info']);
+        
         $this->assign('user_info',$_SESSION['user_info']);
         $this->display();
     }
@@ -22,6 +22,18 @@ class IndexController extends BaseController {
         $Page = new \Think\Page($count, 1);
         $show = $Page->show(); // 分页显示输出
         $helplist = $Givehelp->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->order("create_time desc")->select();
+        $this->assign("show", $show);
+        $this->assign('helplist',$helplist);
+        $this->display();
+    }
+    
+    public function getHelpList(){
+        $GetHelp = M('GetHelp');
+        $where['user_id'] = $_SESSION['user_info']['user_id'];
+        $count = $GetHelp->where($where)->count(); // 查询满足要求的总记录数
+        $Page = new \Think\Page($count, 1);
+        $show = $Page->show(); // 分页显示输出
+        $helplist = $GetHelp->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->order("create_time desc")->select();
         $this->assign("show", $show);
         $this->assign('helplist',$helplist);
         $this->display();
