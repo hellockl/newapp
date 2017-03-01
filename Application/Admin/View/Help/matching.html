@@ -1,52 +1,47 @@
-<div class="admin-main">
-	<blockquote class="layui-elem-quote">匹配需求用户</blockquote>
-	<fieldset class="layui-elem-field">
-		<legend>用户列表</legend>
-		<div class="layui-field-box">
-			<form class="layui-form">
+<form class="layui-form">
+	<div class="layui-form-item">
+		<label class="layui-form-label">选择用户</label>
+		<input type="hidden" name="givehelp_id" value="{$givehelp_id}" />
+		<div class="layui-input-block">
+			<foreach name="gethelp_list" item="v">
+				<input type="checkbox" title="{$v.user_name}:{$v.amount}" value="{$v.id}" name="gethelp_id[{$key}]"/>
+			</foreach>
 
-				<div class="layui-form-item">
-					<label class="layui-form-label">用户列表</label>
-					<foreach name="v[$v['id']]" item="v1">
-						<input type="checkbox" name="menu[{$v1.id}]" title="{$v1.title}" value="{$v1['id']}" class="level_three" <?php if(in_array($v1['id'],$rulesArr)){echo "checked";} ?>>
-					</foreach>
-				</div>
-
-				<div class="layui-form-item">
-					<div class="layui-input-block">
-						<button class="layui-btn" lay-submit lay-filter="auth">立即提交</button>
-						<button class="layui-btn layui-btn-primary" onclick="window.history.back(-1)" >返回</button>
-					</div>
-				</div>
-
-				<input type="hidden" name="role_id" value="{$role_id}">
-			</form>
 		</div>
-	</fieldset>
-</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button class="layui-btn" lay-submit lay-filter="role">立即提交</button>
+			<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
 <script>
-layui.use('form', function(){
-	var form = layui.form(),
-   		 $ = layui.jquery
-	  //监听提交
-	  form.on('submit(user)', function(data){
-	    var userInfo = data.field;
-		var url = "{:U('Users/editUsers')}";
-		$.post(url,userInfo,function(data){
-			if(data.status == 'error'){
-				  layer.msg(data.msg,{icon: 5});//失败的表情
-				  return;
-			  }else if(data.status == 'success'){
-				  layer.msg(data.msg, {
-					  icon: 6,//成功的表情
-					  time: 2000 //2秒关闭（如果不配置，默认是3秒）
+	layui.use('form', function(){
+		var form = layui.form(),
+				$ = layui.jquery
+		$("button[type=reset]").click();
+		//监听提交
+		form.on('submit(role)', function(data){
+
+			var roleInfo = data.field;
+
+			var url = "{:U('Help/matching')}";
+			$.post(url,roleInfo,function(data){
+				if(data.status=='error'){
+					layer.msg(data.msg,{icon: 5});//失败的表情
+					return;
+				}else{
+					layer.msg(data.msg, {
+						icon: 6,//成功的表情
+						time: 2000 //2秒关闭（如果不配置，默认是3秒）
 					}, function(){
-					   location.reload();
-					}); 
-			  }
-		})
-		
-	    return false;//阻止表单跳转
-	  });
+						location.reload();
+					});
+				}
+			})
+
+			return false;//阻止表单跳转
+		});
 	});
 </script>

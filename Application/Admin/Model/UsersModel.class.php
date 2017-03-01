@@ -4,7 +4,7 @@ namespace Admin\Model;
 class UsersModel extends BaseModel
 {
     protected $tableName = 'users';
-    
+
     /**
      * @description:查询用户
      * @author wuyanwen(2016年11月22日)
@@ -16,12 +16,12 @@ class UsersModel extends BaseModel
             'password' => md5($pwd),
             'status'   => parent::NORMAL_STATUS,
         );
-        
+
         $result = $this->where($where)->find();
-        
+
         return $result;
     }
-    
+
     /**
      * 根据id更新用户登录时间
      * @author luduoliang <luduoliang@imohoo.com> (2016/12/01)
@@ -37,7 +37,7 @@ class UsersModel extends BaseModel
         );
         return $this->where($where)->save($saveData);
     }
-    
+
     /**
      * @description:每页显示数目
      * @author wuyanwen(2016年12月1日)
@@ -49,16 +49,16 @@ class UsersModel extends BaseModel
         $where = array(
             'status' => parent::NORMAL_STATUS,
         );
-    
+
         $count      = $this->where($where)->count();
         $page       = new \Think\Page($count,$num);
         $show       = $page->show();
         $list       = $this->where($where)->limit($page->firstRow.','.$page->listRows)->select();
-    
+
         return array('page' => $show , 'list' => $list);
-    
+
     }
-    
+
     /**
      * @description:添加后台用户
      * @author wuyanwen(2016年12月1日)
@@ -69,7 +69,7 @@ class UsersModel extends BaseModel
     {
         return $this->add($data) ? true : false;
     }
-    
+
     /**
      * @description:更新用户信息
      * @author wuyanwen(2016年12月1日)
@@ -82,10 +82,10 @@ class UsersModel extends BaseModel
         );
 
         unset($data['id']);
-        
+
         return $this->where($where)->save($data);
     }
-    
+
     /**
      * @description:删除用户
      * @author wuyanwen(2016年12月1日)
@@ -95,17 +95,17 @@ class UsersModel extends BaseModel
     public function deleteUsers($user_id)
     {
         $where = array(
-            'id' => $user_id,            
+            'id' => $user_id,
         );
-        
+
         $data = array(
             'status' => parent::DEL_STATUS,
         );
-        
+
         return $this->where($where)->save($data);
     }
-    
-    
+
+
     /**
      * @description:根据id查询用户
      * @author wuyanwen(2016年12月1日)
@@ -117,18 +117,18 @@ class UsersModel extends BaseModel
             'id'     => $user_id,
             'status' => parent::NORMAL_STATUS,
         );
-        
+
         return $this->where($where)->find();
     }
-    
+
     public function findUsersByName($user_name)
     {
         $where = array(
             'user_name' => $user_name,
-            'status'    => parent::NORMAL_STATUS,
+            //'status'    => parent::NORMAL_STATUS,
         );
-        
-        
+
+
         return $this->where($where)->find();
     }
 }
