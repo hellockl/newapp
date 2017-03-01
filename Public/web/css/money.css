@@ -1,0 +1,423 @@
+aside{
+    width: 1220px;
+    height: 720px;
+    margin: 48px auto 40px;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+   
+}
+.xtx{
+    width: 100%;
+    height: 22px;
+   
+}
+.ttx{
+    padding-top: 20px;
+    padding-left: 50px;
+    position: relative;
+    top: -3px;
+    left: -2px;
+}
+
+.xtx>span{
+    padding-left: 15px;
+    padding-bottom: 5px;
+    font-size: 20px;
+    position: relative;
+    top: 10px;
+    right: 5px;
+    
+}
+.fh>a{
+    float: right;
+    margin-top: 15px;
+    margin-right: 50px;
+    color: #a90b12;
+}
+.gd{
+    color: #a90b12;
+    padding-left: 5px;
+    font-size: 20px;
+}
+.dy{
+    width: 20px;
+    height: 15px;
+    padding-left: 0;
+    position: relative;
+    top: -3px;
+}
+.grhr{
+    border: 1px solid #CDCDCD;
+    margin-top: 30px;
+    z-index: 2;
+}
+.szz{
+    width: 25px;
+    height: 20px;
+    margin-left: 130px;
+}
+.qianbao{
+    font-size: 20px;
+	clear:both;
+}
+.qianbao section{
+    margin-bottom: 40px;
+    font-size: 22px;
+    color: #333333;
+}
+.red{
+    color:#ef1120;
+}
+.szzi>span{
+    font-size: 22px;
+    color: #333333;
+}
+.szzi>.zhuanchu:hover,.szzi>.sxb:hover,.szzi>.glqb:hover{
+    background-color: #ef1120;
+    color: #fff;
+	border: 2px solid #ef1120;
+}
+
+
+.zhuanchu,.sxb,.glqb{
+   cursor: pointer;
+    display: inline-block;
+    margin-left: 60px;
+    width: 110px;
+    height: 48px;
+    border: 2px solid #c3c3c3;
+    border-radius: 4px;
+    text-align: center;
+    line-height: 48px;
+    font-size: 22px;
+    color: #3c3c3c;
+}
+.glqb_qiye{
+    border: 1px solid #af2d32;;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #af2d32;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+.zr,.zh{
+    display: none;
+    width: 485px;
+    height:440px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+    position: relative;
+    top: -463px;
+    border-radius:2px;
+	padding:20px;
+}
+form>p:nth-child(1){
+    margin-top: 20px;
+    margin-left: 25px;
+    font-size: 20px;
+    color: #333333;
+
+}
+.formhr{
+    width: 90%;
+    margin: 8px auto 25px auto;
+}
+label{
+    margin-left: 25px;
+    font-size: 14px;
+}
+input{
+    padding: 3px;
+    border-radius: 3px;
+    border: 1px solid #ccc;
+}
+h5{
+    margin-left: 112px;
+    position: relative;
+    top: 8px;
+    margin-bottom: 3px;
+}
+h5>span>img{
+    width: 20px;
+}
+h5>span:nth-child(2){
+    position: relative;
+    top: -5px;
+    left: 10px;
+}
+.zr h5>span:nth-child(2){
+    display:inline-block;
+	margin-bottom:20px;
+}
+em{
+    font-size: 11px;
+    color: gray;
+    padding-left: 8px;
+}
+input[type=text]{
+    width: 100px;
+    margin-left: 0;
+
+}
+input[type=password]{
+    margin-top: 20px;
+    margin-bottom: 0px;
+}
+.label{
+    margin-left: 37px;
+}
+.for{
+    margin-left: 64px;
+}
+.btn{
+    width: 145px;
+    height: 42px;
+    margin-top: 25px;
+    margin-left:110px;
+    background-color: #a90b16;
+    color: white;
+    border: none;
+    font-size: 16px;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 42px;
+    cursor: pointer;
+}
+.fanhui{
+    margin-left: 15px;
+    color: #a90b16;
+}
+
+.error>img{
+    width: 40px;
+    position: relative;
+    top: -450px;
+    left: 850px;
+    z-index: 3;
+    display: none;
+    cursor:pointer;
+    opacity:0.7;
+}
+.error>img:hover{
+    opacity:1;
+}
+.tiqu{
+    width: 485px;
+    height: 440px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+    position: relative;
+    top: -460px;
+    border-radius: 2px;
+    display: none;
+    padding: 20px;
+}
+.tiqu_qiye{
+    width: 380px;
+    height: auto;
+    margin: 0 auto;
+    background-color: white;
+    border: 1px solid #333333;
+    position: relative;
+    top: -405px;
+    border-radius: 5px;
+    display: none;
+}
+.content_1{
+    font-size:16px;
+    margin-top:20px;
+}
+.tiqu_qiye input.money{
+    width:78px;
+}
+form>p{
+    margin-left: 25px;
+	margin-bottom:10px;
+}
+.formhr{
+    width: 90%;
+    margin: 8px auto 25px auto;
+}
+.benlun{
+    margin-bottom: 15px;
+    display: inline-block;
+}
+input[type=money]{
+    width: 78px;
+    height: 23px;
+    margin-bottom: 0px;
+}
+.bs{
+    font-size: 14px;
+    color: #999999;
+}
+.bs_qiye{
+    font-size: 14px;
+    color: #999999;
+}
+.yuan>img{
+    width: 20px;
+    position: relative;
+    top: 5px;
+    color: silver;
+}
+.tqglj{
+    margin-top: 20px;
+    font-size: 16px;
+}
+.zr .txt2,.zh .txt2{
+    width: 177px;
+    height: 23px;
+}
+.ejmm{
+    margin-left: 40px;
+    font-size: 16px;
+}
+.ding{
+    margin-left: 125px;
+    width: 147px;
+    height: 42px;
+    margin-top: 20px;
+    background:#a90b16;
+    text-align: center;
+    line-height: 42px; 
+    color: #fff;
+    cursor: pointer;
+}
+.qiye_click{
+    margin-left: 125px;
+    width: 147px;
+    height: 42px;
+    margin-top: 20px;
+    background:#a90b16;
+    text-align: center;
+    line-height: 42px; 
+    color: #fff;
+    cursor: pointer;
+}
+.fail>img{
+    width: 40px;
+    position: relative;
+    top: -450px;
+    left: 850px;
+    z-index: 3;
+    display: none;
+    cursor:pointer;
+    opacity:0.7;
+}
+.fail>img:hover{
+    opacity:1;
+}
+footer{
+    width: 1220px;
+    margin: 20px auto;
+    text-align: center;
+    font-size: 15px;
+    color: #535952;
+}
+footer>p:nth-child(1){
+    margin-bottom: 0;
+    display: inline-block;
+}
+.banben{
+    margin-top: 5px;
+}
+.jb{
+    position: relative;
+    top:3px;
+}
+.dy{
+    width: 20px;
+    height: 15px;
+    padding-left: 0;
+    position: relative;
+    top: 7px;
+}
+.shu1{
+    width: 150px;
+    margin-left: 42px;
+    display: inline-block;
+}
+.shu2,.shu3{
+ display: inline-block;
+ width: 150px;
+ margin-left: 36px;
+}
+.shu4,.shu5,.shu6{
+    display: inline-block;
+    width: 150px;
+    margin-left: 36px;
+}
+.geren{
+    font-size: 20px;
+    color: #333;
+    position: relative;
+    top:-7px;
+}
+.gou,.gou2{
+    display: none;
+}
+
+
+.client_window_all{
+    display:none;
+    background: black none repeat scroll 0 0;
+    height: 100%;
+    position: fixed;
+    width: 100%;
+    
+    /* older safari/Chrome browsers */  
+    -webkit-opacity: 0.2;  
+    /* Netscape and Older than Firefox 0.9 */  
+    -moz-opacity: 0.2;  
+    /* Safari 1.x (pre WebKit!) 老式khtml内核的Safari浏览器*/  
+    -khtml-opacity: 0.2;  
+    /* IE9 + etc...modern browsers */  
+    opacity: .2;  
+    /* IE 4-9 */  
+    filter:alpha(opacity=20);  
+    /*This works in IE 8 & 9 too*/  
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=20)";  
+    /*IE4-IE9*/  
+    filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=20); 
+}
+
+
+.money_title_class{
+    width:170px;
+    display:inline-block;
+}
+@media screen and (max-width: 1400px) {
+    aside{
+         margin: 50px 72px;
+    }
+}
+.jingbei{
+   color: #666;
+}
+.merits_money{
+	width: 100%;
+    height: 25px;
+	float:right;
+	padding-right:50px;
+	text-align:right;
+	margin-top:30px;
+}
+.merits_money a{
+	color:#a90b16;
+	font-size:20px;
+}
+.merits_money a:hover{
+	text-decoration: underline;
+}
+.merits_money img{
+	vertical-align:text-bottom;
+}
+.szzi .recipients_jump{
+	color:#ef1120;
+	margin-left:54px;
+	text-decoration: underline;
+}

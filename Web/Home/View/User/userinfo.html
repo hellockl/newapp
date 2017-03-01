@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="author">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="__PUBLIC__/web/css/header.css">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/ydy.css">
+    
+    <link rel="stylesheet" href="__PUBLIC__/plugins/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+    <link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/complete.css">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/money.css">
+    <style>
+        footer {
+            color: #535952;
+            font-size: 15px;
+            margin: 20px auto;
+            text-align: center;
+            width: 1220px;
+        }
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/complete.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/lianxdong.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/plugins/layui/layui.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="head">
+            <div class="head_l">
+                <ul>
+                    <li><a href="http://www.shanxinhui.com/index/user/ydy.html"><!--<img src="__PUBLIC__/web/img/LOGO.png" height="100%">--></a></li>
+                    <li><!--<img src="__PUBLIC__/web/img/solgain.png" height="100%">--></li>
+                </ul>
+            </div>
+            <div class="head_r">
+                <div>
+                    <ul><img src="__PUBLIC__/web/img/newicon_7.png"></ul>
+                    <ul class="username">
+                        <li>{$user_info.user_name}</li>
+                        <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
+                    </ul>
+                </div>
+                <div>|</div>
+                <div>
+                    <ul>
+                        <li><img src="__PUBLIC__/web/img/icon_11.png"></li>
+                        <a href="javascript:void(0);"><li class="tc">退出系统</li></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav">
+            <div class="sh">
+                <ul class="dh">
+                    <li><a href="/">首页</a></li>
+                    <li class="licur"><a href="javascript:;">个人中心</a></li>
+                    <li><a href="javascript:;">系统公告</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <aside>
+        <div class="xtx">
+            <img class="ttx" src="__PUBLIC__/web/img/icon_10.png" alt=""><span>个人中心</span>
+            <img class="dy" src="__PUBLIC__/web/img/icon_forward.png" alt=""><span class="gd verify_status" style="margin-left: 13px;">查看资料</span> <span class="fh"><a href="http://www.shanxinhui.com/index/user/person.html">返回&nbsp;&gt;&gt;</a></span>
+        </div>
+        <hr class="grhr">
+        <form id="info_form" method="post" action="/user/user/improveUserInfo" class="xinxi">
+            <div class="grxx" id="complate_image">
+                <img src="__PUBLIC__/web/img/1.png" alt="" usemap="#Map">
+                <map name="Map" id="Map">
+                    <area onclick="clickInfo();" shape="rect" coords="1,1,341,55" href="javascript:void(0);">
+                    <area onclick="clickInfoImage();" shape="rect" coords="374,2,715,55" href="javascript:void(0);">
+                    <area onclick="clickShenhe();" shape="rect" coords="750,1,1091,56" href="javascript:void(0);">
+                </map></div>
+            <p class="ts" id="verify_title_1">审核已通过，不能修改资料信息</p>
+            <label class="user">姓名：</label>
+            <input id="info_name" name="name" autocomplete="ture" required="required" pattern="[\u4e00-\u9fa5]{1,6}"  value="杨宝强" type="user"/>
+            <span style="color: red">&nbsp;&nbsp;*</span>
+            <b class="b_01">&nbsp;姓名不能为空</b><b class="b_02">&nbsp;姓名不符合规范</b><br>
+            <label class="tel">手机号码：</label>
+            <input disabled="disabled" id="info_phone" name="phone" required="required" pattern="^[1][3-8]\d{9}$" value="" type="tel">
+            <span style="color: red">&nbsp;&nbsp;*</span>
+            <b class="b_03">&nbsp;手机号码不能为空</b><b class="b_04">&nbsp;手机号码不符合规范</b><br>
+            <label class="email">电子邮箱：</label>
+            <input id="info_email" name="email" required="required"  value="" type="email">
+            <span style="color: red">&nbsp;&nbsp;*</span>
+            <b class="b_05">&nbsp;邮箱不能为空</b>
+            <b class="b_06">&nbsp;邮箱不符合规范</b><br>
+            <select class="id" id="passport_selected">
+                <option value="1" selected="selected">身份证号</option>
+                <option value="2">护照号码</option>
+            </select>
+            <input id="info_card_id" name="card_id" required="required"  value="" type="id">
+            <span style="color: red">&nbsp;&nbsp;*</span>
+            <b class="b_07">&nbsp;身份证不能为空</b>
+            <b class="b_08">&nbsp;身份证不符合规范</b><br>
+            <label class="zfb">支付宝：</label>
+            <input id="info_alipay_account" name="alipay_account" required="required" disabled="disabled" value="13761761611" type="zfb">
+            <!-- <span
+                    style="color: red">&nbsp;&nbsp;*</span><b class="b_10">&nbsp;支付宝不能为空</b>-->
+            <b class="b_11">&nbsp;支付宝不符合规范</b><br> 
+            <label class="yh">银行卡：</label>
+            <input id="info_bank_account" maxlength="30" name="bank_account" required="required"  value="6222021001111571813" type="yh">
+            <span style="color: red">&nbsp;&nbsp;*</span><b class="b_12">&nbsp;银行卡不能为空</b> <b class="b_13">&nbsp;银行卡不符合规范</b><br>
+            <label class="kf">开户行：</label> 
+            <input id="info_bank_name" name="bank_name" required="required"  value="中国工商银行" type="kf">
+            <span style="color: red">&nbsp;&nbsp;*</span><b class="b_14">&nbsp;开户行不能为空</b>
+            <b class="b_15">&nbsp;开户行不符合规范</b><br> 
+
+
+
+            <p class="btn user_info_next_submit" id="next1" style="display: block;">下一步</p>
+        </form>
+
+
+
+        <form action="" class="yanzheng layui-form" >
+            <div class="grxx">
+                <img src="__PUBLIC__/web/img/2.png" alt="" usemap="#Map">
+            </div>
+            <p class="ts" id="verify_title_2">审核已通过，不能修改资料信息</p>
+
+            <!-- 身份证正面 -->
+            <div class="front">
+                <span class="span1">*&nbsp;&nbsp;</span>
+                <p class="zmz">身份证正面照：</p>
+                
+                <div class="layui-input-inline">
+                    <input type="file" name="file1" id="aaaa" class="aaaa layui-upload-file">
+                    <input type="hidden" name="idcard_imga" id="image_patha" value=""/>
+                    <img id="img_uploada" src="#" style="width: 200px;height: 100px;">
+                   
+                </div>
+                <p class="xiangjie" id="image_a_p">支持jpg.png小于 5M,要求图片清晰，信息完整</p>
+
+                
+            </div>
+
+            <!-- 身份证反面 -->
+            <div class="back">
+                <span class="span2">*&nbsp;&nbsp;</span>
+                <p class="fmz">身份证反面照：</p>
+                <div class="layui-input-inline">
+                    <input type="file" name="file2" id="bbbb" class="bbbb layui-upload-file">
+                    <input type="hidden" name="idcard_imgb" id="image_pathb" value=""/>
+                    <img id="img_uploadb" src="#" style="width: 200px;height: 100px;">
+                </div>          
+                <p class="xiangjie" id="image_b_p">支持jpg.png小 于5M,要求图片清晰，信息完整</p>
+            </div>
+
+            
+
+            <p class="syb" style="display: block;">上一步</p>
+            <p class="tijiao" id="subimt_info" style="cursor: pointer; display: block;">提交</p>
+        </form>
+
+
+
+
+        <!-- Ajax上传图片 Start -->
+        <script type="text/javascript">
+            layui.use('upload', function(){
+                $ = layui.jquery;
+                layui.upload({
+                  url: "{:U('User/upload_a')}"
+                  ,title: '上传图片'
+                  ,elem: '#aaaa' //指定原始元素，默认直接查找class="layui-upload-file"
+                  ,ext: 'jpg|png|gif|jpeg'
+                  ,method: 'post' //上传接口的http类型
+                  ,success: function(res){
+                    if(res.status == 'error'){
+                      layer.msg(res.msg);
+                    }else{
+                      $("#image_path").val(res.url);
+                      img_uploada.src = res.url;
+                    }
+                  }
+                });
+                layui.upload({
+                  url: "{:U('User/upload_b')}"
+                  ,title: '上传图片'
+                  ,elem: '#bbbb' //指定原始元素，默认直接查找class="layui-upload-file"
+                  ,ext: 'jpg|png|gif|jpeg'
+                  ,method: 'post' //上传接口的http类型
+                  ,success: function(res){
+                    if(res.status == 'error'){
+                      layer.msg(res.msg);
+                    }else{
+                      $("#image_path").val(res.url);
+                      img_uploadb.src = res.url;
+                    }
+                  }
+                });
+              });
+        </script>
+        <script type="text/javascript">
+            $(function () {
+
+                //文件框的id
+                $("#image_a_upload")
+                        .wrap(
+                                "<form id='myupload' action='/user/user/uploadUserInfoImage' method='post' enctype='multipart/form-data'></form>");
+                //文件框的id
+                $("#image_b_upload")
+                        .wrap(
+                                "<form id='myupload1' action='/user/user/uploadUserInfoImage' method='post' enctype='multipart/form-data'></form>");
+
+                //文件框的id
+                $("#image_c_upload")
+                        .wrap(
+                                "<form id='myupload2' action='/user/user/uploadUserInfoImage' method='post' enctype='multipart/form-data'></form>");
+
+                $("#image_a_upload")
+                        .change(
+                                function () {
+                                    var aaa = layer.load();
+                                    $("#myupload")
+                                            .ajaxSubmit(
+                                                    {
+                                                        dataType: 'json',
+                                                        data: {
+                                                            image_from: 'image_a',
+                                                        },
+                                                        //上传成功了
+                                                        success: function (data) {
+                                                            if (data.errorCode == 0) {
+                                                                $('#image_a_p')
+                                                                        .css(
+                                                                                'color',
+                                                                                'green')
+                                                                        .html(
+                                                                                "上传成功");
+                                                                $('#image_a')
+                                                                        .attr(
+                                                                                'style',
+                                                                                "background-image:url("
+                                                                                + data.result.path
+                                                                                + ")");
+
+                                                                //让 input file 框隐藏
+//                                                                                                                                $('#image_a form').remove();
+//                                                                                                                                $('#image_a span').remove();
+                                                                $(this).hide();
+
+                                                            } else {
+                                                                alert(data.errorMsg);
+                                                            }
+                                                            layer.close(aaa);
+                                                        },
+                                                        error: function () {
+                                                            layer.close(aaa);
+                                                            alert('上传失败！');
+                                                        },
+                                                    });
+                                });
+                $("#image_b_upload")
+                        .change(
+                                function () {
+                                    var bbb = layer.load();
+                                    $("#myupload1")
+                                            .ajaxSubmit(
+                                                    {
+                                                        dataType: 'json',
+                                                        data: {
+                                                            image_from: 'image_b',
+                                                        },
+                                                        //上传成功了
+                                                        success: function (data) {
+                                                            if (data.errorCode == 0) {
+                                                                $('#image_b_p')
+                                                                        .css(
+                                                                                'color',
+                                                                                'green')
+                                                                        .html(
+                                                                                "上传成功");
+                                                                $('#image_b')
+                                                                        .attr(
+                                                                                'style',
+                                                                                "background-image:url("
+                                                                                + data.result.path
+                                                                                + ")");
+
+                                                                //让 input file 框隐藏
+//                                                                                                                                $('#image_b form').remove();
+//                                                                                                                                $('#image_b span').remove();
+                                                                $(this).hide();
+
+                                                            } else {
+                                                                alert(data.errorMsg);
+                                                            }
+                                                            layer.close(bbb);
+                                                        },
+                                                        error: function () {
+                                                            layer.close(bbb);
+                                                            alert('上传失败！');
+                                                        },
+                                                    });
+                                });
+                $("#image_c_upload").change(function () {
+                    var ccc = layer.load();
+                    $("#myupload2")
+                            .ajaxSubmit(
+                                    {
+                                        dataType: 'json',
+                                        data: {
+                                            image_from: 'image_c',
+                                        },
+                                        //上传成功了
+                                        success: function (data) {
+                                            if (data.errorCode == 0) {
+                                                $('#image_c_p').css('color', 'green')
+                                                        .html("上传成功");
+                                                $('#image_c')
+                                                        .attr(
+                                                                'style',
+                                                                "background-image:url("
+                                                                + data.result.path
+                                                                + ")");
+
+                                                //让 input file 框隐藏
+//                                                                                                                                $('#image_c form').remove();
+//                                                                                                                                $('#image_c span').remove();
+                                                $(this).hide();
+
+                                            } else {
+                                                alert(data.errorMsg);
+                                            }
+                                            layer.close(ccc);
+                                        },
+                                        error: function () {
+                                            layer.close(ccc);
+                                            alert('上传失败！');
+                                        },
+                                    });
+                });
+            });
+        </script>
+        <!-- Ajax上传图片 End -->
+
+
+
+
+
+        <form action="" class="shenhe">
+            <div class="examine">
+                <img src="__PUBLIC__/web/img/3.png" alt="" usemap="#Map">
+            </div>
+            <p class="ts" id="verify_title_3">审核已通过，不能修改资料信息</p>
+            <div class="success">
+                <span class="duihao"><img src="__PUBLIC__/web/img/kuang_08.png" alt=""></span>
+                <h2>您已通过审核</h2>
+
+            </div>
+
+        </form>
+    </aside>
+
+    <footer class="footer">
+        <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
+        <p>2016V2.0版本</p>
+    </footer>
+
+</body>
+</html>

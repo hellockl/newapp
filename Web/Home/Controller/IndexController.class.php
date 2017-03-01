@@ -28,7 +28,7 @@ class IndexController extends BaseController {
     }
     
     public function getHelpList(){
-        $GetHelp = M('GetHelp');
+        $GetHelp = M('Gethelp');
         $where['user_id'] = $_SESSION['user_info']['user_id'];
         $count = $GetHelp->where($where)->count(); // 查询满足要求的总记录数
         $Page = new \Think\Page($count, 1);
