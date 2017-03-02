@@ -18,7 +18,7 @@
 				<legend></legend>
 				<div class="layui-field-box">
 					<fieldset class="layui-elem-field layui-field-title">
-						<legend>版本号:# v0.01 2016-11-20</legend>
+						<legend>版本号:# v0.01 2017-03-05</legend>
 						<div class="layui-field-box">
 							<p>1、基本布局 tab + iframe</p>
 							<p>2、动态添加，删除tab</p>

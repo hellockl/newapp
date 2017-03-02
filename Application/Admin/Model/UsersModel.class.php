@@ -76,10 +76,9 @@ class UsersModel extends BaseModel
     public function editUsers($data)
     {
         $where = array(
-            'id'    => $data['id'],
+            'user_id'    => $data['user_id'],
         );
-
-        unset($data['id']);
+        unset($data['user_id']);
 
         return $this->where($where)->save($data);
     }
@@ -112,8 +111,8 @@ class UsersModel extends BaseModel
     public function findUsersById($user_id)
     {
         $where = array(
-            'id'     => $user_id,
-            'status' => parent::NORMAL_STATUS,
+            'user_id'     => $user_id,
+            //'status' => parent::NORMAL_STATUS,
         );
 
         return $this->where($where)->find();
@@ -128,5 +127,12 @@ class UsersModel extends BaseModel
 
 
         return $this->where($where)->find();
+    }
+
+    public function findUsersNameById($user_id){
+        $where = array(
+            'user_id'=>$user_id,
+        );
+        return $this->where($where)->getField('user_name');
     }
 }

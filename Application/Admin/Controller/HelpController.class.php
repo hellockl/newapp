@@ -133,6 +133,20 @@ class HelpController extends CommonController
     }
 
 
+    /**
+     * @description ：确人打款
+     */
+    public function confirmMoney(){
+        $givehelp_id = I('givehelp_id',0,'intval');
+        $where['id'] = $givehelp_id;
+        $res = M("Givehelp")->where($where)->setField('status',3);
+        if($res){
+            $this->ajaxSuccess('操作成功');
+        }else{
+            $this->ajaxError('操作失败');
+        }
+    }
+
 
 
 

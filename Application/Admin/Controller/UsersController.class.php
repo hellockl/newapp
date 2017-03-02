@@ -23,14 +23,16 @@ class UsersController extends CommonController
     {
         $users_list = $this->users_model->selectAllUsers(8);
         foreach($users_list['list'] as $key=>$val){
+            $users_list['list'][$key]['father_name'] = $this->users_model->findUsersNameById($val['father_id']);
+            $users_list['list'][$key]['grand_name'] = $this->users_model->findUsersNameById($val['grand_id']);
             if($val['status']==0){
-                $users_list['list'][$key]['status_name'] = '<span>未激活</span>';
+                $users_list['list'][$key]['status_name'] = '<span style="color: red">未激活</span>';
             }else if($val['status']==1){
-                $users_list['list'][$key]['status_name'] = '<span>已激活，未审核</span>';
+                $users_list['list'][$key]['status_name'] = '<span style="color: #00b7ee">已激活-未审核</span>';
             }else if($val['status']==2){
-                $users_list['list'][$key]['status_name'] = '<span>已激活，已审核</span>';
+                $users_list['list'][$key]['status_name'] = '<span style="color: #e99f1d">已激活，已审核</span>';
             }else if($val['status']==3){
-                $users_list['list'][$key]['status_name'] = '<span>已禁用</span>';
+                $users_list['list'][$key]['status_name'] = '<span style="color: #4b646f">已禁用</span>';
             }
         }
         $this->assign('users_list',$users_list['list']);
@@ -47,6 +49,17 @@ class UsersController extends CommonController
         $user_id = I('user_id',0,'intval');
         $where['father_id'] = $user_id;
         $mychild_list = M("Users")->where($where)->select();
+        foreach($mychild_list as $key=>$val){
+            if($val['status']==0){
+                $mychild_list[$key]['status_name'] = '<span>未激活</span>';
+            }else if($val['status']==1){
+                $mychild_list[$key]['status_name'] = '<span>已激活，未审核</span>';
+            }else if($val['status']==2){
+                $mychild_list[$key]['status_name'] = '<span>已激活，已审核</span>';
+            }else if($val['status']==3){
+                $mychild_list[$key]['status_name'] = '<span>已禁用</span>';
+            }
+        }
         //var_dump($mychild_list,$user_id);
         $this->assign('mychild_list',$mychild_list);
         $this->display();
@@ -68,7 +81,29 @@ class UsersController extends CommonController
             $this->ajaxError("激活失败");
         }
     }
-    
+
+    /**
+     * @description:激活用户
+     * @author wuyanwen(2017年2月128日
+     */
+    public function forbidUser(){
+        $user_id = I('post.user_id','','intval');
+
+        $where['user_id'] = $user_id;
+        $res = M('Users')->where($where)->getField('is_forbid');
+
+        $is_forbid = !empty($res['is_forbid'])?0:1;
+
+        $result = M('Users')->where($where)->setField('is_forbid',$is_forbid);
+
+        if($result){
+            $this->ajaxSuccess("操作成功！");
+        }else{
+            $this->ajaxError("操作失败");
+        }
+    }
+
+
     /**
      * @description:添加用户
      * @author wuyanwen(2016年12月1日)
@@ -154,14 +189,16 @@ class UsersController extends CommonController
         if(IS_POST){
             $user_info = array(
                 'status' => I('post.status','','intval'),
-                'id'        => I('post.id','','intval'),
+                'user_id'        => I('post.user_id','','intval'),
             );
-
-
+            $resoult = $this->users_model->findUsersById($user_info['user_id']);
+            if($resoult['status']==0){
+                $this->ajaxError('该用户还未激活，请先激活！');
+            }
             if($this->users_model->editUsers($user_info) !== false){
-                $this->ajaxSuccess('更新成功');
+                $this->ajaxSuccess('审核成功');
             }else{
-                $this->ajaxError('更新失败');
+                $this->ajaxError('审核失败');
             }
         }else{
             $user_id = I('get.user_id','','intval');

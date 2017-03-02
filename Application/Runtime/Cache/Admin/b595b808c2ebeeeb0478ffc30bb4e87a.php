@@ -26,9 +26,9 @@
 						<span style="font-size: 22px;">后台管理</span>
 					</a>
 					<ul class="layui-nav">
-						<li class="layui-nav-item">
-							<a href="javascript:;">清除缓存</a>
-						</li>
+						<!--<li class="layui-nav-item">-->
+							<!--<a href="javascript:;">清除缓存</a>-->
+						<!--</li>-->
 						<li class="layui-nav-item">
 							<a href="#" target="_blank">浏览网站</a>
 						</li>
@@ -38,12 +38,12 @@
 								<span><?php echo session('user_info')['user_name'];?></span>
 							</a>
 							<dl class="layui-nav-child">
-								<dd>
-									<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>
-								</dd>
-								<dd>
-									<a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>
-								</dd>
+								<!--<dd>-->
+									<!--<a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i> 个人信息</a>-->
+								<!--</dd>-->
+								<!--<dd>-->
+									<!--<a href="javascript:;"><i class="fa fa-gear" aria-hidden="true"></i> 设置</a>-->
+								<!--</dd>-->
 								<dd>
 									<a href="<?php echo U('Login/logout');?>"><i class="fa fa-sign-out" aria-hidden="true"></i> 注销</a>
 								</dd>
@@ -90,8 +90,8 @@
 			</div>
 			<div class="layui-footer footer footer-demo">
 				<div class="layui-main">
-					<p>2016 &copy;
-						<a href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">auth管理后台</a>
+					<p>2017 &copy;
+						<a href="http://beginner.zhengjinfan.cn/demo/beginner_admin/">后台管理</a>
 					</p>
 				</div>
 			</div>

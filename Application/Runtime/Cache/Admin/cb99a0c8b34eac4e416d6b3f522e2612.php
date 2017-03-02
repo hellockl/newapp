@@ -43,7 +43,8 @@
 						<td>
 							<?php if(($vo["status"]) == "0"): ?><a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
 								<?php else: ?>
-								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe642;</i>查看匹配</a><?php endif; ?>
+								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe642;</i>查看匹配</a>
+								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-waim match_list"><i class="layui-icon">&#xe642;</i>确认打款</a><?php endif; ?>
 
 						</td>
 					</tr><?php endforeach; endif; ?>
