@@ -20,7 +20,7 @@ class HelpModel extends BaseModel
         $count      = $this->alias('G')->where($where)->count();
         $page       = new \Think\Page($count,$num);
         $show       = $page->show();
-        $list       = $this->alias('G')->field('G.*,U.user_name')->join("LEFT JOIN ".C('DB_PREFIX')."users U on(U.user_id=G.user_id)")->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+        $list       = $this->alias('G')->field('G.*,U.user_name,U.name,U.phone')->join("LEFT JOIN ".C('DB_PREFIX')."users U on(U.user_id=G.user_id)")->where($where)->limit($page->firstRow.','.$page->listRows)->select();
         //echo $this->getLastSql();
         return array('page' => $show , 'list' => $list);
 
@@ -34,7 +34,19 @@ class HelpModel extends BaseModel
      */
     public function addGetHelp($data)
     {
-        return $this->add($data) ? true : false;
+        return M('Gethelp')->add($data) ? true : false;
+    }
+
+    /**
+     * @description:添加匹配列表
+     * @author wuyanwen(2017年3月1日)
+     * @param unknown $data
+     * @return boolean
+     */
+    public function getMatchListById($givehelp_id){
+        $where['G.givehelp_id'] = $givehelp_id;
+        $list = M('Gethelp')->alias("G")->field("G.*,U.user_name,U.alipay,U.wechat,U.name,U.phone")->join("LEFT JOIN ".C('DB_PREFIX')."users U on(U.user_id=G.user_id)")->where($where)->select();
+        return $list;
     }
 
 

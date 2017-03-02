@@ -21,11 +21,52 @@ class UsersController extends CommonController
      */
     public function index()
     {
-        $users_list = $this->users_model->selectAllUsers(1);
-
+        $users_list = $this->users_model->selectAllUsers(8);
+        foreach($users_list['list'] as $key=>$val){
+            if($val['status']==0){
+                $users_list['list'][$key]['status_name'] = '<span>未激活</span>';
+            }else if($val['status']==1){
+                $users_list['list'][$key]['status_name'] = '<span>已激活，未审核</span>';
+            }else if($val['status']==2){
+                $users_list['list'][$key]['status_name'] = '<span>已激活，已审核</span>';
+            }else if($val['status']==3){
+                $users_list['list'][$key]['status_name'] = '<span>已禁用</span>';
+            }
+        }
         $this->assign('users_list',$users_list['list']);
         $this->assign('page',$users_list['page']);
         $this->display();
+    }
+
+    /**
+     * @description:我推的用户
+     * @author ckl(2017年3月1日)
+     *
+     */
+    public function myChild(){
+        $user_id = I('user_id',0,'intval');
+        $where['father_id'] = $user_id;
+        $mychild_list = M("Users")->where($where)->select();
+        //var_dump($mychild_list,$user_id);
+        $this->assign('mychild_list',$mychild_list);
+        $this->display();
+    }
+
+
+    /**
+     * @description:激活用户
+     * @author wuyanwen(2017年2月128日)
+     */
+    public function activateUser(){
+        $user_id = I('post.user_id','','intval');
+        $where['user_id'] = $user_id;
+        $result = M('Users')->where($where)->setField('status',1);
+
+        if($result){
+            $this->ajaxSuccess("激活成功！");
+        }else{
+            $this->ajaxError("激活失败");
+        }
     }
     
     /**

@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends BaseController {
     public function index(){
-        $user_info = M('Users')->where("user_id=".$_SESSION['user_info']['user_id'])->find();
+        $user_info = M('Users')->where("user_id=".$_SESSION['users_info']['user_id'])->find();
         //var_dump($user_info);
         $this->assign('user_info',$user_info);
         $this->display();
@@ -11,13 +11,13 @@ class IndexController extends BaseController {
 
     public function test(){
         
-        $this->assign('user_info',$_SESSION['user_info']);
+        $this->assign('user_info',$_SESSION['users_info']);
         $this->display();
     }
     
     public function giveHelpList(){
         $Givehelp = M('Givehelp');
-        $where['user_id'] = $_SESSION['user_info']['user_id'];
+        $where['user_id'] = $_SESSION['users_info']['user_id'];
         $count = $Givehelp->where($where)->count(); // 查询满足要求的总记录数
         $Page = new \Think\Page($count, 1);
         $show = $Page->show(); // 分页显示输出
@@ -29,7 +29,7 @@ class IndexController extends BaseController {
     
     public function getHelpList(){
         $GetHelp = M('GetHelp');
-        $where['user_id'] = $_SESSION['user_info']['user_id'];
+        $where['user_id'] = $_SESSION['users_info']['user_id'];
         $count = $GetHelp->where($where)->count(); // 查询满足要求的总记录数
         $Page = new \Think\Page($count, 1);
         $show = $Page->show(); // 分页显示输出
@@ -51,7 +51,7 @@ class IndexController extends BaseController {
     public function checkGiveHelp(){
         $amount_password = I('post.amount_password');
         
-        $where['user_id'] = $_SESSION['user_info']['user_id'];
+        $where['user_id'] = $_SESSION['users_info']['user_id'];
         $res = M('Users')->where($where)->getField('amount_password');
         //echo M('Users')->getLastSql();
         //var_dump($res, md5($amount_password),$amount_password);

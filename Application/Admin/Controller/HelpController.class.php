@@ -22,7 +22,16 @@ class HelpController extends CommonController
     public function index()
     {
         $givehelp_list = $this->givehelp_model->selectAllGivehelp(10);
-
+        foreach($givehelp_list['list'] as $k=>$v){
+            //0：未匹配；1：已匹配，未支付；2：已匹配，已支付
+            if($v['status']==0){
+                $givehelp_list['list'][$k]['status_name'] = '未匹配';
+            }else if($v['status']==1){
+                $givehelp_list['list'][$k]['status_name'] = '已匹配，未支付';
+            }else if($v['status']){
+                $givehelp_list['list'][$k]['status_name'] = '已匹配，已支付';
+            }
+        }
         $this->assign('givehelp_list',$givehelp_list['list']);
         $this->assign('page',$givehelp_list['page']);
         $this->display();
@@ -47,16 +56,18 @@ class HelpController extends CommonController
                     'name' => '系统管理员',
                     'password' => Md5('123456'),
                     'status'=> 2,//已激活，已审核
-                    'amount_password'=>Md('654321')
+                    'amount_password'=>Md5('654321'),
+                    'create_time'=>time()
                 );
                 $user_id = D('Users')->addUsers($user_data);
-                if($user_id){
+
+                if(!$user_id){
                     parent::ajaxError('添加用户失败!');
                 }
                 //创建一个得到帮助
                 $help_data = array(
                     "user_id" => $user_id,
-                    "amount" => 2000,
+                    "amount" => I('post.amount',0,'intval'),
                     "create_time" => time()
                 );
                 $add_gethelp = D('Help')->addGetHelp($help_data);
@@ -69,7 +80,6 @@ class HelpController extends CommonController
             if(!empty($user_id)){
                 $gethelp_ids[] =$user_id;
             }
-            //var_dump($gethelp_ids);
             if(empty($gethelp_ids)){
                 parent::ajaxError('请选择用户!');
             }
@@ -87,13 +97,18 @@ class HelpController extends CommonController
                 );
                 $gethelp_model->where("id=".$v)->save($data_a);
             }
-            parent::ajaxSuccess('分配成功!');
+            $res_b = M('Givehelp')->where("id=".$givehelp_id)->setField('status',1);
+            if($res_b){
+                parent::ajaxSuccess('分配成功!');
+            }else{
+                parent::ajaxError('匹配失败 !');
+            }
+
         }else{
             $givehelp_id = I('givehelp_id',0,'intval');
             $givehelp_uid = M('Givehelp')->where('id='.$givehelp_id)->getField('user_id');
             $where['G.status'] = 0; //0：未匹配；1：已匹配，未支付；2：已匹配，已支付
             $gethelp_list = M('Gethelp')->field('G.*,U.user_name')->alias('G')->join('LEFT JOIN '.C('DB_PREFIX').'users U on(U.user_id=G.user_id)')->where($where)->select();
-            //echo M('Givehelp')->getLastSql();
             $this->assign('gethelp_list',$gethelp_list);
             $this->assign('givehelp_id',$givehelp_id);
             $this->assign('givehelp_uid',$givehelp_uid);
@@ -103,53 +118,23 @@ class HelpController extends CommonController
 
     }
 
-
     /**
-     * @description:编辑用户
-     * @author wuyanwen(2016年12月1日)
+     * @description ：匹配列表
+     *
+     *
      */
-    public function editUser()
-    {
-        if(IS_POST){
-            $user_info = array(
-                'user_name' => I('post.user_name','','trim'),
-                'id'        => I('post.id','','intval'),
-            );
-
-            if(I('post.password')){
-                $user_info['password'] = md5(I('post.password','','trim'));
-            }
-
-            if($this->admin_user_model->editAdminUser($user_info) !== false){
-                $this->ajaxSuccess('更新成功');
-            }else{
-                $this->ajaxError('更新失败');
-            }
-        }else{
-            $user_id = I('get.user_id','','intval');
-            $user_info = $this->admin_user_model->findAdminUserById($user_id);
-            $this->assign('user_info',$user_info);
-            $this->display();
-        }
+    public function matchList(){
+        $givehelp_id = I('givehelp_id',0,'intval');
+        $where['givehelp_id'] = $givehelp_id;
+        $match_list = D("Help")->getMatchListById($givehelp_id);
+        //var_dump($match_list);
+        $this->assign('match_list',$match_list);
+        $this->display();
     }
 
 
-    /**
-     * @description:删除用户
-     * @author wuyanwen(2016年12月1日)
-     */
-    public function deleteUser()
-    {
-        $user_id = I('post.user_id','','intval');
 
-        $result = $this->admin_user_model->deleteAdminUser($user_id);
 
-        if($result){
-            $this->ajaxSuccess("删除成功");
-        }else{
-            $this->ajaxError("删除失败");
-        }
-    }
 
     /**
      * @description ：审核用户

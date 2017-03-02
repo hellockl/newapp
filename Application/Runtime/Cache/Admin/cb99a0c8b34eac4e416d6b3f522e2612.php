@@ -25,6 +25,8 @@
 				<tr>
 					<th>#</th>
 					<th>用户名</th>
+					<th>真实姓名</th>
+					<th>手机号</th>
 					<th>提供金额</th>
 					<th>状态</th>
 					<th>操作</th>
@@ -34,10 +36,15 @@
 				<?php if(is_array($givehelp_list)): foreach($givehelp_list as $k=>$vo): ?><tr>
 						<td><?php echo ($k+1); ?></td>
 						<td><?php echo ($vo["user_name"]); ?></td>
+						<td><?php echo ($vo["name"]); ?></td>
+						<td><?php echo ($vo["phone"]); ?></td>
 						<td><?php echo ($vo["amount"]); ?></td>
-						<td><?php echo ($vo["status"]); ?></td>
+						<td><?php echo ($vo["status_name"]); ?></td>
 						<td>
-							<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
+							<?php if(($vo["status"]) == "0"): ?><a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
+								<?php else: ?>
+								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe642;</i>查看匹配</a><?php endif; ?>
+
 						</td>
 					</tr><?php endforeach; endif; ?>
 				</tbody>
@@ -73,9 +80,28 @@
 				}
 				layer.open({
 					title:'匹配用户',
+					offset:'t',
 					type: 1,
 					skin: 'layui-layer-rim', //加上边框
-					area: ['80%','60%'], //宽高
+					area: ['60%','60%'], //宽高
+					content: data,
+				});
+			})
+		});
+		$('.match_list').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "<?php echo U('Help/matchList');?>";
+			$.get(url,{givehelp_id:givehelp_id},function(data){
+				if(data.status == 'error'){
+					layer.msg(data.msg,{icon: 5});
+					return;
+				}
+				layer.open({
+					title:'匹配列表',
+					offset:'t',
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['60%','60%'], //宽高
 					content: data,
 				});
 			})

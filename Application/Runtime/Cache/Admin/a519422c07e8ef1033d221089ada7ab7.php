@@ -14,7 +14,7 @@
   <legend>设定上传文件的格式</legend>
 </fieldset>
  
-<input type="file" id="test1" name="file" class="layui-upload-file">
+<input type="file" name="file" class="layui-upload-file">
 <input type="file" name="file1" lay-type="file" class="layui-upload-file"> 
 <input type="file" name="file1" lay-type="audio" class="layui-upload-file"> 
 <input type="file" name="file2" lay-type="video" class="layui-upload-file"> 
@@ -50,18 +50,9 @@
 <script>
 layui.use('upload', function(){
   layui.upload({
-    url: "<?php echo U('Index/upload');?>"
-    ,title: '上传赛事图片'
-    ,elem: '#test1' //指定原始元素，默认直接查找class="layui-upload-file"
-    ,ext: 'jpg|png|gif|jpeg'
-    ,method: 'post' //上传接口的http类型
-    ,success: function(res){
-      if(res.status == 'error'){
-        layer.msg(res.msg);
-      }else{
-        layer.msg('上传成功！');
-        window.location = "<?php echo U('Banner/index');?>"
-      }
+    url: '' //上传接口
+    ,success: function(res){ //上传成功后的回调
+      console.log(res)
     }
   });
   

@@ -25,6 +25,8 @@
 				<tr>
 					<th>#</th>
 					<th>用户名</th>
+					<th>真实姓名</th>
+					<th>手机号</th>
 					<th>提供金额</th>
 					<th>状态</th>
 					<th>操作</th>
@@ -35,10 +37,17 @@
 					<tr>
 						<td>{$k+1}</td>
 						<td>{$vo.user_name}</td>
+						<td>{$vo.name}</td>
+						<td>{$vo.phone}</td>
 						<td>{$vo.amount}</td>
-						<td>{$vo.status}</td>
+						<td>{$vo.status_name}</td>
 						<td>
-							<a data="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
+							<eq name="vo.status" value="0">
+								<a data="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
+								<else/>
+								<a data="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe642;</i>查看匹配</a>
+							</eq>
+
 						</td>
 					</tr>
 				</foreach>
@@ -75,9 +84,28 @@
 				}
 				layer.open({
 					title:'匹配用户',
+					offset:'t',
 					type: 1,
 					skin: 'layui-layer-rim', //加上边框
-					area: ['80%','60%'], //宽高
+					area: ['60%','60%'], //宽高
+					content: data,
+				});
+			})
+		});
+		$('.match_list').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "{:U('Help/matchList')}";
+			$.get(url,{givehelp_id:givehelp_id},function(data){
+				if(data.status == 'error'){
+					layer.msg(data.msg,{icon: 5});
+					return;
+				}
+				layer.open({
+					title:'匹配列表',
+					offset:'t',
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['60%','60%'], //宽高
 					content: data,
 				});
 			})

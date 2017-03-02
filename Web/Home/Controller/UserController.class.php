@@ -10,7 +10,7 @@ class UserController extends BaseController {
      *
      */
     public function editUser(){
-        $user_id = $_SESSION['user_info'];
+        $user_id = $_SESSION['users_info'];
         $usersModel = M('Users');
         if($usersModel->create()){
 
@@ -33,7 +33,7 @@ class UserController extends BaseController {
      */
     public function editPassword(){
         if(IS_POST){
-            $where['user_id'] = $_SESSION['user_info']['user_id'];
+            $where['user_id'] = $_SESSION['users_info']['user_id'];
             $where['password'] = md5(I('post.old_password','','trim'));
             $res = M('Users')->where($where)->find();
             
@@ -61,7 +61,7 @@ class UserController extends BaseController {
      */
     public function editAmountPassword(){
         if(IS_POST){
-            $where['user_id'] = $_SESSION['user_info']['user_id'];
+            $where['user_id'] = $_SESSION['users_info']['user_id'];
             
             
             $where['user_name'] = I("post.username",'','trim');

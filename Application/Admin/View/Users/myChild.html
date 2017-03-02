@@ -1,0 +1,66 @@
+<fieldset class="layui-elem-field">
+	<legend>我推荐的用户</legend>
+	<div class="layui-field-box">
+		<table class="layui-table">
+			<thead>
+			<tr>
+				<th>#</th>
+				<th>用户名</th>
+				<th>真实姓名</th>
+				<th>手机号</th>
+				<th>状态</th>
+
+			</tr>
+			</thead>
+			<tbody>
+			<eq name="mychild_list" value="">
+				<tr>
+					<td colspan="5">暂无推荐客户</td>
+				</tr>
+				<else/>
+				<foreach name="mychild_list" key="k" item="vo">
+					<tr>
+						<td>{$k+1}</td>
+						<td>{$vo.user_name}</td>
+						<td>{$vo.name}</td>
+						<td>{$vo.phone}</td>
+						<td>{$vo.status_name}</td>
+
+					</tr>
+				</foreach>
+			</eq>
+
+			</tbody>
+		</table>
+
+	</div>
+</fieldset>
+<script>
+	layui.use('form', function(){
+		var form = layui.form(),
+				$ = layui.jquery
+		$("button[type=reset]").click();
+		//监听提交
+		form.on('submit(role)', function(data){
+
+			var roleInfo = data.field;
+
+			var url = "{:U('Help/matching')}";
+			$.post(url,roleInfo,function(data){
+				if(data.status=='error'){
+					layer.msg(data.msg,{icon: 5});//失败的表情
+					return;
+				}else{
+					layer.msg(data.msg, {
+						icon: 6,//成功的表情
+						time: 2000 //2秒关闭（如果不配置，默认是3秒）
+					}, function(){
+						location.reload();
+					});
+				}
+			})
+
+			return false;//阻止表单跳转
+		});
+	});
+</script>

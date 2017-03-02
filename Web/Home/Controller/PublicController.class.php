@@ -31,7 +31,7 @@ class PublicController extends Controller {
             if($result['status']==3){
                 $this->error('该用户还未激活');
             }
-            session("user_info",$result);
+            session("users_info",$result);
             $this->success('登录成功',__APP__.'/Home/Index/index');
         }else{
             $this->error('密码错误！');

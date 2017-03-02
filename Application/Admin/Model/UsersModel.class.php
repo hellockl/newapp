@@ -46,9 +46,7 @@ class UsersModel extends BaseModel
      */
     public function selectAllUsers($num=10)
     {
-        $where = array(
-            'status' => parent::NORMAL_STATUS,
-        );
+        $where = "1=1";
 
         $count      = $this->where($where)->count();
         $page       = new \Think\Page($count,$num);
@@ -67,7 +65,7 @@ class UsersModel extends BaseModel
      */
     public function addUsers($data)
     {
-        return $this->add($data) ? true : false;
+        return $this->add($data) ;
     }
 
     /**
