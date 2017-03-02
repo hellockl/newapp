@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html style="" lang="en">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="author">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/header.css">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/ydy.css">
+    <!--<link rel="stylesheet" href="__PUBLIC__/web/css/gdmx.css">-->
+    <link rel="stylesheet" href="__PUBLIC__/web/css/system.css">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/bootstrap.css">
+    <style>
+        footer {
+            color: #535952;
+            font-size: 15px;
+            margin: 20px auto;
+            text-align: center;
+            width: 1220px;
+        }
+    </style>
+
+</head>
+    <body>
+        <include file="Public:header"/>
+        <section id="main" class="news_list_main">
+            <div class="system">
+                <p><img src="__PUBLIC__/web/img/icon_010.png" alt=""> 帮助&nbsp;&gt;&nbsp;<span class="message" style="color: rgb(169, 11, 22);">受助列表</span></p>
+                <a href="javascript:history.go(-1)">返回&gt;&gt;</a>
+            </div>
+            <ul class="tell">
+<!--                <li class="noticeA "><a href="#t1" class="active" id="news_list">平台公告</a></li>
+                <li class="noticeB"><a href="#t2" id="news_list_person" class="">审核通知</a></li>
+                <li class="noticeC"><a href="#t3" id="news_list_deblocking" onclick="getDeblockingList(12, 1, 1);" class="">解封通知</a></li>-->
+            </ul>
+            <table id="t1" class="actives">
+                <thead>
+                    <tr>
+                        <td class="one" width="10%">编号</td>
+                        <td class="two">金额</td>
+                        <td class="two">今日收益</td>
+                        <td class="two">至今收益</td>
+                        <td class="three">时间</td>
+                        <td class="four">状态</td>
+                    </tr>
+                </thead>
+                <tbody class="gonggaotongzhi">
+                <volist name="helplist" id="vo">
+                    <tr>
+                        <td>GHP{$vo.id}</td>
+                        <td class="title"><span style="cursor:pointer" onclick="newsDetail(172)">{$vo.amount}</span></td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>{$vo.create_time}</td>
+                        <td>待确定</td>
+                    </tr>
+                </volist>
+                    
+                    
+                </tbody>
+            </table>
+            
+            <div class="result_null" style="display: none;">暂无数据</div>
+
+            
+            <div class="tcdPageCode" id="callBackPager" style="text-align: center; display: block;"> 
+                {$show}
+<!--                <ul class="pagination"> 
+                    <li class="previous"><a href="#">«</a></li>
+                    <li class="disabled hidden"><a href="#">...</a></li> 
+                    <li class="active"><a href="#">1</a></li>
+                    <li class="disabled hidden"><a href="#">...</a></li>
+                    <li class="next"><a href="#">»</a></li>
+                </ul>-->
+            </div>
+        </section>
+        <footer class="footer">
+
+
+
+
+
+            <footer class="footer">
+                <p>©#有限公司版权所有</p><span></span>
+                <p>2017V1.0版本</p>
+            </footer>
+
+
+        </footer>
+

@@ -78,8 +78,66 @@ class UserController extends BaseController {
         }
         
     }
+    
+    
+    public function userinfo(){
+        $this->display();
+    }
+    
+    public function upload_a(){
+        if(IS_POST){
+            $img = $_FILES['file1'];
+            
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   = 3145728 ;// 设置附件上传大小
+            $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+            $upload->rootPath  = './Public/'; // 设置附件上传根目录
+            $upload->savePath  = 'upload/'; // 设置附件上传（子）目录
+            // 上传文件
+            $info   =   $upload->uploadOne($img);
 
 
+            if(!$info) {// 上传错误提示错误信息
+                echo json_encode(array('status' => 'error','msg' => $upload->getError()));
+                exit;
+            }else{// 上传成功
+
+                $imgpath = $info['savepath'].$info['savename'];
+                echo json_encode(array('status' => 'success','url'=>'/Public/'.$imgpath));
+                exit;
+            }
+
+        }else{
+            $this->display();
+        }
+    }
+    public function upload_b(){
+        if(IS_POST){
+            $img = $_FILES['file2'];
+
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   = 3145728 ;// 设置附件上传大小
+            $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+            $upload->rootPath  = './Public/'; // 设置附件上传根目录
+            $upload->savePath  = 'upload/'; // 设置附件上传（子）目录
+            // 上传文件
+            $info   =   $upload->uploadOne($img);
+
+
+            if(!$info) {// 上传错误提示错误信息
+                echo json_encode(array('status' => 'error','msg' => $upload->getError()));
+                exit;
+            }else{// 上传成功
+
+                $imgpath = $info['savepath'].$info['savename'];
+                echo json_encode(array('status' => 'success','url'=>'/Public/'.$imgpath));
+                exit;
+            }
+
+        }else{
+            $this->display();
+        }
+    }
 
 
 }
