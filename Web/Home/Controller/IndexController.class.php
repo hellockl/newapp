@@ -59,6 +59,16 @@ class IndexController extends BaseController {
         if($res == md5($amount_password)){
             $data['amount'] = I('post.amount');
             $data['create_time'] = time();
+            $data['user_id'] = $_SESSION['users_info']['user_id'];
+            //10才能添加一次帮 助
+            $givehelp_modle = M('Givehelp');
+            $last_givehelp =  $givehelp_modle->where($where)->order("create_time desc")->find();
+            if(!empty($last_givehelp)){
+                $time_long = time() - $last_givehelp['create_time'];
+                if($time_long<=86400){
+                    $this->ajaxReturn(array('errorMsg'=>"10天后才能发布下个需求！",'errorCode'=>3));
+                }
+            }
             $resu = M('Givehelp')->add($data);
             if($resu){
                 $resoult['errorMsg'] = '发布成功！';

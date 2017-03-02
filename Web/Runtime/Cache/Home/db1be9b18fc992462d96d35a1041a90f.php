@@ -38,7 +38,7 @@
             <div class="head">
                 <div class="head_l">
                     <ul>
-                        <li><a href="http://www.shanxinhui.com/index/user/ydy.html"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
+                        <li><a href="/"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
                         <li><!--<img src="/newapp/Public/web/img/solgain.png" height="100%">--></li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@
             <div class="nav">
                 <div class="sh">
                     <ul class="dh">
-                        <li><a href="http://www.shanxinhui.com/index/user/ydy.html?2017-02-13-02-14">首页</a></li>
+                        <li><a href="/">首页</a></li>
                         <li><a href="javascript:;">个人中心</a></li>
                         <li><a href="javascript:;">系统公告</a></li>
 
@@ -75,13 +75,13 @@
                     <div>
                         <div class="difficulty_t">
                             <b class="fund"><img src="/newapp/Public/web/img/icon_0002.png" alt="">提供帮助&nbsp;&gt;&nbsp;<a href="#">提供资助</a></b>
-                            <a href="/">返回 &gt;&gt;</a>
+                            <a href="javascript:history.go(-1)">返回 &gt;&gt;</a>
                         </div>
                         <div class="difficulty_c">
                             <h3>请填写帮助信息: </h3>
                             <div class="text">
                                 <label>资助金额(元):</label>
-                                <input class="utext" id="money" onblur="poor_c_utext(500000, 10000000, 10000)" name="username" type="text">
+                                <input class="utext" id="money" onblur="poor_c_utext(2000, 20000, 1000)" name="username" type="text">
                                 <s>*</s>
                                 <span class="utext-msg">2000-20000</span>
                             </div>
@@ -111,7 +111,7 @@
 
 
             <footer class="footer">
-                <p>©善心汇文化传播有限公司版权所有</p><span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
+                <p>©有限公司版权所有</p><span><a class="jingbei" href="#">粤ICP备#号</a></span>
                 <p>2016V2.0版本</p>
             </footer>
 

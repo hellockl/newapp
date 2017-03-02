@@ -29,7 +29,7 @@
             <div class="head">
                 <div class="head_l">
                     <ul>
-                        <li><a href="http://www.shanxinhui.com/index/user/ydy.html"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
+                        <li><a href="/"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
                         <li><!--<img src="/newapp/Public/web/img/solgain.png" height="100%">--></li>
                     </ul>
                 </div>
@@ -37,7 +37,7 @@
                     <div>
                         <ul><img src="/newapp/Public/web/img/newicon_7.png"></ul>
                         <ul class="username">
-                            <li><?php echo ($user_name); ?></li>
+                            <li><?php echo ($user_info["user_name"]); ?></li>
                             <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
                         </ul>
                     </div>
@@ -53,7 +53,7 @@
             <div class="nav">
                 <div class="sh">
                     <ul class="dh">
-                        <li><a href="http://www.shanxinhui.com/index/user/ydy.html?2017-02-13-02-14">首页</a></li>
+                        <li><a href="/">首页</a></li>
                         <li><a href="javascript:;">个人中心</a></li>
                         <li><a href="javascript:;">系统公告</a></li>
 
@@ -64,7 +64,7 @@
         <section id="main" class="news_list_main">
             <div class="system">
                 <p><img src="/newapp/Public/web/img/icon_010.png" alt=""> 帮助&nbsp;&gt;&nbsp;<span class="message" style="color: rgb(169, 11, 22);">帮助列表</span></p>
-                <a href="http://www.shanxinhui.com/index/user/ydy.html">返回&gt;&gt;</a>
+                <a href="javascript:history.go(-1)">返回&gt;&gt;</a>
             </div>
             <ul class="tell">
 <!--                <li class="noticeA "><a href="#t1" class="active" id="news_list">平台公告</a></li>
@@ -80,6 +80,7 @@
                         <td class="two">至今收益</td>
                         <td class="three">时间</td>
                         <td class="four">状态</td>
+                        <td class="four">操作</td>
                     </tr>
                 </thead>
                 <tbody class="gonggaotongzhi">
@@ -88,8 +89,9 @@
                         <td class="title"><span style="cursor:pointer" onclick="newsDetail(172)"><?php echo ($vo["amount"]); ?></span></td>
                         <td>0</td>
                         <td>0</td>
-                        <td><?php echo ($vo["create_time"]); ?></td>
+                        <td><?php echo (date("Y-m-d H:i:s",$vo["create_time"])); ?></td>
                         <td>待确定</td>
+                        <td></td>
                     </tr><?php endforeach; endif; else: echo "" ;endif; ?>
                     
                     
