@@ -20,7 +20,7 @@ class UserController extends CommonController
      */
     public function index()
     {
-        $user_info = $this->admin_user_model->selectAllUser(1);
+        $user_info = $this->admin_user_model->selectAllUser(10);
         
         $this->assign('user_info',$user_info['list']);
         $this->assign('page',$user_info['page']);

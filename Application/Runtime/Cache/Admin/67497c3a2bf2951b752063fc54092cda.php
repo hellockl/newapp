@@ -12,11 +12,11 @@
 	<body>
 		<div class="admin-main">
 		
-			<blockquote class="layui-elem-quote">
-				<button  class="layui-btn layui-btn-small add">
-					<i class="layui-icon">&#xe608;</i> 添加用户
-				</button>
-			</blockquote>
+			<!--<blockquote class="layui-elem-quote">-->
+				<!--<button  class="layui-btn layui-btn-small add">-->
+					<!--<i class="layui-icon">&#xe608;</i> 添加用户-->
+				<!--</button>-->
+			<!--</blockquote>-->
 			<fieldset class="layui-elem-field">
 				<legend>用户列表</legend>
 				<div class="layui-field-box">
@@ -32,6 +32,7 @@
 							  <th>上级</th>
 							  <th>上上级</th>
 							  <th>状态</th>
+							  <th>是否禁用</th>
 							  <th>注册时间</th>
 							  <th>操作</th>
 							</tr>
@@ -47,15 +48,15 @@
 							  <td><?php echo ($vo["father_name"]); ?></td>
 							  <td><?php echo ($vo["grand_name"]); ?></td>
 							  <td><?php echo ($vo["status_name"]); ?></td>
-							  <td><?php echo (date("Y-m-d H:i:s",$vo["lastlogin_time"])); ?></td>
+							  <td><?php if(($vo["is_forbid"]) == "0"): ?>正常<?php else: ?><span style="color: red">已禁用</span><?php endif; ?></td>
+							  <td><?php echo (date("Y-m-d",$vo["create_time"])); ?></td>
 							  <td>
-							    <a data="<?php echo ($vo["user_id"]); ?>" <?php if(($vo["status"]) == "0"): ?>class="layui-btn layui-btn-mini activate"<?php else: ?>class="layui-btn layui-btn-mini layui-btn-disabled"<?php endif; ?> > <i class="layui-icon">&#x1005;</i>激活</a>
+							    <a data="<?php echo ($vo["user_id"]); ?>" <?php if(($vo["status"]) == "0"): ?>class="layui-btn layui-btn-mini activate"<?php else: ?>class="layui-btn layui-btn-mini layui-btn-disabled"<?php endif; ?> ><i class="layui-icon">&#x1005;</i>激活</a>
 								<!--<a data="<?php echo ($vo["user_id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal edit"><i class="layui-icon">&#xe642;</i>编辑</a>-->
 								<a data="<?php echo ($vo["user_id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal check"><i class="layui-icon">&#xe618;</i>审核</a>
 								<?php if(($vo["is_forbid"]) == "0"): ?><a data="<?php echo ($vo["user_id"]); ?>" class="layui-btn layui-btn-mini layui-btn-danger forbid"><i class="layui-icon">&#x1007;</i>禁用</a>
 									<?php else: ?>
 									<a data="<?php echo ($vo["user_id"]); ?>" class="layui-btn layui-btn-mini layui-btn-danger noforbid"><i class="layui-icon">&#xe610;</i>启用</a><?php endif; ?>
-
 								<a data="<?php echo ($vo["user_id"]); ?>" class="layui-btn layui-btn-mini layui-btn-warm my-child"><i class="layui-icon">&#xe62a;</i>查看下级</a>
 							  </td>
 							</tr><?php endforeach; endif; ?>
@@ -99,7 +100,7 @@
 							  type: 1,
 							  offset:'t',
 							  skin: 'layui-layer-rim', //加上边框
-							  area: ['40%','80%'], //宽高
+							  area: ['40%','90%'], //宽高
 							  content: data,
 						});
 					})

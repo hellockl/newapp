@@ -1,10 +1,15 @@
+<blockquote class="layui-elem-quote layui-quote-nm">
+	<span style="">提供金额：</span>{$givehelp_amount}
+</blockquote>
 <form class="layui-form">
 	<div class="layui-form-item">
 		<label class="layui-form-label">选择用户：</label>
 		<input type="hidden" name="givehelp_id" value="{$givehelp_id}" />
+		<input type="hidden" name="givehelp_amount" id="givehelp_amount" value="{$givehelp_amount}" />
+		<input type="hidden" name="givehelp_uid" id="givehelp_uid" value="{$givehelp_uid}" />
 		<div class="layui-input-block">
 			<foreach name="gethelp_list" item="v">
-				<input type="checkbox" title="{$v.user_name}:{$v.amount}" value="{$v.id}" name="gethelp_id[{$key}]"/>
+				<input type="checkbox" title="{$v.user_name}需要：{$v.amount}￥" value="{$v.id}" data="{$v.amount}" name="gethelp_id[{$key}]"/>
 			</foreach>
 		</div>
 
@@ -13,12 +18,12 @@
 		<legend>新建用户</legend>
 	</fieldset>
 	<div class="layui-form-item">
-		<label class="layui-form-label">用户名：</label>
-		<div class="layui-input-inline">
-			<input type="text" name="user_name"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+		<div class="layui-inline">
+			<label class="layui-form-label">用户名：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="user_name"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
 		<div class="layui-inline">
 			<label class="layui-form-label">真实姓名：</label>
 			<div class="layui-input-inline">
@@ -31,8 +36,12 @@
 				<input type="text" class="layui-input" name="phone" placeholder="请输入手机号"  autocomplete="off" >
 			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
+		<div class="layui-inline">
+			<label class="layui-form-label">身份证号：</label>
+			<div class="layui-input-inline">
+				<input type="text" class="layui-input" name="idcard" placeholder="请输入身份证号"  autocomplete="off" >
+			</div>
+		</div>
 		<div class="layui-inline">
 			<label class="layui-form-label">微信号：</label>
 			<div class="layui-input-inline">
@@ -45,11 +54,23 @@
 				<input type="text" name="alipay" placeholder="请输入支付宝账号" autocomplete="off" class="layui-input">
 			</div>
 		</div>
-	</div>
-	<div class="layui-form-item">
-		<label class="layui-form-label">还差金额：</label>
-		<div class="layui-input-inline">
-			<input type="text" name="amount"  autocomplete="off" class="layui-input">
+		<div class="layui-inline">
+			<label class="layui-form-label">银行：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="bank" placeholder="bank" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">银行账号：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="bank_card" placeholder="请输入银行账号" autocomplete="off" class="layui-input">
+			</div>
+		</div>
+		<div class="layui-inline">
+			<label class="layui-form-label">还差金额：</label>
+			<div class="layui-input-inline">
+				<input type="text" name="amount" id="amount" value="0"  autocomplete="off" class="layui-input">
+			</div>
 		</div>
 	</div>
 
@@ -67,9 +88,19 @@
 		$("button[type=reset]").click();
 		//监听提交
 		form.on('submit(role)', function(data){
+			var total_amount = 0;
+			var givehelp_amount = parseInt($("#givehelp_amount").val());
+			var amount = parseInt($("#amount").val());
+			total_amount +=amount;
+			$("input[type=checkbox]:checked").each(function() {
+				total_amount += parseInt($(this).attr('data'));
+			});
+			if(total_amount!=givehelp_amount){
+				layer.msg('提供的金额与所需的金额不相等，请重新匹配',{icon: 5});//失败的表情
+				return false;
+			}
 
 			var roleInfo = data.field;
-
 			var url = "{:U('Help/matching')}";
 			$.post(url,roleInfo,function(data){
 				if(data.status=='error'){

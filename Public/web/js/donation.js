@@ -3,23 +3,23 @@
  * 提供资助
  * @returns {undefined}
  */
-$(function(){  
-    $.common.ajaxPost('/user/Community/getCommunityList',{
-        
-    } , function(data) {
-        var html = "";
-        $.each(data.result.list,function(i,o){
-             var temp = $("#none").clone();
-             var html=temp.html();
-             html=html.replace(/\{a\}/g,o.name);
-             html=html.replace(/\{b\}/g,o.message);
-             html=html.replace(/\{c\}/g,o.id);
-             html=html.replace(/\{img\}/g,o.image);
-             // $("#none").children(":first").attr('src',o.image);
-             $(".main_b").append("<div>"+html+"</div>")
-        }); 
-    });
-}) //函数结束标签
+//$(function(){
+//    $.common.ajaxPost('/user/Community/getCommunityList',{
+//
+//    } , function(data) {
+//        var html = "";
+//        $.each(data.result.list,function(i,o){
+//             var temp = $("#none").clone();
+//             var html=temp.html();
+//             html=html.replace(/\{a\}/g,o.name);
+//             html=html.replace(/\{b\}/g,o.message);
+//             html=html.replace(/\{c\}/g,o.id);
+//             html=html.replace(/\{img\}/g,o.image);
+//             // $("#none").children(":first").attr('src',o.image);
+//             $(".main_b").append("<div>"+html+"</div>")
+//        });
+//    });
+//}) //函数结束标签
 
 
 
@@ -136,7 +136,7 @@ function difficulty_click(id,obj){
         $("#provide_action_button").css("background","#cecece");
         $.common.ajaxPost('checkgivehelp',{
             
-            money:money,
+            amount:money,
             amount_password:password,
             
         },function(data) {
@@ -151,7 +151,7 @@ function difficulty_click(id,obj){
             } else if(data.errorCode) {
                 if(data.errorCode == 30){
                     if(confirm("二级密码不能与登录密码一致！请确定前往修改二级密码。")){
-                        window.location.href = '/index/user/modifyPassword/type/acc.html';
+                        window.location.href = "{:U('User/editPassword')}";
                         return false;
                     }
                 }else{

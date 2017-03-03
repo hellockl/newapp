@@ -7,10 +7,10 @@
     <meta name="author">
     <title>个人中心</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/newapp/Public/web/css/layer.css" id="layui_layer_skinlayercss" style="">
-    <link rel="stylesheet" href="/newapp/Public/web/css/header.css">
-    <link rel="stylesheet" href="/newapp/Public/web/css/ydy.css">
-    <link rel="stylesheet" href="/newapp/Public/web/css/gdmx.css">
+    <link rel="stylesheet" href="/Public/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+    <link rel="stylesheet" href="/Public/web/css/header.css">
+    <link rel="stylesheet" href="/Public/web/css/ydy.css">
+    <link rel="stylesheet" href="/Public/web/css/gdmx.css">
     
     <style>
         footer {
@@ -21,15 +21,15 @@
             width: 1220px;
         }
     </style>
-    <script type="text/javascript" src="/newapp/Public/web/js/jquery-1.7.2.min.js"></script>
-<script src="/newapp/Public/web/js/layer.js"></script>
-<script src="/newapp/Public/web/js/jquery_003.js"></script>
-<script src="/newapp/Public/web/js/jquery.js"></script>
-<script src="/newapp/Public/web/js/common.js"></script>
-<script src="/newapp/Public/web/js/main.js"></script>
+    <script type="text/javascript" src="/Public/web/js/jquery-1.7.2.min.js"></script>
+<script src="/Public/web/js/layer.js"></script>
+<script src="/Public/web/js/jquery_003.js"></script>
+<script src="/Public/web/js/jquery.js"></script>
+<script src="/Public/web/js/common.js"></script>
+<script src="/Public/web/js/main.js"></script>
 <!---->
-<script type="text/javascript" src="/newapp/Public/web/js/donation.js" ></script>
-<script src="/newapp/Public/web/js/regexp_sxh.js"></script>
+<script type="text/javascript" src="/Public/web/js/donation.js" ></script>
+<script src="/Public/web/js/regexp_sxh.js"></script>
 </head>
     <body>
         <div class="center">
@@ -38,13 +38,13 @@
             <div class="head">
                 <div class="head_l">
                     <ul>
-                        <li><a href="/"><!--<img src="/newapp/Public/web/img/LOGO.png" height="100%">--></a></li>
-                        <li><!--<img src="/newapp/Public/web/img/solgain.png" height="100%">--></li>
+                        <li><a href="/"><!--<img src="/Public/web/img/LOGO.png" height="100%">--></a></li>
+                        <li><!--<img src="/Public/web/img/solgain.png" height="100%">--></li>
                     </ul>
                 </div>
                 <div class="head_r">
                     <div>
-                        <ul><img src="/newapp/Public/web/img/newicon_7.png"></ul>
+                        <ul><img src="/Public/web/img/newicon_7.png"></ul>
                         <ul class="username">
                             <li><?php echo ($user_info["user_name"]); ?></li>
                             <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
@@ -53,7 +53,7 @@
                     <div>|</div>
                     <div>
                         <ul>
-                            <li><img src="/newapp/Public/web/img/icon_11.png"></li>
+                            <li><img src="/Public/web/img/icon_11.png"></li>
                             <a href="javascript:void(0);"><li class="tc">退出系统</li></a>
                         </ul>
                     </div>
@@ -74,14 +74,14 @@
                 <div class="margin difficulty" style="">
                     <div>
                         <div class="difficulty_t">
-                            <b class="fund"><img src="/newapp/Public/web/img/icon_0002.png" alt="">提供帮助&nbsp;&gt;&nbsp;<a href="#">提供资助</a></b>
+                            <b class="fund"><img src="/Public/web/img/icon_0002.png" alt="">提供帮助&nbsp;&gt;&nbsp;<a href="#">提供资助</a></b>
                             <a href="javascript:history.go(-1)">返回 &gt;&gt;</a>
                         </div>
                         <div class="difficulty_c">
                             <h3>请填写帮助信息: </h3>
                             <div class="text">
                                 <label>资助金额(元):</label>
-                                <input class="utext" id="money" onblur="poor_c_utext(2000, 20000, 1000)" name="username" type="text">
+                                <input class="utext" id="money" onblur="poor_c_utext(2000, 20000, 1000)" name="amount" type="text">
                                 <s>*</s>
                                 <span class="utext-msg">2000-20000</span>
                             </div>
@@ -107,7 +107,7 @@
         <footer class="footer">
 
 
-            <link rel="stylesheet" href="/newapp/Public/web/css/footer.css">
+            <link rel="stylesheet" href="/Public/web/css/footer.css">
 
 
             <footer class="footer">

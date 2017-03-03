@@ -34,7 +34,7 @@ class HelpModel extends BaseModel
      */
     public function addGetHelp($data)
     {
-        return M('Gethelp')->add($data) ? true : false;
+        return M('Gethelp')->add($data);
     }
 
     /**

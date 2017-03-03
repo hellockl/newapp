@@ -1,5 +1,9 @@
 <fieldset class="layui-elem-field">
-	<legend>匹配列表</legend>
+
+	<blockquote class="layui-elem-quote layui-quote-nm">
+		<a data="{$givehelp_id}" class="layui-btn layui-btn layui-btn-warm all_accept"><i class="layui-icon">&#xe618;</i>确定全部已打款</a>
+	</blockquote>
+
 	<div class="layui-field-box">
 		<table class="layui-table">
 			<thead>
@@ -21,14 +25,9 @@
 					<td>{$vo.name}</td>
 					<td>{$vo.phone}</td>
 					<td>{$vo.amount}</td>
-					<td>{$vo.status_name}</td>
+					<td><span id="b_{$vo.id}">{$vo.status_name}</span></td>
 					<td>
-						<eq name="vo.status" value="0">
-							<a data="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>已打款</a>
-							<else/>
-							<a data="{$vo.id}" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>去打款</a>
-						</eq>
-
+						<a data="{$vo.id}" id="a_{$vo.id}" <eq name='vo.status' value="2">class="layui-btn layui-btn-mini layui-btn-disabled"<else/>class="layui-btn layui-btn-mini layui-btn-normal accept"</eq>><i class="layui-icon">&#xe618;</i>确定打款</a>
 					</td>
 				</tr>
 			</foreach>
@@ -38,31 +37,54 @@
 	</div>
 </fieldset>
 <script>
-	layui.use('form', function(){
-		var form = layui.form(),
-				$ = layui.jquery
-		$("button[type=reset]").click();
-		//监听提交
-		form.on('submit(role)', function(data){
+	layui.use(['laypage','layer','form'], function() {
+		var $ = layui.jquery;
+		$('.accept').click(function(){
+			var gethelp_id = $(this).attr('data');
 
-			var roleInfo = data.field;
-
-			var url = "{:U('Help/matching')}";
-			$.post(url,roleInfo,function(data){
-				if(data.status=='error'){
-					layer.msg(data.msg,{icon: 5});//失败的表情
-					return;
-				}else{
-					layer.msg(data.msg, {
-						icon: 6,//成功的表情
-						time: 2000 //2秒关闭（如果不配置，默认是3秒）
-					}, function(){
-						location.reload();
-					});
-				}
-			})
-
-			return false;//阻止表单跳转
+			var url = "{:U('Help/confirmAccept')}";
+			layer.confirm('您已确定该用户已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{gethelp_id:gethelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						$("#a_"+gethelp_id).attr('class','layui-btn layui-btn-mini layui-btn-disabled');
+						$("#b_"+gethelp_id).html('已匹配,已打款');
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						});
+					}
+				})
+			});
 		});
-	});
+		$('.all_accept').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "{:U('Help/confirmAllAccept')}";
+			layer.confirm('您已确定所有用户都已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{givehelp_id:givehelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						}, function(){
+							location.reload();
+						});
+					}
+				})
+			});
+		})
+	})
 </script>

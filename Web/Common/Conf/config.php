@@ -8,7 +8,7 @@ return array(
     'DB_PORT' => '3306',
     'DB_NAME' => 'newapp',
     'DB_USER' => 'root',
-    'DB_PWD' => '',
+    'DB_PWD' => 'ckliang',
     'DB_PREFIX' => 'n_',
     //错误提示模版
     'TMPL_ACTION_ERROR' => 'TPL/error',

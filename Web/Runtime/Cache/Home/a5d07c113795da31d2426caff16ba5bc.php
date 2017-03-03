@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
-<link rel="stylesheet" href="/newapp/Public/css/all.css">
-<link rel="stylesheet" href="/newapp/Public/css/css.css">
+<link rel="stylesheet" href="/Public/css/all.css">
+<link rel="stylesheet" href="/Public/css/css.css">
 <title>首页</title>
 </head>
 <body class="page_index">
 	<div class="all_boss">
     	<div class="box_title">
-        	<img src="/newapp/Public/img/back.jpg" alt="" />
+        	<img src="/Public/img/back.jpg" alt="" />
         </div>
         <ul class="box_userinfo">
         	<li class="all_nowarp">
@@ -33,7 +33,7 @@
                 	<li class="all_leaf check"><span data-leaf="sy">首页</span></li>
                     <li class="all_branch">
                     	<span>个人中心</span>
-                        <img class="all_trans" src="/newapp/Public/img/icon_r.png" alt="" />
+                        <img class="all_trans" src="/Public/img/icon_r.png" alt="" />
                         <ul>
                         	<li class="all_leaf"><span data-leaf="zhxx">账户信息</span></li>
                             <li class="all_leaf"><span data-leaf="xgmm">修改密码</span></li>
@@ -43,7 +43,7 @@
                     </li>
                     <li class="all_branch">
                     	<span>财务管理</span>
-                        <img class="all_trans" src="/newapp/Public/img/icon_r.png" alt="" />
+                        <img class="all_trans" src="/Public/img/icon_r.png" alt="" />
                         <ul>
                         	<li class="all_leaf"><span data-leaf="zhmx">账户明细</span></li>
                             <li class="all_leaf"><span data-leaf="zcmx">支出明细</span></li>
@@ -634,10 +634,10 @@
             </table>
         </div>
     </div>
-	<script src="/newapp/Public/js/jquery-3.1.1.min.js"></script>
-    <script src="/newapp/Public/js/clipboard.min.js"></script>
-	<script src="/newapp/Public/js/all.js"></script>
-    <script src="/newapp/Public/js/My97DatePicker/WdatePicker.js"></script>
-    <script src="/newapp/Public/js/js.js"></script>
+	<script src="/Public/js/jquery-3.1.1.min.js"></script>
+    <script src="/Public/js/clipboard.min.js"></script>
+	<script src="/Public/js/all.js"></script>
+    <script src="/Public/js/My97DatePicker/WdatePicker.js"></script>
+    <script src="/Public/js/js.js"></script>
 </body>
 </html>

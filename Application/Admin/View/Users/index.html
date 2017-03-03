@@ -12,11 +12,11 @@
 	<body>
 		<div class="admin-main">
 		
-			<blockquote class="layui-elem-quote">
-				<button  class="layui-btn layui-btn-small add">
-					<i class="layui-icon">&#xe608;</i> 添加用户
-				</button>
-			</blockquote>
+			<!--<blockquote class="layui-elem-quote">-->
+				<!--<button  class="layui-btn layui-btn-small add">-->
+					<!--<i class="layui-icon">&#xe608;</i> 添加用户-->
+				<!--</button>-->
+			<!--</blockquote>-->
 			<fieldset class="layui-elem-field">
 				<legend>用户列表</legend>
 				<div class="layui-field-box">
@@ -32,6 +32,7 @@
 							  <th>上级</th>
 							  <th>上上级</th>
 							  <th>状态</th>
+							  <th>是否禁用</th>
 							  <th>注册时间</th>
 							  <th>操作</th>
 							</tr>
@@ -48,9 +49,10 @@
 							  <td>{$vo.father_name}</td>
 							  <td>{$vo.grand_name}</td>
 							  <td>{$vo.status_name}</td>
-							  <td>{$vo.lastlogin_time|date="Y-m-d H:i:s",###}</td>
+							  <td><eq name="vo.is_forbid" value="0">正常<else/><span style="color: red">已禁用</span></eq></td>
+							  <td>{$vo.create_time|date="Y-m-d",###}</td>
 							  <td>
-							    <a data="{$vo.user_id}" <eq name="vo.status" value="0">class="layui-btn layui-btn-mini activate"<else/>class="layui-btn layui-btn-mini layui-btn-disabled"</eq> > <i class="layui-icon">&#x1005;</i>激活</a>
+							    <a data="{$vo.user_id}" <eq name="vo.status" value="0">class="layui-btn layui-btn-mini activate"<else/>class="layui-btn layui-btn-mini layui-btn-disabled"</eq> ><i class="layui-icon">&#x1005;</i>激活</a>
 								<!--<a data="{$vo.user_id}" class="layui-btn layui-btn-mini layui-btn-normal edit"><i class="layui-icon">&#xe642;</i>编辑</a>-->
 								<a data="{$vo.user_id}" class="layui-btn layui-btn-mini layui-btn-normal check"><i class="layui-icon">&#xe618;</i>审核</a>
 								<eq name="vo.is_forbid" value="0">
@@ -58,7 +60,6 @@
 									<else/>
 									<a data="{$vo.user_id}" class="layui-btn layui-btn-mini layui-btn-danger noforbid"><i class="layui-icon">&#xe610;</i>启用</a>
 								</eq>
-
 								<a data="{$vo.user_id}" class="layui-btn layui-btn-mini layui-btn-warm my-child"><i class="layui-icon">&#xe62a;</i>查看下级</a>
 							  </td>
 							</tr>
@@ -103,7 +104,7 @@
 							  type: 1,
 							  offset:'t',
 							  skin: 'layui-layer-rim', //加上边框
-							  area: ['40%','80%'], //宽高
+							  area: ['40%','90%'], //宽高
 							  content: data,
 						});
 					})

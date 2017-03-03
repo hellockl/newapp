@@ -41,23 +41,20 @@
 						<td><?php echo ($vo["amount"]); ?></td>
 						<td><?php echo ($vo["status_name"]); ?></td>
 						<td>
-							<?php if(($vo["status"]) == "0"): ?><a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match"><i class="layui-icon">&#xe642;</i>匹配</a>
-								<?php else: ?>
-								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe642;</i>查看匹配</a>
-								<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-waim match_list"><i class="layui-icon">&#xe642;</i>确认打款</a><?php endif; ?>
-
+							<a data="<?php echo ($vo["id"]); ?>" <?php if(($vo["status"]) == "0"): ?>class="layui-btn layui-btn-mini layui-btn-warm match"<?php else: ?>class="layui-btn layui-btn-mini layui-btn-disabled"<?php endif; ?> ><i class="layui-icon">&#xe64c;</i>匹配</a>
+							<a data="<?php echo ($vo["id"]); ?>" class="layui-btn layui-btn-mini layui-btn-normal match_list"><i class="layui-icon">&#xe615;</i>查看匹配</a>
+							<a data="<?php echo ($vo["id"]); ?>" <?php if(($vo["status"]) != "3"): ?>class="layui-btn layui-btn-mini layui-btn-waim confirm"<?php else: ?>class="layui-btn layui-btn-mini layui-btn-disabled"<?php endif; ?> ><i class="layui-icon">&#xe627;</i>确认打款</a>
 						</td>
 					</tr><?php endforeach; endif; ?>
 				</tbody>
 			</table>
+			<div class="page">
+				<?php echo ($page); ?>
+			</div>
 
 		</div>
 	</fieldset>
-	<div class="admin-table-page">
-		<div id="page" class="page">
-			<?php echo ($page); ?>
-		</div>
-	</div>
+
 </div>
 <script type="text/javascript" src="/Public/plugins/layui/layui.js"></script>
 <script>
@@ -84,7 +81,7 @@
 					offset:'t',
 					type: 1,
 					skin: 'layui-layer-rim', //加上边框
-					area: ['60%','60%'], //宽高
+					area: ['50%','80%'], //宽高
 					content: data,
 				});
 			})
@@ -107,55 +104,15 @@
 				});
 			})
 		});
-		//编辑用户
-		$('.edit').click(function(){
-			var user_id = $(this).attr('data');
-			var url = "<?php echo U('Users/editUsers');?>";
-			$.get(url,{user_id:user_id},function(data){
-				if(data.status == 'error'){
-					layer.msg(data.msg,{icon: 5});
-					return;
-				}
-				layer.open({
-					title:'编辑用户',
-					type: 1,
-					skin: 'layui-layer-rim', //加上边框
-					area: ['500px'], //宽高
-					content: data,
-				});
-			})
-		});
-
-		//分配角色
-		$('.role').click(function(){
-			var user_id = $(this).attr('data');
-			var url = "<?php echo U('AuthGroup/giveRole');?>";
-			$.get(url,{user_id:user_id},function(data){
-				if(data.status == 'error'){
-					layer.msg(data.msg,{icon: 5});
-					return;
-				}
-
-				layer.open({
-					title:'分配角色',
-					type: 1,
-					skin: 'layui-layer-rim', //加上边框
-					area: ['500px','500px'], //宽高
-					content: data,
-				});
-			})
-		});
-
-		//删除
-		$('.del').click(function(){
-			var user_id = $(this).attr('data');
-			var url = "<?php echo U('User/deleteUser');?>";
-			layer.confirm('确定删除吗?', {
+		$('.confirm').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "<?php echo U('Help/confirmMoney');?>";
+			layer.confirm('您确定用户已打款吗?', {
 				icon: 3,
 				skin: 'layer-ext-moon',
 				btn: ['确认','取消'] //按钮
 			}, function(){
-				$.post(url,{user_id:user_id},function(data){
+				$.post(url,{givehelp_id:givehelp_id},function(data){
 					if(data.status == 'error'){
 						layer.msg(data.msg,{icon: 5});//失败的表情
 						return;
@@ -170,6 +127,7 @@
 				})
 			});
 		})
+
 
 	});
 </script>

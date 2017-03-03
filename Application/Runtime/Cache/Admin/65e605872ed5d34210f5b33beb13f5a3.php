@@ -57,11 +57,11 @@
 				var laypage = layui.laypage,
 					$ = layui.jquery
 					//请求表单
-                laypage({
-                    cont: 'page'
-                    ,pages: 100 //总页数
-                    ,groups: 5 //连续显示分页数
-                });
+//                laypage({
+//                    cont: 'page'
+//                    ,pages: 100 //总页数
+//                    ,groups: 5 //连续显示分页数
+//                });
 
 				 $('.add').click(function(){
 					var url = "<?php echo U('User/addUser');?>";

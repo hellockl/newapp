@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,minimum-scale=1,maximum-scale=1">
-<link rel="stylesheet" href="/newapp/Public/css/all.css">
-<link rel="stylesheet" href="/newapp/Public/css/css.css">
+<link rel="stylesheet" href="/Public/css/all.css">
+<link rel="stylesheet" href="/Public/css/css.css">
 <title></title>
 </head>
 <body class="page_login">
@@ -46,9 +46,9 @@
             $('#imgVerify').attr('src',url);
         }
     </script>
-	<script src="/newapp/Public/js/jquery-3.1.1.min.js"></script>
-	<!--<script src="/newapp/Public/js/vCode.js"></script>-->
-	<script src="/newapp/Public/js/all.js"></script>
-    <script src="/newapp/Public/js/js.js"></script>
+	<script src="/Public/js/jquery-3.1.1.min.js"></script>
+	<!--<script src="/Public/js/vCode.js"></script>-->
+	<script src="/Public/js/all.js"></script>
+    <script src="/Public/js/js.js"></script>
 </body>
 </html>
