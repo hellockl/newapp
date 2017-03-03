@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2017-02-27 18:01:28
+Date: 2017-03-03 17:35:15
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -57,7 +57,7 @@ CREATE TABLE `n_admin_auth_group` (
 -- ----------------------------
 -- Records of n_admin_auth_group
 -- ----------------------------
-INSERT INTO `n_admin_auth_group` VALUES ('27', '超级管理员', '1', '1', '2,36,38,40,42,37,39,41,43,44,14,21,24,25,26,27,22,28,29,30,31,23,32,33,34,35,45,47,48,49,51');
+INSERT INTO `n_admin_auth_group` VALUES ('27', '超级管理员', '1', '1', '2,36,38,40,42,37,39,41,43,44,14,21,24,25,26,27,22,28,29,30,31,23,32,33,34,35,45,47,48,50,52,54,55,56,49,51,53,57,58,59');
 INSERT INTO `n_admin_auth_group` VALUES ('28', '编辑', '1', '1', '14,23,32,33');
 
 -- ----------------------------
@@ -94,7 +94,7 @@ CREATE TABLE `n_admin_auth_rule` (
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `condition` char(100) NOT NULL DEFAULT '',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Records of n_admin_auth_rule
@@ -144,6 +144,14 @@ INSERT INTO `n_admin_auth_rule` VALUES ('47', '&amp;#xe613;', 'Users/index', '�
 INSERT INTO `n_admin_auth_rule` VALUES ('49', '&amp;#xe62d', 'Help/index', '帮助管理', '45', '1', '1', '1', '1', '');
 INSERT INTO `n_admin_auth_rule` VALUES ('50', '11', 'Users/checkUsers', '审核', '47', '2', '1', '1', '1', '');
 INSERT INTO `n_admin_auth_rule` VALUES ('51', '1', 'Help/matching', '匹配用户', '49', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('52', '1', 'Users/editUsers', '编缉会员', '47', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('53', '3', 'Help/matchList', '匹配列表', '49', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('54', '4', 'Users/myChild', '我的推荐', '47', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('55', '5', 'Users/activateUser', '激活会员', '47', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('56', '6', 'Users/forbidUser', '禁用会员', '47', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('57', '6', 'Help/confirmMoney', '确认打款', '49', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('58', 'a', 'Help/confirmAccept', '确认收款', '49', '2', '1', '1', '1', '');
+INSERT INTO `n_admin_auth_rule` VALUES ('59', 'b', 'Help/confirmAllAccept', '确认全部收款', '49', '2', '1', '1', '1', '');
 
 -- ----------------------------
 -- Table structure for n_admin_user
@@ -162,7 +170,7 @@ CREATE TABLE `n_admin_user` (
 -- Records of n_admin_user
 -- ----------------------------
 INSERT INTO `n_admin_user` VALUES ('11', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1480572245', '2');
-INSERT INTO `n_admin_user` VALUES ('15', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1488175468', '1');
+INSERT INTO `n_admin_user` VALUES ('15', 'admin', 'e10adc3949ba59abbe56e057f20f883e', '1488525429', '1');
 INSERT INTO `n_admin_user` VALUES ('16', 'test', '098f6bcd4621d373cade4e832627b4f6', '1480667348', '1');
 INSERT INTO `n_admin_user` VALUES ('17', 'wuyawnen', '90b18287d7aab11bb2caee3e0c39fd08', '1480668214', '1');
 
@@ -198,12 +206,30 @@ CREATE TABLE `n_gethelp` (
   `user_id` int(11) NOT NULL COMMENT '用户ID',
   `amount` varchar(255) NOT NULL COMMENT '获得帮助金额',
   `create_time` int(11) NOT NULL COMMENT '创建时间',
+  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '0：未匹配；1：已匹配，未支付；2：已匹配，已支付',
+  `givehelp_id` int(11) NOT NULL COMMENT '提供帮助ID',
+  `givehelp_uid` int(11) NOT NULL COMMENT '提供帮助人ID',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='获得帮助表';
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COMMENT='获得帮助表';
 
 -- ----------------------------
 -- Records of n_gethelp
 -- ----------------------------
+INSERT INTO `n_gethelp` VALUES ('1', '2', '2000', '0', '1', '1', '0');
+INSERT INTO `n_gethelp` VALUES ('2', '3', '2000', '0', '1', '1', '0');
+INSERT INTO `n_gethelp` VALUES ('3', '4', '3000', '0', '1', '3', '0');
+INSERT INTO `n_gethelp` VALUES ('4', '1', '2000', '1488350763', '1', '3', '0');
+INSERT INTO `n_gethelp` VALUES ('5', '9', '2000', '1488350892', '1', '2', '0');
+INSERT INTO `n_gethelp` VALUES ('6', '9', '2000', '1488350892', '1', '5', '1');
+INSERT INTO `n_gethelp` VALUES ('7', '7', '2000', '1488350892', '1', '6', '1');
+INSERT INTO `n_gethelp` VALUES ('8', '10', '1000', '1488528808', '2', '7', '2');
+INSERT INTO `n_gethelp` VALUES ('9', '11', '1000', '1488529173', '1', '4', '0');
+INSERT INTO `n_gethelp` VALUES ('10', '12', '1000', '1488529229', '2', '7', '2');
+INSERT INTO `n_gethelp` VALUES ('11', '13', '1000', '1488529249', '0', '0', '0');
+INSERT INTO `n_gethelp` VALUES ('12', '14', '1000', '1488529371', '2', '7', '2');
+INSERT INTO `n_gethelp` VALUES ('13', '15', '1000', '1488529577', '1', '7', '2');
+INSERT INTO `n_gethelp` VALUES ('14', '16', '1000', '1488529704', '0', '0', '0');
+INSERT INTO `n_gethelp` VALUES ('15', '17', '1000', '1488529889', '1', '6', '1');
 
 -- ----------------------------
 -- Table structure for n_givehelp
@@ -216,13 +242,18 @@ CREATE TABLE `n_givehelp` (
   `create_time` int(11) NOT NULL COMMENT '创建时间',
   `status` tinyint(3) NOT NULL COMMENT '状态（0：待匹配；1：匹配完成，未付款；2：已打款；3：确定已打款，已完成）',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='提供帮助表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COMMENT='提供帮助表';
 
 -- ----------------------------
 -- Records of n_givehelp
 -- ----------------------------
-INSERT INTO `n_givehelp` VALUES ('1', '1', '2000', '1340000123', '0');
-INSERT INTO `n_givehelp` VALUES ('2', '1', '2000', '1354446646', '0');
+INSERT INTO `n_givehelp` VALUES ('1', '1', '2000', '1340000123', '2');
+INSERT INTO `n_givehelp` VALUES ('2', '1', '2000', '1354446646', '2');
+INSERT INTO `n_givehelp` VALUES ('3', '1', '2000', '1488350568', '1');
+INSERT INTO `n_givehelp` VALUES ('4', '1', '2000', '1478506713', '1');
+INSERT INTO `n_givehelp` VALUES ('5', '1', '3000', '1486507165', '1');
+INSERT INTO `n_givehelp` VALUES ('6', '1', '3000', '1488508274', '1');
+INSERT INTO `n_givehelp` VALUES ('7', '2', '4000', '1488508274', '1');
 
 -- ----------------------------
 -- Table structure for n_news
@@ -281,12 +312,32 @@ CREATE TABLE `n_users` (
   `grand_id` int(11) DEFAULT '0' COMMENT '上上一级ID',
   `password` varchar(32) NOT NULL COMMENT '账户密码',
   `amount_password` varchar(32) NOT NULL COMMENT '资金密码',
-  `create_time` datetime DEFAULT NULL COMMENT '注册时间',
+  `create_time` varchar(11) NOT NULL COMMENT '注册时间',
+  `alipay` varchar(255) NOT NULL COMMENT '支付宝账号',
+  `wechat` varchar(255) NOT NULL COMMENT '微信号',
+  `bank_card` varchar(255) NOT NULL COMMENT '银行卡号',
+  `bank` varchar(255) NOT NULL COMMENT '银行',
+  `is_forbid` tinyint(3) NOT NULL DEFAULT '0' COMMENT '是否禁用（0：否；1是）',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='users';
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COMMENT='users';
 
 -- ----------------------------
 -- Records of n_users
 -- ----------------------------
-INSERT INTO `n_users` VALUES ('1', 'test', '曹操', '3604281878113132', null, null, '1', '18888888888', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e', '2017-02-14 14:11:28');
-INSERT INTO `n_users` VALUES ('2', 'ssssssss', 'ddd', null, null, null, '1', '18888888888', '0', '0', '96e79218965eb72c92a549dd5a330112', '96e79218965eb72c92a549dd5a330112', '2017-02-15 10:24:08');
+INSERT INTO `n_users` VALUES ('1', 'test', '曹操', '3604281878113132', '/Public/upload/2017-02-21/58abf8330e982.png', '/Public/upload/2017-02-27/58b39e7335048.jpg', '2', '18888888888', '4', '0', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e', '1488508274', '18888888888', 'ckl', '6222879845671234', '招商银行', '1');
+INSERT INTO `n_users` VALUES ('2', 'ssssssss', 'ddd', null, null, null, '1', '18688888888', '1', '4', '96e79218965eb72c92a549dd5a330112', '96e79218965eb72c92a549dd5a330112', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('3', '工要', '苛', null, null, null, '2', '18866666666', '1', '4', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('4', 'adfasd', '2131', null, null, null, '0', '18700001256', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'e10adc3949ba59abbe56e057f20f883e', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('5', '11111', '系统管理员', null, null, null, '0', '18701881920', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('6', '22222', '系统管理员', null, null, null, '1', '18701881921', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('7', '33333', '系统管理员', null, null, null, '0', '18701881920', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('8', '44444', '系统管理员', null, null, null, '0', '13333333333', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('9', 'asdfasdf', '系统管理员', null, null, null, '0', '13333333333', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488508274', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('10', 'ckl', '系统管理员', null, null, null, '2', '18701881920', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488528808', '12345', 'ddddd', '6222878978974785', '中国银行', '0');
+INSERT INTO `n_users` VALUES ('11', 'abce', 'adfa', '360428', null, null, '2', '18745678978', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529172', 'adsfasd', 'adsf', '666666', 'asdfas', '0');
+INSERT INTO `n_users` VALUES ('12', 'asdfa', 'adfa', '', null, null, '2', 'adfasd', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529229', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('13', 'asdfa111', 'adfa', '', null, null, '2', 'adfasd', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529249', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('14', 'asdfa222', 'adfa', '', null, null, '2', 'adfasd', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529371', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('15', 'asdfasd33', 'adsfa', 'asdfa', null, null, '2', 'asdf', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529577', '', '', '', '', '0');
+INSERT INTO `n_users` VALUES ('16', 'asdfas111', '1111', '111', null, null, '2', '1111', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529704', '11', '111', '', '', '0');
+INSERT INTO `n_users` VALUES ('17', 'adsfads', 'adsfas', 'adfad', null, null, '2', 'asdfas', '0', '0', 'e10adc3949ba59abbe56e057f20f883e', 'c33367701511b4f6020ec61ded352059', '1488529889', '', 'adfa', '', '', '0');
