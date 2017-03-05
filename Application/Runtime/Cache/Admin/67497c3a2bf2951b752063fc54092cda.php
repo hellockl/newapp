@@ -26,8 +26,8 @@
 							  <th>#</th>
 							  <th>用户名</th>
 							  <th>手机号</th>
-							  <th>微信号</th>
-							  <th>支付宝账号</th>
+<!--							  <th>微信号</th>
+							  <th>支付宝账号</th>-->
 							  <th>银行卡号</th>
 							  <th>上级</th>
 							  <th>上上级</th>
@@ -42,8 +42,8 @@
 							  <td><?php echo ($k+1); ?></td>
 							  <td><?php echo ($vo["user_name"]); ?></td>
 							  <td><?php echo ($vo["phone"]); ?></td>
-							  <td><?php echo ($vo["wechat"]); ?></td>
-							  <td><?php echo ($vo["alipay"]); ?></td>
+<!--							  <td><?php echo ($vo["wechat"]); ?></td>
+							  <td><?php echo ($vo["alipay"]); ?></td>-->
 							  <td><?php echo ($vo["bank_card"]); ?></td>
 							  <td><?php echo ($vo["father_name"]); ?></td>
 							  <td><?php echo ($vo["grand_name"]); ?></td>

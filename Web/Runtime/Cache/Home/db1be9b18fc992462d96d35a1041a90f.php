@@ -54,7 +54,7 @@
                     <div>
                         <ul>
                             <li><img src="/Public/web/img/icon_11.png"></li>
-                            <a href="javascript:void(0);"><li class="tc">退出系统</li></a>
+                            <a href="<?php echo U('Public/logout');?>"><li class="tc">退出系统</li></a>
                         </ul>
                     </div>
                 </div>
@@ -63,8 +63,8 @@
                 <div class="sh">
                     <ul class="dh">
                         <li><a href="/">首页</a></li>
-                        <li><a href="javascript:;">个人中心</a></li>
-                        <li><a href="javascript:;">系统公告</a></li>
+                        <li><a href="<?php echo U('User/index');?>">个人中心</a></li>
+                        <li><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
 
                     </ul>
                 </div>
@@ -89,14 +89,14 @@
                                 <label>二级密码:</label>
                                 <input id="password" class="upwd" onblur="difficulty_c_upwd()" value="" name="userpwd" type="password">
                                 <s>*</s>
-                                <a href="http://www.shanxinhui.com/index/user/modifyPassword/type/acc.html" class="upwd-msg">忘记二级密码</a>
+                                <a href="<?php echo U('User/editPassword');?>" class="upwd-msg">忘记二级密码</a>
                             </div>
                             
                             <input id="provide_action_button" value="提供资助" class="button" onclick="difficulty_click(5, this)" type="button">
                         </div>
                         <div class="difficulty_b">
                             <span>简介:</span>
-                            <p>ddddd</p>
+                            <p>发布一个提供帮助10天后才能发布下一个</p>
                         </div>
                     </div></div>
 

@@ -167,3 +167,52 @@ function difficulty_click(id,obj){
     }
 };
 
+/** 提供资助 Ajax
+ * */
+$._provide_action_flag = true;
+function difficulty2_click(id,obj){
+//	$(obj).attr("disabled",true);
+    var money = ($('#money').val());
+    var password = $('#password').val();
+    
+    
+    if(money!='' && password!='') {
+        if($._provide_action_flag != true) {
+            return false;
+        }
+        $._provide_action_flag = false;
+        $("#provide_action_button").attr("disabled",true);
+        $("#provide_action_button").css("background","#cecece");
+        $.common.ajaxPost('checkgethelp',{
+            
+            amount:money,
+            amount_password:password,
+            
+        },function(data) {
+            if(data.errorCode==0){
+                layer.msg('发布成功！');
+                setTimeout(function() {
+                    window.location.href = "";
+                } , 1500);
+                $._provide_action_flag = true;
+                $('.mun1').html(parseInt(($('.mun1').html())) - need_currency);
+                //window.location.href="/index/community/CommunityList.html"
+            } else if(data.errorCode) {
+                if(data.errorCode == 30){
+                    if(confirm("二级密码不能与登录密码一致！请确定前往修改二级密码。")){
+                        window.location.href = "{:U('User/editPassword')}";
+                        return false;
+                    }
+                }else{
+                    layer.msg("发布失败，"+data.errorMsg);
+                }
+            }
+            $._provide_action_flag = true;
+//            $(obj).removeAttr("disabled");
+            $("#provide_action_button").removeAttr("disabled");
+            $("#provide_action_button").css("background","");
+            $("#provide_token_id").val(data.token);
+        });
+    }
+};
+

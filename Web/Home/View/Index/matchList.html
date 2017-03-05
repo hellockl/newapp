@@ -1,0 +1,102 @@
+
+<link rel="stylesheet" href="__PUBLIC__/plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="__PUBLIC__/css/global.css" media="all">
+	<link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/css/font-awesome.min.css">
+<fieldset class="layui-elem-field">
+
+<!--	<blockquote class="layui-elem-quote layui-quote-nm">
+		<a data="{$givehelp_id}" class="layui-btn layui-btn layui-btn-warm all_accept"><i class="layui-icon">&#xe618;</i>确定全部已打款</a>
+	</blockquote>-->
+
+	<div class="layui-field-box">
+            <table class="layui-table" style="display: block">
+			<thead>
+			<tr>
+				<th>#</th>
+				<th>用户名</th>
+				<th>真实姓名</th>
+                                <th>支付宝账号</th>
+                                <th>微信号</th>
+                                <th>银行</th>
+                                <th>银行卡号</th>
+				<th>手机号</th>
+				<th>所需金额</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>
+			</thead>
+			<tbody>
+			<foreach name="match_list" key="k" item="vo">
+				<tr>
+					<td>{$k+1}</td>
+					<td>{$vo.user_name}</td>
+					<td>{$vo.name}</td>
+					<td>{$vo.alipay}</td>
+                                        <td>{$vo.wechat}</td>
+                                        <td>{$vo.bank}</td>
+                                        <td>{$vo.bank_card}</td>
+                                        <td>{$vo.phone}</td>
+					<td>{$vo.amount}</td>
+					<td><span id="b_{$vo.id}">{$vo.status_name}</span></td>
+					<td>
+						<a data="{$vo.id}" id="a_{$vo.id}" <eq name='vo.status' value="2">class="layui-btn layui-btn-mini layui-btn-disabled"<else/>class="layui-btn layui-btn-mini layui-btn-normal accept"</eq>><i class="layui-icon">&#xe618;</i>确定打款</a>
+					</td>
+				</tr>
+			</foreach>
+			</tbody>
+		</table>
+
+	</div>
+</fieldset>
+<script>
+	layui.use(['laypage','layer','form'], function() {
+		var $ = layui.jquery;
+		$('.accept').click(function(){
+			var gethelp_id = $(this).attr('data');
+
+			var url = "{:U('Index/confirmAccept')}";
+			layer.confirm('您已确定该用户已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{gethelp_id:gethelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						$("#a_"+gethelp_id).attr('class','layui-btn layui-btn-mini layui-btn-disabled');
+						$("#b_"+gethelp_id).html('已匹配,已打款');
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						});
+					}
+				})
+			});
+		});
+		$('.all_accept').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "{:U('Index/confirmAllAccept')}";
+			layer.confirm('您已确定所有用户都已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{givehelp_id:givehelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						}, function(){
+							location.reload();
+						});
+					}
+				})
+			});
+		})
+	})
+</script>

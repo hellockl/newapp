@@ -16,10 +16,18 @@ class NewsController extends Controller {
         $this->display();
     }
     
-    public function news(){
+    public function getNewsDetail(){
+        $id = I("post.id",0,'intval');
+        $where['id']=$id;
         $news_info = M("News")->where($where)->find();
-        $this->assign("news_info",$news_info);
-        $this->display();
+        $news_info['create_time'] = date("Y-m-d:H:i:s");
+        
+        if(!empty($news_info)){
+            $this->ajaxReturn(array('errorCode'=>0,'result'=>$news_info));
+        }else{
+            $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'操作失败'));
+        }
+       
     }
 
 }

@@ -1,0 +1,120 @@
+/** 个人中心-会员注册
+*/
+#main{margin: 48px auto 20px ;height:720px;background: white;width: 1220px;box-shadow: 0 0 15px #666; }
+#nav{width:100%;height:40px;background:#a90c17;line-height: 30px;margin-bottom:40px;}
+#nav .margin li{float:left;height:40px;line-height: 40px;border-left:1px solid #970613;border-left:1px solid #970613;width:120px;text-align: center;
+    color: #fefffd;
+    font-size: 15px}
+#picture{margin:8px 0; }
+#main .vip{padding:10px 50px 0 15px ;border-bottom:1px solid #aaaaaa;font-size:20px;}
+#main .vip>p{display: inline-block;}
+#main  .vip>p>span {color:#a90b16;}
+#main  .vip>a{color:#a90b16;float: right;margin-top: 5px;}
+#main .vip>p>a{color:#222;}
+/*#main >#picture> #vip> .lf>img {margin-left: 20px;}*/
+.d1{margin:6px 12px 10px 40px;  vertical-align:middle;  width: 19px;  }
+#main .vip .rt a{color:#a90b16;  margin-right:30px;position: relative;top:5px;}
+#main-box{width: 100%;padding-top:20px;overflow: visible;}
+#foot_box{  padding-top:40px;padding-bottom:20px;text-align: center; }
+#d2{width: 100%;height: 100px}
+#main> #main-box >p  {margin-top: 20px;height:44px;line-height: 44px;margin-left: 314px;}
+#main #main-box input{width: 320px;height: 39px;margin-right: 20px;padding-left: 10px;font-size:16px;}
+#main #main-box button{width: 190px;height: 38px;background: #c5c5c5;color: #ffffff;border:none;}
+#main> #main-box >p >a {display: block;float: left;  width: 170px;height: 30px;text-align: right;margin-top: 5px;font-size: 16px;color:#333;}
+#main #main-box #btn{width: 172px;height: 50px;border-radius: 2px ;background:#a90c17;margin: 30px 770px 230px 170px;font-size: 20px;margin-left: 485px;outline: none;box-shadow:none;}
+#main #main-box input.verify{width: 134px;}
+#main> #main-box >p span{color: #878787;}
+#main> #main-box >p .sxp{color: #ff0315;}
+#main> #main-box >.p5 .button{display: inline-block;width:190px;height:39px;line-height:39px;border:1px solid #aaa;background: #c5c5c5;color:#fff;text-align: center;position: relative;top:3px;font-size: 15px;}
+#main> #main-box >.p5 .button:hover{cursor: pointer;}
+.s1,.s2,.s3,.s4,.s6,.s7{font-size: 16px;color: #878787;}
+#main-box p span img{
+	width:20px;
+	vertical-align:middle;
+}
+#main > #main-box > .p6 .button {
+    display: inline-block;
+    width: 166px;
+    height: 39px;
+    line-height: 39px;
+    color: #fff;
+    text-align: center;
+    position: relative;
+    font-size: 15px;
+    background: #eaa410;
+}
+
+/*图形验证*/
+.patterning_code{
+	display:none;
+	width: 300px;
+    height: 200px;
+    margin: 0 auto;
+    background-color: white;
+    box-shadow: 0 0 25px #666;
+    position: absolute;
+    top: 452px;
+    border-radius: 2px;
+    padding: 20px;
+    left: 848px;
+}
+.patterning_modal .queue_yan{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	padding-bottom:10px;
+	margin-bottom:40px;
+	font-size:18px;
+	border-bottom:1px solid #aaa; 
+}
+.patterning_modal input{
+	padding-left:5px;
+	width:116px;
+	height:26px;
+	margin-left:10px;
+}
+.patterning_modal .patterning_img{
+	position:absolute;
+	top:95px;
+	left:158px;
+}
+.patterning_modal .patterning_img img{
+	cursor:pointer;
+}
+.patterning_modal .queue_click{
+	display: block;
+    padding: 8px 12px;
+    background: #b60001;
+    width: 80px;
+    text-align: center;
+    margin-left: 100px;
+    margin-top: 30px;
+    color: #fff;
+    border-radius: 3px;
+}
+.error>img{
+    width: 40px;
+    position: relative;
+    top: -222px;
+    left: 277px;
+    z-index: 3;
+    display: none;
+    cursor:pointer;
+    opacity:0.7;
+}
+.error>img:hover{
+    opacity:1;
+}
+
+
+
+
+
+@media screen and (max-width: 1400px) {
+    #main{
+             margin: 50px 72px;
+    }
+}
+.jingbei{
+   color: #666;
+}

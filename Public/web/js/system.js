@@ -46,7 +46,7 @@ $(function(){
     
     
     //调用
-    getNewsList(12 , 1 , 1);
+    //getNewsList(12 , 1 , 1);
     // 公告通知
     function getNewsList(page_num , page , pagination) {
         $('#callBackPager').hide();
@@ -121,7 +121,7 @@ $(function(){
     /** 公告详情
      * */
     function newsDetail(id) {
-        $.common.ajaxPost('/user/news/getNewsDetail' , {
+        $.common.ajaxPost('getNewsDetail' , {
             'id' : id,
         } , function(data) {
             if(data.errorCode == 0) {
@@ -131,7 +131,7 @@ $(function(){
                     area: ['900px', '600px'],
                     shadeClose: true, //点击遮罩关闭
                     shade: 0.6 ,//遮罩透明度
-                    maxmin: true ,//允许全屏最小化
+                    maxmin: false ,//允许全屏最小化
                     anim: -1 ,//0-6的动画形式，-1不开启
                     skin: 'yourclass',
                     //内容

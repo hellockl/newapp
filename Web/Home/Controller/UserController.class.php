@@ -81,9 +81,53 @@ class UserController extends BaseController {
     
     
     public function userinfo(){
-        $this->display();
+        //var_dump($_SESSION);
+        if(IS_POST){
+            $user_info =array(
+                'name'=>I("post.name",'','trim'),
+                'idcard'=>I("post.idcard",'','trim'),
+                'alipay'=>I("post.alipay",'','trim'),
+                'wechat'=>I("post.wechat",'','trim'),
+                'bank'=>I("post.bank",'','trim'),
+                'bank_card'=>I("post.bank_card",'','trim'),
+               
+            );
+            
+            $res = M("Users")->where('user_id='.$_SESSION['users_info']['user_id'])->save($user_info);
+            //var_dump($user_info);
+            //echo M("Users")->getLastSql();
+            if($res!==false){
+                $this->ajaxReturn(array('errorCode'=>0,'errorMsg'=>'操作成功！'));
+            }else{
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'操作失败！'));
+            }
+        }else{
+            $user_info = M("Users")->where('user_id='.$_SESSION['users_info']['user_id'])->find();
+            $this->assign('userinfo',$user_info);
+            $this->display();
+        }
+        
     }
     
+    public function updateImg(){
+        if(IS_POST){
+            $user_info =array(
+                'idcard_imga'=>I("post.idcard_imga",'','trim'),
+                'idcard_imgb'=>I("post.idcard_imgb",'','trim'),
+            );
+            $res = M("Users")->where('user_id='.$_SESSION['users_info']['user_id'])->save($user_info);
+            if($res!==false){
+                $this->ajaxReturn(array('errorCode'=>0,'errorMsg'=>'操作成功！'));
+            }else{
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'操作失败！'));
+            }
+        }else{
+            $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'操作失败！'));
+        }
+    }
+
+    
+
     public function upload_a(){
         if(IS_POST){
             $img = $_FILES['file1'];

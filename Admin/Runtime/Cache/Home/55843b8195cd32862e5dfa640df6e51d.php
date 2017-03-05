@@ -7,20 +7,20 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=yes" name="viewport">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <!-- Bootstrap 3.3.4 -->
-    <link href="/newapp/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <!-- FontAwesome 4.3.0 -->
-    <link href="/newapp/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- Ionicons 2.0.0 --
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css"/>
     <!-- Theme style -->
-    <link href="/newapp/assets/vendor/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
-    <link href="/newapp/assets/vendor/jquery-toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/vendor/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/vendor/jquery-toastr/toastr.min.css" rel="stylesheet" type="text/css"/>
     <!-- iCheck -->
-    <link href="/newapp/assets/vendor/iCheck/flat/blue.css" rel="stylesheet" type="text/css"/>
-    <link href="/newapp/assets/css/admin/jquery.dialog.css" rel="stylesheet" type="text/css"/>
-    <link href="/newapp/assets/css/admin/style.css?ver=20161124" rel="stylesheet" type="text/css"/>
-    <link href="/newapp/assets/css/admin/skin-red.css" rel="stylesheet" type="text/css"/>
-    <link href="/newapp/assets/css/litebox.css" rel="stylesheet" type="text/css">
+    <link href="/assets/vendor/iCheck/flat/blue.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/admin/jquery.dialog.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/admin/style.css?ver=20161124" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/admin/skin-red.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/css/litebox.css" rel="stylesheet" type="text/css">
 </head>
 <body class="skin-red">
 <div class="wrapper sidebar-collapsed">
@@ -77,7 +77,7 @@
                             <i class="fa fa-key"></i></a>
                     </li>
                     <li>
-                        <a href="/newapp/help.pdf" target="_blank"
+                        <a href="/help.pdf" target="_blank"
                            data-toggle="tooltip" data-placement="left" title="帮助文档下载">
                             <i class="fa fa-question"></i></a>
                     </li>
@@ -98,24 +98,24 @@
 
 
 <!-- jQuery 2.1.4 -->
-<script src="/newapp/assets/vendor/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="/assets/vendor/jQuery/jQuery-2.1.4.min.js"></script>
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-<script src="/newapp/assets/vendor/daterangepicker/moment.min.js" type="text/javascript"></script>
-<script src="/newapp/assets/vendor/daterangepicker/daterangepicker.js" type="text/javascript"></script>
-<script src="/newapp/assets/js/global.js"></script>
-<script src="/newapp/assets/js/jquery-ui.min.js" type="text/javascript"></script>
-<script src="/newapp/assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="/newapp/assets/vendor/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
-<script src="/newapp/assets/vendor/fastclick/fastclick.min.js" type="text/javascript"></script>
-<script src="/newapp/assets/js/jquery.form.js" type="text/javascript"></script>
-<script src="/newapp/assets/js/jquery.dialog.js" type="text/javascript"></script>
-<script src="/newapp/assets/vendor/jquery-toastr/toastr.min.js"></script>
-<script src="/newapp/assets/js/admin/app.js" type="text/javascript"></script>
-<script src="/newapp/assets/js/admin/base.js?ver=20161124" type="text/javascript"></script>
-<script src="/newapp/assets/js/litebox.min.js" type="text/javascript"></script>
+<script src="/assets/vendor/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="/assets/vendor/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<script src="/assets/js/global.js"></script>
+<script src="/assets/js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/assets/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="/assets/vendor/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="/assets/vendor/fastclick/fastclick.min.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.form.js" type="text/javascript"></script>
+<script src="/assets/js/jquery.dialog.js" type="text/javascript"></script>
+<script src="/assets/vendor/jquery-toastr/toastr.min.js"></script>
+<script src="/assets/js/admin/app.js" type="text/javascript"></script>
+<script src="/assets/js/admin/base.js?ver=20161124" type="text/javascript"></script>
+<script src="/assets/js/litebox.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
     $(function(){

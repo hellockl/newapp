@@ -40,22 +40,26 @@
                 <thead>
                     <tr>
                         <td class="one" width="10%">编号</td>
-                        <td class="two">金额</td>
-                        <td class="two">今日收益</td>
-                        <td class="two">至今收益</td>
+                        <td class="two">所需金额</td>
+                        <td class="two">提供帮助人</td>
+                        
                         <td class="three">时间</td>
                         <td class="four">状态</td>
+                        <td class="four">操作</td>
                     </tr>
                 </thead>
                 <tbody class="gonggaotongzhi">
                 <volist name="helplist" id="vo">
                     <tr>
-                        <td>GHP{$vo.id}</td>
-                        <td class="title"><span style="cursor:pointer" onclick="newsDetail(172)">{$vo.amount}</span></td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>{$vo.create_time}</td>
-                        <td>待确定</td>
+                        <td>{$vo.id}</td>
+                        <td class="title"><span style="cursor:pointer">{$vo.amount}</span></td>
+                        <td>{$vo.givehelp_user}</td>
+                        
+                        <td>{$vo.create_time|date="Y-m-d H:i:s",###}</td>
+                        <td>{$vo.status_name}</td>
+                        <td>
+                            <a data="{$vo.id}" id="a_{$vo.id}" <eq name='vo.status' value="2">class="layui-btn layui-btn-mini layui-btn-disabled"<else/>class="layui-btn layui-btn-mini layui-btn-normal accept"</eq>><i class="layui-icon">&#xe618;</i>确定收款</a>
+                        </td>
                     </tr>
                 </volist>
                     
@@ -90,4 +94,58 @@
 
 
         </footer>
+<script type="text/javascript" src="__PUBLIC__/plugins/layui/layui.js"></script>
+<script>
+	layui.use(['laypage','layer','form'], function() {
+		var $ = layui.jquery;
+		$('.accept').click(function(){
+			var gethelp_id = $(this).attr('data');
 
+			var url = "{:U('Index/confirmAccept')}";
+			layer.confirm('您已确定已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{gethelp_id:gethelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						$("#a_"+gethelp_id).attr('class','layui-btn layui-btn-mini layui-btn-disabled');
+						$("#b_"+gethelp_id).html('已匹配,已打款');
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						}, function(){
+							location.reload();
+						});
+					}
+				})
+			});
+		});
+		$('.all_accept').click(function(){
+			var givehelp_id = $(this).attr('data');
+			var url = "{:U('Help/confirmAllAccept')}";
+			layer.confirm('您已确定所有用户都已收到款吗?', {
+				icon: 3,
+				skin: 'layer-ext-moon',
+				btn: ['确认','取消'] //按钮
+			}, function(){
+				$.post(url,{givehelp_id:givehelp_id},function(data){
+					if(data.status == 'error'){
+						layer.msg(data.msg,{icon: 5});//失败的表情
+						return;
+					}else{
+						layer.msg(data.msg, {
+							icon: 6,//成功的表情
+							time: 2000 //2秒关闭（如果不配置，默认是3秒）
+						}, function(){
+							location.reload();
+						});
+					}
+				})
+			});
+		})
+	})
+</script>
