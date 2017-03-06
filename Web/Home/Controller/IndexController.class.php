@@ -6,9 +6,9 @@ class IndexController extends BaseController {
         $user_info = M('Users')->where("user_id=".$_SESSION['users_info']['user_id'])->find();
         
         $give_help = M("Givehelp")->field("sum(amount) as total_money,count(*) as givecount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
-        
         $get_help = M("Gethelp")->field("sum(amount) as total_money,count(*) as getcount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
-       
+        $newslist = M("News")->where()->order("create_time asc")->limit(5)->select();
+        $this->assign("newslist",$newslist);
         $this->assign('give_help',$give_help[0]);
         $this->assign('get_help',$get_help[0]);
         $this->assign('user_info',$user_info);
@@ -43,8 +43,12 @@ class IndexController extends BaseController {
                 $helplist[$k]['status_name'] = '未匹配';
             }else if($v['status']==1){
                 $helplist[$k]['status_name'] = '已匹配，未支付';
-            }else if($v['status']){
+            }else if($v['status']==2){
                 $helplist[$k]['status_name'] = '已匹配，已支付';
+            }else if($v['status']==3){
+                $helplist[$k]['status_name'] = '已确认打款';
+            }else {
+                $helplist[$k]['status_name'] = '已完成';
             }
         }
         //var_dump($helplist);

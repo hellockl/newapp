@@ -51,9 +51,9 @@
             <div class="nav">
                 <div class="sh">
                     <ul class="dh">
-                        <li><a href="/">首页</a></li>
-                        <li><a href="<?php echo U('User/index');?>">个人中心</a></li>
-                        <li><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
+                        <li <?php if(($nav) == ""): ?>class="licur"<?php endif; ?>> <a href="/">首页</a></li>
+                        <li <?php if(($nav) == "user"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('User/index');?>">个人中心</a></li>
+                        <li <?php if(($nav) == "news"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
 
                     </ul>
                 </div>
@@ -72,8 +72,8 @@
     <a href="<?php echo U('User/editPassword');?>"><img src="/Public/web/img/icon_03.png" alt=""></a>
     <a href="#"></a>
     <a href="#"></a>
-    <a href="#"><img src="/Public/web/img/icon_06.png" alt=""></a>
-    <a href="#"><img src="/Public/web/img/icon_07.png" alt=""></a>
+    <a href="<?php echo U('User/recommend');?>"><img src="/Public/web/img/icon_06.png" alt=""></a>
+    <a href="<?php echo U('User/register');?>"><img src="/Public/web/img/icon_07.png" alt=""></a>
     <span id="status_span" class="span1" style="padding-left: 8px;">已通过</span>
 
     <span class="fs" style="display:none"><i>4.0</i>&nbsp;分</span>

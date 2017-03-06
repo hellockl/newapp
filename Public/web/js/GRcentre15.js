@@ -1,0 +1,1 @@
+$(function(){var a=$("#register_link").val(),b=/(http:\/\/|https:\/\/)((\w|=|\?|\.|\/|&|-)+)/g;b.test(a)||(a="http://"+a),jQuery("#qrcode").qrcode({text:a,width:"180",height:"180"})});

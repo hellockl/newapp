@@ -26,7 +26,7 @@ $(function() {
                     $('.p1 .s1').html('帐户已存在').css('color', 'red').show();
                     flag = false;
                 } else {
-					$(".p1 .s1").html("<img src='/static/index/images/true_1.png'/>").css('color','#d60616').show();
+					$(".p1 .s1").html("<img src='/Public/web/img/true_1.png'/>").css('color','#d60616').show();
                     flag = true;
                 }
             });
@@ -57,7 +57,7 @@ $(function() {
             $('.p2 .s2').html('*  密码不符，请按提示填写密码').css('color', 'red').show();
             $('.p2 input').css('border', '1px solid red');
         }else{
-			$(".p2 .s2").html("<img src='/static/index/images/true_1.png'>").css('color','#d60616').show();
+			$(".p2 .s2").html("<img src='/Public/web/img/true_1.png'>").css('color','#d60616').show();
             flag2 = true;
         }
     })
@@ -81,7 +81,7 @@ $(function() {
             $('.p3 .s3').html('*  确认密码和登陆密码不一致').css('color', 'red').show();
             $('.p3 input').css('border', '1px solid red');
         }else{
-			$(".p3 .s3").html("<img src='/static/index/images/true_1.png'>").css('color','#d60616').show();
+			$(".p3 .s3").html("<img src='/Public/web/img/true_1.png'>").css('color','#d60616').show();
             flag3 = true;
         }
     })
@@ -106,7 +106,7 @@ $(function() {
             $('.p4 .s4').html('*  输入有误').css('color', 'red').show();
             $('.p4 input').css('border', '1px solid red');
         }else{
-			$(".p4 .s4").html("<img src='/static/index/images/true_1.png'>").css('color','#d60616').show();
+			$(".p4 .s4").html("<img src='/Public/web/img/true_1.png'>").css('color','#d60616').show();
             flag4 = true;
         }
     })
@@ -138,7 +138,7 @@ $(function() {
                     $('#check_phone_text').html('手机号码已经被使用').css('color', 'red').show();
                     flag5 = false;
                 } else {
-					$(".p5 .check").html("<img src='/static/index/images/true_1.png'>").css('color','#d60616').show();
+					$(".p5 .check").html("<img src='/Public/web/img/true_1.png'>").css('color','#d60616').show();
                     flag5 = true;
                 }
             });
@@ -158,17 +158,17 @@ $(function() {
 
 	 
     //弹出验证码框
-	$(".button").click(function(){
-		$(".patterning_modal input").val("");
-		$(".patterning_img img").attr("src","/captcha.html");
-		var c=parseInt(Math.random()*(1000-1)+1);
-		var src_now=$(".patterning_img img").attr("src")+"?"+c;
-		$(".patterning_img img").attr("src",src_now);
-		if(m){
-			$(".patterning_code").show();
-			$(".error > img").show();
-		}
-	});
+    //$(".button").click(function(){
+		//$(".patterning_modal input").val("");
+		//$(".patterning_img img").attr("src","/captcha.html");
+		//var c=parseInt(Math.random()*(1000-1)+1);
+		//var src_now=$(".patterning_img img").attr("src")+"?"+c;
+		//$(".patterning_img img").attr("src",src_now);
+		//if(m){
+		//	$(".patterning_code").show();
+		//	$(".error > img").show();
+		//}
+    //});
 
 
 	//关闭弹出框
@@ -194,10 +194,10 @@ $(function() {
     //如果手机号码正确，点击发送验证码
     var m = true;
     $(".queue_click").click(function () {
-		if($(".patterning_modal input").val()==""||$(".patterning_modal input").val()==undefined){
-			layer.msg("验证码不能空");
-			return false;
-		}
+		//if($(".patterning_modal input").val()==""||$(".patterning_modal input").val()==undefined){
+		//	layer.msg("验证码不能空");
+		//	return false;
+		//}
         if(flag!=true || flag2!=true || flag3!=true || flag4!=true) {
             layer.msg("请先填写完好信息");
             return false;
@@ -251,16 +251,16 @@ $(function() {
 
     // 推荐人账号
     var reg7 = /^[\w]{6,16}$/;
-    $('.p7 input').blur(function () {
-        var v7 = $('.p7 input').val();
-        var result = reg7.test(v7);
-        if (!result) {
-            $('.p7 .s7').html('* 账号不符，请按提示填写账号').css('color', 'red');
-            $('.p7 input').css('border', '1px solid red');
-        }else{
-            flag7 = true;
-        }
-    })
+    //$('.p7 input').blur(function () {
+    //    var v7 = $('.p7 input').val();
+    //    var result = reg7.test(v7);
+    //    if (!result) {
+    //        $('.p7 .s7').html('* 账号不符，请按提示填写账号').css('color', 'red');
+    //        $('.p7 input').css('border', '1px solid red');
+    //    }else{
+    //        flag7 = true;
+    //    }
+    //})
     $('.p7 input').focus(function () {
         var v7 = $('.p7 input').val();
         if (v7 = ' ') {

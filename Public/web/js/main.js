@@ -121,10 +121,9 @@ $.Main = {
       
         $.ajax({
             type : 'post',
-            url : '/user/index/checkUserInfo',
+            url : 'checkUserName',
             data : {
-                check_field : 'username',
-                value : username,
+                user_name : username,
             },
             success : function(data) {
                 //errorCode==0 用户已存在
@@ -154,10 +153,9 @@ $.Main = {
         }
         $.ajax({
             type : 'post',
-            url : '/user/index/checkUserInfo',
+            url : 'checkPhone',
             data : {
-                check_field : 'phone',
-                value : phone,
+                phone :phone,
             },
             success : function(data) {
                 callback(data);

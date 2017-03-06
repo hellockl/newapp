@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8">
+        <meta name="author">
+        <title>个人中心-注册会员</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+        <link rel="stylesheet" href="__PUBLIC__/web/css/header.css"> 
+        <link rel="stylesheet" href="__PUBLIC__/web/css/GRcentre15.css">
+        
+
+        <style>
+            footer {
+                color: #535952;
+                font-size: 15px;
+                margin: 20px auto;
+                text-align: center;
+                width: 1220px;
+            }
+        </style>
+        <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/jquery_004.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/common.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/main.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/layer.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/Grcentre15.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/regexp_sxh.js"></script>
+        
+    </head>
+    <body>
+    <include file="Public:header"/>
+    <section id="main">
+        <div id="notice">
+            <div class="system">
+                <p><img src="__PUBLIC__/web/img/icon_16.png" class="dl">个人中心 &gt; <span>推荐链接</span></p>
+                <a href="javascript:history.go(-1)">返回 &gt;&gt;</a>
+            </div>
+        </div>
+        <div class="spread">
+            <p>1.推广二维码</p>
+            <div>
+                <p class="two">二维码</p>
+                <dl>
+                    <dt><img src="__PUBLIC__/web/img/icon_16.png"></dt>
+                    <dd>{$user_info.user_name}</dd>
+                </dl>
+                <div id="qrcode"></div>
+                <p style="margin-top:10px;margin-bottom:10px;">扫一扫注册会员</p>
+            </div>
+        </div>
+        <script>
+            //点击复制文本
+            function copy_link() {
+                var e = $('#register_link');
+                e.select();
+                //执行浏览器复制命令
+                if(document.execCommand("Copy")) {
+                    layer.msg('复制成功！');
+                }
+            }
+        </script>
+        <div class="chaining">
+            <span>2.推广链接</span>
+            <input id="register_link" value="www.newapp.com/Home/Public/register/{$user_info.user_name}" type="text">
+            <button onclick="copy_link();">点击复制网址</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="#">粤ICP备15076181号</a></span>
+        <p>2016V2.0版本</p>
+    </footer>
+
+</body>
+</html>

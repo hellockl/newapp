@@ -23,6 +23,7 @@
         </style>
         <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="__PUBLIC__/web/js/common.js"></script>
+        <script type="text/javascript" src="__PUBLIC__/web/js/main.js"></script>
         <script type="text/javascript" src="__PUBLIC__/web/js/layer.js"></script>
         <script type="text/javascript" src="__PUBLIC__/web/js/Grcentre14.js"></script>
         <script type="text/javascript" src="__PUBLIC__/web/js/regexp_sxh.js"></script>
@@ -43,8 +44,8 @@
             <p class="p3"> <a><span class="sxp">*</span>&nbsp;确认密码：</a><input placeholder="请再次输入密码" type="password"><span class="s3"></span></p>
             <p class="p4"> <a><span class="sxp">*</span>&nbsp;姓名：</a><input placeholder="身份证上真实姓名" type="text"><span class="s4"></span></p>
             <p class="p5"> <a><span class="sxp">*</span>&nbsp;手机号码：</a><input placeholder="请输入手机号" type="text"><span></span> <span id="check_phone_text" class="check"></span></p>
-            <p class="p6"> <a><span class="sxp">*</span>&nbsp;验证码：</a><input class="verify" placeholder="请输入验证码" type="text"><span class="button">获取验证码</span></p>
-            <p class="p7"> <a><span class="sxp">*</span>&nbsp;推荐人账号：</a><input id="referee_name" placeholder="注册必须有推荐人" value="king1314ybq" type="text"><span class="s7"></span></p>
+            <!--<p class="p6"> <a><span class="sxp">*</span>&nbsp;验证码：</a><input class="verify" placeholder="请输入验证码" type="text"><span class="button">获取验证码</span></p>-->
+            <p class="p7"> <a><span class="sxp">*</span>&nbsp;推荐人账号：</a><input id="referee_name" placeholder="注册必须有推荐人" value="{$user_info.user_name}" type="text"><span class="s7"></span></p>
             <button style="cursor:pointer;" type="button" id="btn">提交注册</button>
         </form>
 
@@ -52,7 +53,7 @@
     </section>
 
     <footer class="footer">
-        <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
+        <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="#">粤ICP备15076181号</a></span>
         <p>2016V2.0版本</p>
     </footer>
 

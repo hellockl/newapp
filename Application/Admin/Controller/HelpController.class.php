@@ -30,7 +30,12 @@ class HelpController extends CommonController
                 $givehelp_list['list'][$k]['status_name'] = '已匹配，未支付';
             }else if($v['status']){
                 $givehelp_list['list'][$k]['status_name'] = '已匹配，已支付';
+            }else if($v['status']){
+                $givehelp_list['list'][$k]['status_name'] = '已确定打款';
+            }else{
+                $givehelp_list['list'][$k]['status_name'] = '已完成';
             }
+
         }
         $this->assign('givehelp_list',$givehelp_list['list']);
         $this->assign('page',$givehelp_list['page']);

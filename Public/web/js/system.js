@@ -144,6 +144,33 @@ $(function(){
             }
         });
     }
+
+    /** 公告详情
+     * */
+    function newsIndexDetail(id) {
+        $.common.ajaxPost("Home/news/getNewsDetail" , {
+            'id' : id,
+        } , function(data) {
+            if(data.errorCode == 0) {
+                layer.open({
+                    type: 1,//Page层类型
+                    title:data.result.title,//标题
+                    area: ['900px', '600px'],
+                    shadeClose: true, //点击遮罩关闭
+                    shade: 0.6 ,//遮罩透明度
+                    maxmin: false ,//允许全屏最小化
+                    anim: -1 ,//0-6的动画形式，-1不开启
+                    skin: 'yourclass',
+                    //内容
+                    content: '\<\div style="padding:20px;">'+data.result.content+'\<\/div>\n\
+                                \n\
+                                <div style="text-align:right;padding:20px;">【公告通知】&nbsp;&nbsp;&nbsp;&nbsp;'+data.result.create_time+'</div>',
+                });
+            } else {
+                layer.msg(data.errorMsg);
+            }
+        });
+    }
     
     
     function autiDetail(id) {

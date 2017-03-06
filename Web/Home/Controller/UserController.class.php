@@ -2,7 +2,9 @@
 namespace Home\Controller;
 use Think\Controller;
 class UserController extends BaseController {
+
     public function index(){
+        $this->assign('nav',"user");
         $this->display();
     }
     /**
@@ -10,6 +12,7 @@ class UserController extends BaseController {
      *
      */
     public function editUser(){
+        $this->assign('nav',"user");
         $user_id = $_SESSION['users_info'];
         $usersModel = M('Users');
         if($usersModel->create()){
@@ -17,15 +20,39 @@ class UserController extends BaseController {
         }
     }
 
-    /**
-     * 发布需求
-     *
-     */
-    public function addHelp(){
-        $amount = $_POST['amount'];
-        $amount_password = $_POST['amount_password'];
+    public function checkUserName(){
+        $user_name = I('post.user_name');
+        $where['user_name'] = $user_name;
+        $res = M('Users')->where($where)->find();
+        //echo M('Users')->getLastSql();
+        if($res){
+            $this->ret['errMsg'] = '该用户名已存在！';
+            $this->ret['errorCode'] = 201;
 
+        }else{
+            $this->ret['errMsg'] = 'ok';
+            $this->ret['errorCode'] = 1;
+
+        }
+        $this->ajaxReturn($this->ret);
     }
+    public function checkPhone(){
+        $phone = I('post.phone');
+        $where['phone'] = $phone;
+        $res = M('Users')->where($where)->find();
+        if($res){
+            $this->ret['errMsg'] = '该手机号已存在！';
+            $this->ret['errorCode'] = 201;
+
+        }else{
+            $this->ret['errMsg'] = 'ok';
+            $this->ret['errorCode'] = 1;
+
+        }
+        $this->ajaxReturn($this->ret);
+    }
+
+
 
     /**
      *修改登录密码
@@ -50,6 +77,7 @@ class UserController extends BaseController {
             }
             
         }else{
+            $this->assign('nav',"user");
             $this->display();
         }
         
@@ -74,6 +102,7 @@ class UserController extends BaseController {
             }
             
         }else{
+            $this->assign('nav',"user");
             $this->display();
         }
         
@@ -102,6 +131,7 @@ class UserController extends BaseController {
                 $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'操作失败！'));
             }
         }else{
+            $this->assign('nav',"user");
             $user_info = M("Users")->where('user_id='.$_SESSION['users_info']['user_id'])->find();
             $this->assign('userinfo',$user_info);
             $this->display();
@@ -183,5 +213,9 @@ class UserController extends BaseController {
         }
     }
 
+    public function recommend(){
+        $this->assign('nav',"user");
+        $this->display();
+    }
 
 }

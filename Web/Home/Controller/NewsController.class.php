@@ -2,9 +2,9 @@
 namespace Home\Controller;
 use Think\Controller;
 class NewsController extends Controller {
-    
-    
+
     public function newslist(){
+        $this->assign('nav',"news");
         $News = M('News');
         
         $count = $News->where()->count(); // 查询满足要求的总记录数
