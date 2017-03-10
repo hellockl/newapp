@@ -61,9 +61,15 @@
                         <li <?php if(($nav) == "news"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
 
                     </ul>
+
                 </div>
             </div>
         </div>
+<div>
+    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+</div>
+
+
         <section id="main" class="news_list_main">
             <div class="system">
                 <p><img src="/Public/web/img/icon_010.png" alt=""> 帮助&nbsp;&gt;&nbsp;<span class="message" style="color: rgb(169, 11, 22);">帮助列表</span></p>

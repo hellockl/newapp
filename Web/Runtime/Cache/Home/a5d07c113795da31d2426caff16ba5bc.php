@@ -92,41 +92,54 @@
 </head>
 <body>
 <div class="header">
-    <div class="head">
-        <div class="head_l">
-            <ul>
-                <li><a href="/"><!--<img src="/Public/web/img/LOGO.png" height="100%">--></a></li>
-                <li><!--<img src="/Public/web/img/solgain.png" height="100%">--></li>
-            </ul>
-        </div>
-        <div class="head_r">
-            <div>
-                <ul><img src="/Public/web/img/newicon_7.png"></ul>
-                <ul class="username">
-                    <li><?php echo ($user_info["user_name"]); ?></li>
-                    <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
-                </ul>
-            </div>
-            <div>|</div>
-            <div>
-                <ul>
-                    <li><img src="/Public/web/img/icon_11.png"></li>
-                    <a href="<?php echo U('Public/logout');?>"><li class="tc">退出系统</li></a>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="nav">
-        <div class="sh">
-            <ul class="dh">
-                <li class="licur"><a href="/" >首页</a></li>
-                <li><a href="<?php echo U('User/index');?>">个人中心</a></li>
-                <li><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
+            <div class="head">
+                <div class="head_l">
+                    <ul>
+                        <li><a href="/"><!--<img src="/Public/web/img/LOGO.png" height="100%">--></a></li>
+                        <li><!--<img src="/Public/web/img/solgain.png" height="100%">--></li>
+                    </ul>
+                </div>
+                <div class="head_r">
+                    <div>
+                        <ul><img src="/Public/web/img/newicon_7.png"></ul>
+                        <ul class="username">
+                            <li>会员:&nbsp;<?php echo ($user_info["user_name"]); ?></li>
+                            <li>
+                                <?php if($user_info["status"] == 0): ?><span class="status_header">待激活</span>
+                                    <?php elseif($user_info["status"] == 1): ?>
+                                    <span class="status_header">已激活</span><span class="verify_header">待审核</span>
+                                    <?php else: ?>
 
-            </ul>
+                                    <span class="status_header">已激活</span><span class="verify_header">已通过</span><?php endif; ?>
+
+                            </li>
+                        </ul>
+                    </div>
+                    <div>|</div>
+                    <div>
+                        <ul>
+                            <li><img src="/Public/web/img/icon_11.png"></li>
+                            <a href="<?php echo U('Public/logout');?>"><li class="tc">退出系统</li></a>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="nav">
+                <div class="sh">
+                    <ul class="dh">
+                        <li <?php if(($nav) == ""): ?>class="licur"<?php endif; ?>> <a href="/">首页</a></li>
+                        <li <?php if(($nav) == "user"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('User/index');?>">个人中心</a></li>
+                        <li <?php if(($nav) == "news"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
+
+                    </ul>
+
+                </div>
+            </div>
         </div>
-    </div>
+<div>
+    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
 </div>
+
 
 <div class="main">
 

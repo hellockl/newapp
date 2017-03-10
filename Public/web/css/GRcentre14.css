@@ -21,7 +21,7 @@
 #main #main-box input{width: 320px;height: 39px;margin-right: 20px;padding-left: 10px;font-size:16px;}
 #main #main-box button{width: 190px;height: 38px;background: #c5c5c5;color: #ffffff;border:none;}
 #main> #main-box >p >a {display: block;float: left;  width: 170px;height: 30px;text-align: right;margin-top: 5px;font-size: 16px;color:#333;}
-#main #main-box #btn{width: 172px;height: 50px;border-radius: 2px ;background:#a90c17;margin: 30px 770px 230px 170px;font-size: 20px;margin-left: 485px;outline: none;box-shadow:none;}
+#main #main-box #btn{width: 172px;height: 50px;border-radius: 2px ;background:#03a5ef;margin: 30px 770px 230px 170px;font-size: 20px;margin-left: 485px;outline: none;box-shadow:none;}
 #main #main-box input.verify{width: 134px;}
 #main> #main-box >p span{color: #878787;}
 #main> #main-box >p .sxp{color: #ff0315;}

@@ -28,9 +28,10 @@ class PublicController extends Controller {
             if($result['status']==1){
                 $this->error('该用户还未激活');
             }
-            if($result['status']==3){
-                $this->error('该用户还未激活');
+            if($result['is_forbid']==3){
+                $this->error('该用户已被禁用');
             }
+            $result['online_num'] = M("OnlineNum")->where("id=1")->getField('online_num');
             session("users_info",$result);
             $this->success('登录成功',__APP__.'/Home/Index/index');
         }else{
@@ -49,6 +50,13 @@ class PublicController extends Controller {
             }
             $usersModel = M('Users');
             if($usersModel->create()){
+                if(!empty(I('post.referee_name','','trim'))){
+                    $father_info = $usersModel->where("user_name='".I('post.referee_name')."'")->find();
+                    $usersModel->father_id = $father_info['user_id'];
+                    if(!empty($father_info['father_id'])){
+                        $usersModel->grand_id = $father_info['father_id'];
+                    }
+                }
                 $usersModel->password = Md5(I('post.password'));
                 $usersModel->amount_password = Md5(I('post.amount_password'));
                 $usersModel->create_time = date("Y-m-d H:i:s");
@@ -62,8 +70,11 @@ class PublicController extends Controller {
             }else{
                 $this->error('注册失败！');
             }
+        }else{
+            $this->assign("referee_name",$_GET['recomend']);
+            $this->display();
         }
-        $this->display();
+
     }
 
 
