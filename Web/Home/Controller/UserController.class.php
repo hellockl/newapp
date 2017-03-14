@@ -5,6 +5,14 @@ class UserController extends BaseController {
 
     public function index(){
         $this->assign('nav',"user");
+        if($_SESSION['users_info']['status']==0){
+            $status_name =  "待激活";
+        }elseif($_SESSION['users_info']['status']==1){
+            $status_name = "待审核";
+        }else{
+            $status_name = "已通过";
+        }
+        $this->assign('status_name',$status_name);
         $this->display();
     }
     /**
