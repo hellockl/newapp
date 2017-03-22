@@ -59,7 +59,7 @@ class PublicController extends Controller {
                 }
                 $usersModel->password = Md5(I('post.password'));
                 $usersModel->amount_password = Md5(I('post.amount_password'));
-                $usersModel->create_time = date("Y-m-d H:i:s");
+                $usersModel->create_time = time();
 
             }else{
                 $this->error('注册失败！');
