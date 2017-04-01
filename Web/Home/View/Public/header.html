@@ -10,8 +10,18 @@
                     <div>
                         <ul><img src="__PUBLIC__/web/img/newicon_7.png"></ul>
                         <ul class="username">
-                            <li>{$user_info.user_name}</li>
-                            <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
+                            <li>会员:&nbsp;{$user_info.user_name}</li>
+                            <li>
+                                <if condition="$user_info.status eq 0">
+                                    <span class="status_header">待激活</span>
+                                    <elseif condition="$user_info.status eq 1"/>
+                                    <span class="status_header">已激活</span><span class="verify_header">待审核</span>
+                                    <else />
+
+                                    <span class="status_header">已激活</span><span class="verify_header">已通过</span>
+                                </if>
+
+                            </li>
                         </ul>
                     </div>
                     <div>|</div>
@@ -31,6 +41,11 @@
                         <li <eq name="nav" value="news">class="licur"</eq>><a href="{:U('News/newsList')}">系统公告</a></li>
 
                     </ul>
+
                 </div>
             </div>
         </div>
+<div>
+    <span style="float: right;margin-right: 346px;">在线人数：{$user_info.online_num}</span>
+</div>
+

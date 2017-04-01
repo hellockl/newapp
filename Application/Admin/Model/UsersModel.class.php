@@ -51,7 +51,7 @@ class UsersModel extends BaseModel
         $count      = $this->where($where)->count();
         $page       = new \Think\Page($count,$num);
         $show       = $page->show();
-        $list       = $this->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+        $list       = $this->where($where)->order('create_time desc')->limit($page->firstRow.','.$page->listRows)->select();
 
         return array('page' => $show , 'list' => $list);
 

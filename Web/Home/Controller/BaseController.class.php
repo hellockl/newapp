@@ -9,6 +9,7 @@ class BaseController extends Controller
     public function __construct() {
         parent::__construct();
         $user_info = $_SESSION['users_info'];
+        //var_dump($user_info);
         $this->assign('user_info',$_SESSION['users_info']);
         if (!$user_info) {
             redirect(U('Public/login'));

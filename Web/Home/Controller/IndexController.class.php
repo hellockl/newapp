@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends BaseController {
     public function index(){
-        $user_info = M('Users')->where("user_id=".$_SESSION['users_info']['user_id'])->find();
+        //$user_info = M('Users')->where("user_id=".$_SESSION['users_info']['user_id'])->find();
         
         $give_help = M("Givehelp")->field("sum(amount) as total_money,count(*) as givecount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
         $get_help = M("Gethelp")->field("sum(amount) as total_money,count(*) as getcount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
@@ -11,7 +11,7 @@ class IndexController extends BaseController {
         $this->assign("newslist",$newslist);
         $this->assign('give_help',$give_help[0]);
         $this->assign('get_help',$get_help[0]);
-        $this->assign('user_info',$user_info);
+        //$this->assign('user_info',$user_info);
         $this->display();
     }
 
@@ -32,12 +32,18 @@ class IndexController extends BaseController {
             
             
             $time = time() - $v['create_time'];
-            if($time>=86400){
-                $helplist[$k]['today_sy'] = $v['amount']*0.0066;
+            if($v['status'] == 4){
+                $helplist[$k]['totay_sy'] = 0;
+                $helplist[$k]['total_sy'] = 0.198*$v['amount'];
             }else{
-                $helplist[$k]['today_sy'] = 0;
+                if($time>=86400){
+                    $helplist[$k]['today_sy'] = $v['amount']*0.0066;
+                }else{
+                    $helplist[$k]['today_sy'] = 0;
+                }
+                $helplist[$k]['total_sy'] = $this->secsToStr($time)*$v['amount']*0.0066;
             }
-            $helplist[$k]['total_sy'] = $this->secsToStr($time)*$v['amount']*0.0066;
+
             if($v['status']==0){
                 
                 $helplist[$k]['status_name'] = '未匹配';
@@ -168,10 +174,13 @@ class IndexController extends BaseController {
         $amount_password = I('post.amount_password');
         
         $where['user_id'] = $_SESSION['users_info']['user_id'];
-        $res = M('Users')->where($where)->getField('amount_password');
+        $res = M('Users')->field('amount_password,status,is_forbid')->where($where)->find();
+        if($res['status']!=2){
+            $this->ajaxReturn(array('errorMsg'=>"请先去审核个人信息",'errorCode'=>4));
+        }
         //echo M('Users')->getLastSql();
         //var_dump($res, md5($amount_password),$amount_password);
-        if($res == md5($amount_password)){
+        if($res['amount_password'] == md5($amount_password)){
             $data['amount'] = I('post.amount');
             $data['create_time'] = time();
             $data['user_id'] = $_SESSION['users_info']['user_id'];

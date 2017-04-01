@@ -20,7 +20,7 @@ class HelpModel extends BaseModel
         $count      = $this->alias('G')->where($where)->count();
         $page       = new \Think\Page($count,$num);
         $show       = $page->show();
-        $list       = $this->alias('G')->field('G.*,U.user_name,U.name,U.phone')->join("LEFT JOIN ".C('DB_PREFIX')."users U on(U.user_id=G.user_id)")->where($where)->limit($page->firstRow.','.$page->listRows)->select();
+        $list       = $this->alias('G')->field('G.*,U.user_name,U.name,U.phone')->join("LEFT JOIN ".C('DB_PREFIX')."users U on(U.user_id=G.user_id)")->where($where)->limit($page->firstRow.','.$page->listRows)->order('G.create_time desc')->select();
         //echo $this->getLastSql();
         return array('page' => $show , 'list' => $list);
 

@@ -35,7 +35,7 @@
 					  <?php if(is_array($list)): $i = 0; $__LIST__ = $list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
 							  <td><?php echo ($vo["id"]); ?></td>
 							  <td><?php echo ($vo["banner_name"]); ?></td>
-							  <td><img src="<?php echo ($vo["banner_img"]); ?>"> </td>
+							  <td><img style="width: 100px; height: 80px;" src="<?php echo ($vo["banner_img"]); ?>"> </td>
 							  <td><?php echo (date("Y-m-d H:i:s",$vo["create_time"])); ?></td>
 							  <td><?php echo ($vo["status"]); ?></td>
 							  <td>

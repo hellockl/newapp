@@ -33,7 +33,7 @@
 		<div class="layui-inline">
 			<label class="layui-form-label">手机号：</label>
 			<div class="layui-input-inline">
-				<input type="text" class="layui-input" name="phone" placeholder="请输入手机号"  autocomplete="off" >
+				<input type="text" class="layui-input" id="phone" name="phone" placeholder="请输入手机号"  autocomplete="off" >
 			</div>
 		</div>
 		<div class="layui-inline">
@@ -98,6 +98,11 @@
 			if(total_amount!=givehelp_amount){
 				layer.msg('提供的金额与所需的金额不相等，请重新匹配',{icon: 5});//失败的表情
 				return false;
+			}
+			if(amount!=0){
+				if($("#phone").val()==""){
+					layer.msg('手机号不能为空');
+				}
 			}
 
 			var roleInfo = data.field;

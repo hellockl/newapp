@@ -19,6 +19,10 @@
             text-align: center;
             width: 1220px;
         }
+        .span1 {
+            color: #fff;
+
+        }
     </style>
 
 </head>
@@ -26,30 +30,23 @@
 <include file="Public:header"/>
 <aside class="main">
     <div class="grzx">
-    <span class="grtx"><img src="__PUBLIC__/web/img/icon_10.png" alt=""></span>
-    <span class="geren">个人中心</span>
-    <a class="back" href="javscript:history.go(-1)">返回&gt;&gt;</a>
+        <span class="grtx"><img src="__PUBLIC__/web/img/icon_10.png" alt=""></span>
+        <span class="geren">个人中心</span>
+        <a class="back" href="javscript:history.go(-1)">返回&gt;&gt;</a>
     </div>
-    <section>
-    <img src="__PUBLIC__/web/img/icon_08.png" alt="">
-    <a href="#"><img src="__PUBLIC__/web/img/deblocking.png" alt=""></a>
-    <a href="{:U('User/userinfo')}"><img src="__PUBLIC__/web/img/icon_02.png" alt=""></a>
-    <a href="{:U('User/editPassword')}"><img src="__PUBLIC__/web/img/icon_03.png" alt=""></a>
-    <a href="#"></a>
-    <a href="#"></a>
-    <a href="{:U('User/recommend')}"><img src="__PUBLIC__/web/img/icon_06.png" alt=""></a>
-    <a href="{:U('User/register')}"><img src="__PUBLIC__/web/img/icon_07.png" alt=""></a>
-    <span id="status_span" class="span1" style="padding-left: 8px;">已通过</span>
+    <div>
+        <div style="text-align: center">
+            <img src="__PUBLIC__/web/img/icon_08.png" alt="" style="padding-top: 30px;">
+            <span  style="position: absolute; color: rgb(255, 255, 255); top: 410px; left: 932px;">{$status_name}</span>
 
-    <span class="fs" style="display:none"><i>4.0</i>&nbsp;分</span>
-    <span class="span2">申请解封</span>
-    <span class="span3 verify_status">查看资料</span>
-    <span class="span4">修改密码</span>
-<!--    <span class="span5">评价记录</span>
-    <span class="span6">申领衣服</span>-->
-    <span class="span7">推荐链接</span>
-    <span class="span8">注册会员</span>
-</section>
+        </div>
+        <div style="text-align: center">
+            <a href="{:U('User/userinfo')}"><img src="__PUBLIC__/web/img/icon_02.png" alt=""><span>个人信息</span></a>
+            <a href="{:U('User/editPassword')}"><img src="__PUBLIC__/web/img/icon_03.png" alt=""><span>修改密码</span></a>
+            <a href="{:U('User/recommend')}"><img src="__PUBLIC__/web/img/icon_06.png" alt=""><span>推荐推广</span></a>
+            <a href="{:U('User/register')}"><img src="__PUBLIC__/web/img/icon_07.png" alt=""><span>注册会员</span></a>
+        </div>
+    </div>
 </aside>
 <footer class="footer">
     <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>

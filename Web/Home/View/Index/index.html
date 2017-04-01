@@ -91,43 +91,7 @@
 
 </head>
 <body>
-<div class="header">
-    <div class="head">
-        <div class="head_l">
-            <ul>
-                <li><a href="/"><!--<img src="__PUBLIC__/web/img/LOGO.png" height="100%">--></a></li>
-                <li><!--<img src="__PUBLIC__/web/img/solgain.png" height="100%">--></li>
-            </ul>
-        </div>
-        <div class="head_r">
-            <div>
-                <ul><img src="__PUBLIC__/web/img/newicon_7.png"></ul>
-                <ul class="username">
-                    <li>{$user_info.user_name}</li>
-                    <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
-                </ul>
-            </div>
-            <div>|</div>
-            <div>
-                <ul>
-                    <li><img src="__PUBLIC__/web/img/icon_11.png"></li>
-                    <a href="{:U('Public/logout')}"><li class="tc">退出系统</li></a>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="nav">
-        <div class="sh">
-            <ul class="dh">
-                <li class="licur"><a href="/" >首页</a></li>
-                <li><a href="{:U('User/index')}">个人中心</a></li>
-                <li><a href="{:U('News/newsList')}">系统公告</a></li>
-
-            </ul>
-        </div>
-    </div>
-</div>
-
+<include file="Public:header"/>
 <div class="main">
 
     <div class="clear"></div>

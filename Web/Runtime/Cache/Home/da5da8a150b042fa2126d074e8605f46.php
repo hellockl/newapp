@@ -19,6 +19,10 @@
             text-align: center;
             width: 1220px;
         }
+        .span1 {
+            color: #fff;
+
+        }
     </style>
 
 </head>
@@ -35,8 +39,16 @@
                     <div>
                         <ul><img src="/Public/web/img/newicon_7.png"></ul>
                         <ul class="username">
-                            <li><?php echo ($user_info["user_name"]); ?></li>
-                            <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
+                            <li>会员:&nbsp;<?php echo ($user_info["user_name"]); ?></li>
+                            <li>
+                                <?php if($user_info["status"] == 0): ?><span class="status_header">待激活</span>
+                                    <?php elseif($user_info["status"] == 1): ?>
+                                    <span class="status_header">已激活</span><span class="verify_header">待审核</span>
+                                    <?php else: ?>
+
+                                    <span class="status_header">已激活</span><span class="verify_header">已通过</span><?php endif; ?>
+
+                            </li>
                         </ul>
                     </div>
                     <div>|</div>
@@ -56,35 +68,34 @@
                         <li <?php if(($nav) == "news"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
 
                     </ul>
+
                 </div>
             </div>
         </div>
+<div>
+    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+</div>
+
+
 <aside class="main">
     <div class="grzx">
-    <span class="grtx"><img src="/Public/web/img/icon_10.png" alt=""></span>
-    <span class="geren">个人中心</span>
-    <a class="back" href="javscript:history.go(-1)">返回&gt;&gt;</a>
+        <span class="grtx"><img src="/Public/web/img/icon_10.png" alt=""></span>
+        <span class="geren">个人中心</span>
+        <a class="back" href="javscript:history.go(-1)">返回&gt;&gt;</a>
     </div>
-    <section>
-    <img src="/Public/web/img/icon_08.png" alt="">
-    <a href="#"><img src="/Public/web/img/deblocking.png" alt=""></a>
-    <a href="<?php echo U('User/userinfo');?>"><img src="/Public/web/img/icon_02.png" alt=""></a>
-    <a href="<?php echo U('User/editPassword');?>"><img src="/Public/web/img/icon_03.png" alt=""></a>
-    <a href="#"></a>
-    <a href="#"></a>
-    <a href="<?php echo U('User/recommend');?>"><img src="/Public/web/img/icon_06.png" alt=""></a>
-    <a href="<?php echo U('User/register');?>"><img src="/Public/web/img/icon_07.png" alt=""></a>
-    <span id="status_span" class="span1" style="padding-left: 8px;">已通过</span>
+    <div>
+        <div style="text-align: center">
+            <img src="/Public/web/img/icon_08.png" alt="" style="padding-top: 30px;">
+            <span  style="position: absolute; color: rgb(255, 255, 255); top: 410px; left: 932px;"><?php echo ($status_name); ?></span>
 
-    <span class="fs" style="display:none"><i>4.0</i>&nbsp;分</span>
-    <span class="span2">申请解封</span>
-    <span class="span3 verify_status">查看资料</span>
-    <span class="span4">修改密码</span>
-<!--    <span class="span5">评价记录</span>
-    <span class="span6">申领衣服</span>-->
-    <span class="span7">推荐链接</span>
-    <span class="span8">注册会员</span>
-</section>
+        </div>
+        <div style="text-align: center">
+            <a href="<?php echo U('User/userinfo');?>"><img src="/Public/web/img/icon_02.png" alt=""><span>个人信息</span></a>
+            <a href="<?php echo U('User/editPassword');?>"><img src="/Public/web/img/icon_03.png" alt=""><span>修改密码</span></a>
+            <a href="<?php echo U('User/recommend');?>"><img src="/Public/web/img/icon_06.png" alt=""><span>推荐推广</span></a>
+            <a href="<?php echo U('User/register');?>"><img src="/Public/web/img/icon_07.png" alt=""><span>注册会员</span></a>
+        </div>
+    </div>
 </aside>
 <footer class="footer">
     <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>

@@ -283,15 +283,15 @@ $(function() {
     
     $._register_action_flag = true;
     $("#btn").click(function(){
-        if( flag && flag2 && flag3 && flag4 && flag5 && flag6 && flag7 ){
+
+        if( flag && flag2 && flag3 && flag4 && flag5 ){
             if($._register_action_flag != true) {
                 return false;
             }
             $._register_action_flag = false;
-            $.common.ajaxPost('/user/index/register' , {
-                company:'person',
-                verify:$(".p6 input").val(),
-                username:$(".p1 input").val(),
+            $.common.ajaxPost('register' , {
+
+                user_name:$(".p1 input").val(),
                 password:$(".p2 input").val(),
                 repassword:$(".p3 input").val(),
                 name:$(".p4 input").val(),
@@ -301,7 +301,7 @@ $(function() {
                 if(data.errorCode == 0){
                   layer.msg("注册成功");
                   setTimeout(function() {
-                      window.location.href = "/index/user/person.html";
+                      location.reload();
                   } , 1500);
                   $._register_action_flag = true;
                 } else {

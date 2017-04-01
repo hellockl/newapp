@@ -5,6 +5,14 @@ class UserController extends BaseController {
 
     public function index(){
         $this->assign('nav',"user");
+        if($_SESSION['users_info']['status']==0){
+            $status_name =  "待激活";
+        }elseif($_SESSION['users_info']['status']==1){
+            $status_name = "待审核";
+        }else{
+            $status_name = "已通过";
+        }
+        $this->assign('status_name',$status_name);
         $this->display();
     }
     /**
@@ -216,6 +224,44 @@ class UserController extends BaseController {
     public function recommend(){
         $this->assign('nav',"user");
         $this->display();
+    }
+
+    public function register(){
+        if(IS_POST){
+            //var_dump($_SESSION);
+//            $verify = new Verify();
+//            if (!$verify->check(I('post.code'), "sale_register")) {
+//                $this->error('验证码输入错误');
+//            }
+            $usersModel = M('Users');
+            if(!empty(I('post.user_name','','trim'))){
+                if(!empty(I('post.referee_name','','trim'))){
+                    $father_info = $usersModel->where("user_name='".I('post.referee_name')."'")->find();
+                    $data['father_id'] = $father_info['user_id'];
+                    if(!empty($father_info['father_id'])){
+                        $data['grand_id'] = $father_info['father_id'];
+                    }
+                }
+                $data['user_name'] = I('post.user_name','','trim');
+                $data['phone'] = I('post.phone','','trim');
+                $data['name'] = I('post.name','','trim');
+                $data['password'] = Md5(I('post.password'));
+                //$usersModel->amount_password = Md5(I('post.amount_password'));
+                $data['create_time'] = date("Y-m-d H:i:s");
+
+            }else{
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'注册失败！'));
+            }
+            $res = $usersModel->add($data);
+            if($res){
+                $this->ajaxReturn(array('errorCode'=>0,'errorMsg'=>'注册成功！'));
+            }else{
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'注册失败！'));
+            }
+        }else{
+            $this->display();
+        }
+
     }
 
 }

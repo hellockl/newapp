@@ -42,6 +42,26 @@ class IndexController extends CommonController {
         $this->assign('user_info',$user_info);
         $this->display();
     }
+
+    public function onlineNum(){
+        if(IS_POST){
+            $online_num = I('post.online_num',0,'intval');
+            // var_dump($data);exit;
+            $res = M("OnlineNum")->where("id=1")->setField('online_num',$online_num);
+            if($res){
+                $this->ajaxSuccess("更新成功");
+            }else{
+                $this->ajaxError("更新失败");
+            }
+
+        }else{
+            $online_num = M("OnlineNum")->where("id=1")->getField('online_num');
+
+            $this->assign('online_num',$online_num);
+            $this->display();
+        }
+    }
+
     public function upload()
     {
         if(IS_POST){
