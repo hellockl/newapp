@@ -62,9 +62,9 @@
             <div class="nav">
                 <div class="sh">
                     <ul class="dh">
-                        <li><a href="/">首页</a></li>
-                        <li><a href="<?php echo U('User/index');?>">个人中心</a></li>
-                        <li><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
+                        <li <?php if(($nav) == ""): ?>class="licur"<?php endif; ?>> <a href="/">首页</a></li>
+                        <li <?php if(($nav) == "user"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('User/index');?>">个人中心</a></li>
+                        <li <?php if(($nav) == "news"): ?>class="licur"<?php endif; ?>><a href="<?php echo U('News/newsList');?>">系统公告</a></li>
 
                     </ul>
                 </div>
