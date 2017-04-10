@@ -172,10 +172,25 @@ function difficulty_click(id,obj){
 $._provide_action_flag = true;
 function difficulty2_click(id,obj){
 //	$(obj).attr("disabled",true);
-    var money = ($('#money').val());
+    var money = $('#money').val();
     var password = $('#password').val();
-    
-    
+    var b = ($(".sum").text());
+    if(money=='' || money=='undefined') {
+        layer.msg('请填写受助金额');
+        return false;
+    }
+    if(parseInt(money)%100 != 0) {
+        layer.msg('受助金额必须是100的整倍数');
+        return false;
+    }
+    if(parseInt(money) <= 0) {
+        layer.msg('请填写受助金额');
+        return false;
+    }
+    if(parseInt(money) > parseInt(b)) {
+            layer.msg('钱包余额不足');
+            return false;
+    }
     if(money!='' && password!='') {
         if($._provide_action_flag != true) {
             return false;

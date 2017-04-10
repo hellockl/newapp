@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="utf-8">
+    <meta name="author">
+    <title>个人中心-我的钱包</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
+    <link rel="stylesheet" href="__PUBLIC__/web/css/header.css"> 
+    <link rel="stylesheet" href="__PUBLIC__/web/css/money.css">
+    <style>
+        footer {
+            color: #535952;
+            font-size: 15px;
+            margin: 20px auto;
+            text-align: center;
+            width: 1220px;
+        }
+    </style>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/common.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/main.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/money.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/web/js/regexp_sxh.js"></script>
+
+</head>
+<body>
+    <div class="client_window_all" style="display: none;"></div>
+    <include file="Public:header"/>
+    <aside>
+        <div class="xtx">
+            <img class="ttx" src="__PUBLIC__/web/img/qianbao_s.png" alt="">
+
+            <span class="gd">我的钱包</span>
+            <span class="fh"> <a href="javascript:go(-1);" class="fanhui">返回&gt;&gt;</a></span>
+        </div>
+        <hr class="grhr">
+
+    <div class="qianbao">
+        <div style="height:100px"></div>
+        <section class="szzi"> <img class="szz" src="__PUBLIC__/web/img/kuang_05.png" alt=""> 　
+            <span class="class5 money_title_class" id="">个人总收益</span> 
+            <p class="shu5" id="wallet_currency" style="color:#ef1120;">{$userinfo.total_money}</p><span>元</span>
+		<a href="{:U('Index/gethelp')}" class="recipients_jump">得到帮助</a>
+        </section>
+        <section class="szzi"> 
+            <img class="szz" src="__PUBLIC__/web/img/kuang_04.png" alt=""> 　
+            <span class="class4 money_title_class" style="letter-spacing:5px;" id="">个人领导奖</span> 
+            <p class="shu4" id="manage_wallet" style="color:#ef1120;">{$userinfo.lead_account}</p><span>元</span>
+            <span class="glqb">提取</span>
+        </section>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+              
+    </div>
+    
+    
+
+    <span class="fail"><img src="__PUBLIC__/web/img/kuang_07.png" alt="" style="display: none;"></span>
+    <form action="" class="tiqu" style="display: none;">
+        <p>提取领导奖</p>
+        <hr class="formhr">
+        <p class="benlun">当前余额 : </p>&nbsp;<span class="mey manage_currency">{$userinfo.lead_account}</span><br>
+        <p class="collect">本次可提取 : <span class="provide_current_currency">{$userinfo.kt_money}</span></p>&nbsp;<br>
+        <label for="" class="tqglj">&nbsp;&nbsp;&nbsp;提取金额：</label>
+         <input type="money">&nbsp;<span class="yuan">元&nbsp;&nbsp;&nbsp;</span><span class="bs">100的倍数，且大于或等于500</span>
+        <h5> <span class=" tishi_tqmoney" style="color:red"></span></h5>
+       
+        <label for="" class="ejmm">二级密码：</label>
+        <input type="password"><span>&nbsp;&nbsp;*</span>
+        <h5> <span class=" tishi_tqejmm" style="color:red"></span></h5>
+        <p class="ding" id="gl_btn">确定</p>
+        <br>
+        <input id="provide_current_money" value="0" type="hidden">
+    </form>
+    
+    
+       
+</aside>
+<include file="Public:footer"/>
+
+</body>
+</html>

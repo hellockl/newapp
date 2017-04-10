@@ -137,7 +137,7 @@
             </div>
         </div>
 <div>
-    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+    <span style="float: right;margin-right: 346px;">会员人数：<?php echo ($user_info["online_num"]); ?></span>
 </div>
 
 
@@ -165,14 +165,21 @@
                     <img src="/Public/web/img/icon_011.png" alt="">
                 </a>
                 <br>
-                <span>去提供帮助</span>
+                <span>提供帮助</span>
             </li>
             <li>
                 <a href="<?php echo U('Index/gethelp');?>">
                     <img src="/Public/web/img/icon_011.png" alt="">
                 </a>
                 <br>
-                <span>去得到帮助</span>
+                <span>得到帮助</span>
+            </li>
+            <li>
+                <a href="<?php echo U('User/myWallet');?>">
+                    <img src="/Public/web/img/icon_011.png" alt="">
+                </a>
+                <br>
+                <span>我的钱包</span>
             </li>
 
         </ul>
@@ -184,7 +191,7 @@
             <p></p>　
             <?php if(($givecount) == "0"): ?><span class="not1" style="margin-left: 120px;">暂无提供帮助数据</span>
             <?php else: ?>
-            <span class="not1" style="margin-left: 120px;">已提供：<?php echo ($give_help["givecount"]); ?>个帮助;总金额：<?php echo ($give_help["total_money"]); ?></span><?php endif; ?>
+            <span class="not1" style="float:center">已提供：<?php echo ($give_help["givecount"]); ?>个帮助;总金额：<?php echo ($give_help["total_money"]); ?></span><?php endif; ?>
             <span id="proivde_money"></span> 　　
             <span id="proivde_status"></span>　　
             <span id="proivde_date"></span>
@@ -198,7 +205,7 @@
             <p></p>　　
             <?php if(($givecount) == "0"): ?><span class="not1" style="margin-left: 120px;">暂无受助的数据</span>
             <?php else: ?>
-            <span class="not1" style="margin-left: 120px;">已得到：<?php echo ($get_help["getcount"]); ?>个帮助;总金额：<?php echo ($get_help["total_money"]); ?></span><?php endif; ?>
+            <span class="not1" style=" float: center">已匹配：<?php echo ($get_help["getcount"]); ?>个帮助;总金额：<?php echo ($get_help["total_money"]); ?></span><?php endif; ?>
             <span id="accepthelp_money"></span>　　
             <span id="accepthelp_status"></span>　　
             <span id="accepthelp_date"></span>
@@ -247,8 +254,7 @@
 
 </div>
 <footer class="footer">
-    <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
-    <p>2016V2.0版本</p>
+    <p>©聚金</p> 　　　
 </footer>
 
 

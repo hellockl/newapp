@@ -39,7 +39,8 @@
 					<td>{$vo.amount}</td>
 					<td><span id="b_{$vo.id}">{$vo.status_name}</span></td>
 					<td>
-						<a data="{$vo.id}" id="a_{$vo.id}" <eq name='vo.status' value="2">class="layui-btn layui-btn-mini layui-btn-disabled"<else/>class="layui-btn layui-btn-mini layui-btn-normal accept"</eq>><i class="layui-icon">&#xe618;</i>确定打款</a>
+                                            <a data="{$vo.id}" id="c_{$vo.id}"  <eq name='vo.image' value="">class="layui-btn layui-btn-mini layui-btn-hot upload"<else/>class="layui-btn layui-btn-mini layui-btn-disabled"</eq> ><i class="layui-icon">&#xe618;</i>上传凭证</a>
+                                            <a data="{$vo.id}" id="a_{$vo.id}" <eq name='vo.status' value="2">class="layui-btn layui-btn-mini layui-btn-disabled"<else/>class="layui-btn layui-btn-mini layui-btn-normal accept"</eq>><i class="layui-icon">&#xe618;</i>确定打款</a>
 					</td>
 				</tr>
 			</foreach>
@@ -97,6 +98,24 @@
 					}
 				})
 			});
-		})
+		});
+                $('.upload').click(function(){
+			var get_id = $(this).attr('data');
+			var url = "{:U('Index/upload')}";
+			$.get(url,{get_id:get_id},function(data){
+				if(data.status == 'error'){
+					layer.msg(data.msg,{icon: 5});
+					return;
+				}
+				layer.open({
+					title:'上传打款凭证',
+					offset:'t',
+					type: 1,
+					skin: 'layui-layer-rim', //加上边框
+					area: ['40%','50%'], //宽高
+					content: data,
+				});
+			})
+		});
 	})
 </script>

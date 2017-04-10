@@ -40,8 +40,16 @@
                     <div>
                         <ul><img src="/Public/web/img/newicon_7.png"></ul>
                         <ul class="username">
-                            <li><?php echo ($user_info["user_name"]); ?></li>
-                            <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
+                            <li>会员:&nbsp;<?php echo ($user_info["user_name"]); ?></li>
+                            <li>
+                                <?php if($user_info["status"] == 0): ?><span class="status_header">待激活</span>
+                                    <?php elseif($user_info["status"] == 1): ?>
+                                    <span class="status_header">已激活</span><span class="verify_header">待审核</span>
+                                    <?php else: ?>
+
+                                    <span class="status_header">已激活</span><span class="verify_header">已通过</span><?php endif; ?>
+
+                            </li>
                         </ul>
                     </div>
                     <div>|</div>
@@ -66,7 +74,7 @@
             </div>
         </div>
 <div>
-    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+    <span style="float: right;margin-right: 346px;">会员人数：<?php echo ($user_info["online_num"]); ?></span>
 </div>
 
 
@@ -85,8 +93,8 @@
                     <tr>
                         <td class="one" width="10%">编号</td>
                         <td class="two">金额</td>
-                        <td class="two">今日收益</td>
-                        <td class="two">至今收益</td>
+<!--                        <td class="two">今日收益</td>
+                        <td class="two">至今收益</td>-->
                         <td class="three">时间</td>
                         <td class="four">状态</td>
                         <td class="four">操作</td>
@@ -96,8 +104,8 @@
                 <?php if(is_array($helplist)): $i = 0; $__LIST__ = $helplist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                         <td><?php echo ($vo["id"]); ?></td>
                         <td class="title"><span style="cursor:pointer" onclick="newsDetail(172)"><?php echo ($vo["amount"]); ?></span></td>
-                        <td><?php echo ($vo["today_sy"]); ?></td>
-                        <td><?php echo ($vo["total_sy"]); ?></td>
+<!--                        <td><?php echo ($vo["today_sy"]); ?></td>
+                        <td><?php echo ($vo["total_sy"]); ?></td>-->
                         <td><?php echo (date("Y-m-d H:i:s",$vo["create_time"])); ?></td>
                         <td><?php echo ($vo["status_name"]); ?></td>
                         <td>

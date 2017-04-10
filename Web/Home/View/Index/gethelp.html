@@ -5,7 +5,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta charset="utf-8">
     <meta name="author">
-    <title>个人中心</title>
+    <title>个人中心-得到帮助</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="__PUBLIC__/web/css/layer.css" id="layui_layer_skinlayercss" style="">
     <link rel="stylesheet" href="__PUBLIC__/web/css/header.css">
@@ -21,7 +21,8 @@
             width: 1220px;
         }
     </style>
-    <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
+    
+<script type="text/javascript" src="__PUBLIC__/js/jquery-3.1.1.min.js"></script>
 <script src="__PUBLIC__/web/js/layer.js"></script>
 <script src="__PUBLIC__/web/js/jquery_003.js"></script>
 <script src="__PUBLIC__/web/js/jquery.js"></script>
@@ -45,10 +46,18 @@
                         <div class="difficulty_c">
                             <h3>请填写接受资助信息： </h3>
                             <div class="text">
+                                <label>出局金额:</label>
+                                <span>{$out_money} (元)</span>
+                            </div>
+                            <div class="text">
+                                <label>可提取金额:</label>
+                                <span class="sum">{$account}</span>(元)
+                            </div>
+                            <div class="text">
                                 <label>受助金额(元):</label>
-                                <input class="utext" id="money" onblur="poor_c_utext(2000, 20000, 1000)" name="amount" type="text">
+                                <input class="utext" id="money"  name="amount" type="text">
                                 <s>*</s>
-                                <span class="utext-msg">2000-20000</span>
+                                <span class="utext-msg">必须是100的整数</span>
                             </div>
                             <div class="pwd">
                                 <label>二级密码:</label>
@@ -60,8 +69,7 @@
                             <input id="provide_action_button" value="接受资助" class="button" onclick="difficulty2_click(5, this)" type="button">
                         </div>
                         <div class="difficulty_b">
-                            <span>简介:</span>
-                            <p></p>
+                            <p><b>提示</b>: 每轮只能提交<a href="#">一次</a>接受资助 ,提交后不能撤销和更改 , 请核实受助金额再提交。</p>
                         </div>
                     </div></div>
 
@@ -69,18 +77,6 @@
                 <input id="provide_token_id" value="650aa6f72de33de47372294ed8bc131f" type="hidden">
             </div>
         </div>
-        <footer class="footer">
-
-
-            <link rel="stylesheet" href="__PUBLIC__/web/css/footer.css">
-
-
-            <footer class="footer">
-                <p>©有限公司版权所有</p><span><a class="jingbei" href="#">粤ICP备#号</a></span>
-                <p>2016V2.0版本</p>
-            </footer>
-
-
-        </footer>
+        <include file="Public:footer"/>
     </body>
 </html>

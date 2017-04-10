@@ -263,5 +263,48 @@ class UserController extends BaseController {
         }
 
     }
+    
+    public function myWallet(){
+        if(IS_POST){
+            $money = $_POST['money'];
+            $password = $_POST['password'];
+            $res = M('Users')->where(array('user_id'=>$_SESSION['users_info']['user_id'],'amount_password'=>  md5($password)))->find();
+            if(!$res){
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'二级密错误'));
+            }
+            $result = M('Users')->where(array('user_id'=>$_SESSION['users_info']['user_id'],'amount_password'=>  md5($password)))->setDec('lead_account',$money);
+            if($result){
+                $data['amount'] = $money;
+                $data['create_time'] = time();
+                $data['user_id'] = $_SESSION['users_info']['user_id'];
+                $data['type'] = 4;
+                //10才能添加一次帮 助
+                $gethelp_modle = M('Gethelp');
+                $where['type']=4;
+                $where['user_id']= $_SESSION['users_info']['user_id'];
+                $last_gethelp =  $gethelp_modle->where($where)->order("create_time desc")->find();
+                if(!empty($last_gethelp)){
+                    $time_long = time() - $last_gethelp['create_time'];
+                    if($time_long<=864000){
+                        $this->ajaxReturn(array('errorMsg'=>"10天后才能发布下个需求！",'errorCode'=>3));
+                    }
+                }
+                $resu = M('Gethelp')->add($data);
+                $this->ajaxReturn(array('errorCode'=>0,'errorMsg'=>'提取成功'));
+            }else{
+                $this->ajaxReturn(array('errorCode'=>1,'errorMsg'=>'提取失败'));
+            }
+            
+        }else{
+            $user_info = M("Users")->where(array('user_id'=>$_SESSION['users_info']['user_id']))->find();
+            //$user_info['total_money'] = $user_info['account']+$user_info['lead_account'];
+            $give_help = M("Givehelp")->field("sum(amount) as total_money")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
+            $user_info['total_money'] = $give_help[0]['total_money']*1.2 + $user_info['lead_account'];
+            $user_info['kt_money'] = $user_info['lead_account']>=500?$user_info['lead_account']:0;
+            $this->assign('userinfo',$user_info);
+            $this->display(); 
+        }
+        
+    }
 
 }

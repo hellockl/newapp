@@ -99,7 +99,7 @@
 					offset:'t',
 					type: 1,
 					skin: 'layui-layer-rim', //加上边框
-					area: ['60%','80%'], //宽高
+					area: ['80%','80%'], //宽高
 					content: data,
 				});
 			})

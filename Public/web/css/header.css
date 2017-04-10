@@ -6,11 +6,11 @@ body{width:100%;height:100%;background-size:cover;background-repeat:no-repeat;fo
 .head_l ul{width:100%;height:100%}
 .head_l ul li:first-of-type{float:left;height:75px;margin-top:12.5px}
 .head_l ul li:last-of-type{float:left;height:35px;margin-top:32.5px;margin-left:35px}
-.head_r{width:300px;height:100px;float:right}
+.head_r{width:400px;height:100px;float:right}
 .head_r div{float:left}
-.head_r div:first-of-type{width:165px;height:100px}
+.head_r div:first-of-type{width:230px;height:100px}
 .head_r div:first-of-type ul:first-of-type{width:40px;height:55px;float:left;margin-top:55px}
-.head_r div:first-of-type ul:last-of-type{width:120px;height:55px;margin-top:45px;float:right;font-size:16px;color:#a90b16}
+.head_r div:first-of-type ul:last-of-type{width:180px;height:55px;margin-top:45px;float:right;font-size:16px;color:#a90b16}
 .head_r div:nth-of-type(2){width:20px;height:70px;text-align:left;font-size:45px;color:rgba(102,102,102,.3);margin-top:30px}
 .head_r div:last-of-type{width:100px;height:100px}
 .head_r div:last-of-type ul{width:100%;height:40px;margin-top:55px}

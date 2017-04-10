@@ -73,7 +73,7 @@
             </div>
         </div>
 <div>
-    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+    <span style="float: right;margin-right: 346px;">会员人数：<?php echo ($user_info["online_num"]); ?></span>
 </div>
 
 
@@ -86,7 +86,7 @@
     <div>
         <div style="text-align: center">
             <img src="/Public/web/img/icon_08.png" alt="" style="padding-top: 30px;">
-            <span  style="position: absolute; color: rgb(255, 255, 255); top: 410px; left: 932px;"><?php echo ($status_name); ?></span>
+            <span  style="position: absolute; color: rgb(255, 255, 255); top: 410px; left: 49%;"><?php echo ($status_name); ?></span>
 
         </div>
         <div style="text-align: center">
@@ -98,8 +98,7 @@
     </div>
 </aside>
 <footer class="footer">
-    <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
-    <p>2016V2.0版本</p>
+    <p>©聚金</p> 　　　
 </footer>
 </body>
 </html>
