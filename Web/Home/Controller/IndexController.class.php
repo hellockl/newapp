@@ -4,7 +4,7 @@ use Think\Controller;
 class IndexController extends BaseController {
     public function index(){
         //$user_info = M('Users')->where("user_id=".$_SESSION['users_info']['user_id'])->find();
-        
+
         $give_help = M("Givehelp")->field("sum(amount) as total_money,count(*) as givecount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
         $get_help = M("Gethelp")->field("sum(amount) as total_money,count(*) as getcount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
         $newslist = M("News")->where()->order("create_time asc")->limit(5)->select();

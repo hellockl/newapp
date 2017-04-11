@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/Public/web/css/ydy.css">
 
     <link rel="stylesheet" href="/Public/plugins/font-awesome/css/font-awesome.min.css">
-    <script type="text/javascript" src="/Public/web/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/Public/js/jquery-3.1.1.min.js"></script>
     <script src="/Public/web/js/layer.js"></script>
     <script src="/Public/web/js/common.js"></script>
     <script src="/Public/web/js/main.js"></script>

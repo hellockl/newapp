@@ -40,8 +40,16 @@
                     <div>
                         <ul><img src="/Public/web/img/newicon_7.png"></ul>
                         <ul class="username">
-                            <li><?php echo ($user_info["user_name"]); ?></li>
-                            <li><span class="status_header">已激活</span><span class="verify_header">已通过</span></li>
+                            <li>会员:&nbsp;<?php echo ($user_info["user_name"]); ?></li>
+                            <li>
+                                <?php if($user_info["status"] == 0): ?><span class="status_header">待激活</span>
+                                    <?php elseif($user_info["status"] == 1): ?>
+                                    <span class="status_header">已激活</span><span class="verify_header">待审核</span>
+                                    <?php else: ?>
+
+                                    <span class="status_header">已激活</span><span class="verify_header">已通过</span><?php endif; ?>
+
+                            </li>
                         </ul>
                     </div>
                     <div>|</div>

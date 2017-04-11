@@ -51,7 +51,7 @@ class PublicController extends Controller {
             $usersModel = M('Users');
             if($usersModel->create()){
                 if(!empty(I('post.referee_name','','trim'))){
-                    $father_info = $usersModel->where("user_name='".I('post.referee_name')."'")->find();
+                    $father_info = M("Users")->where("user_name='".I('post.referee_name')."'")->find();
                     $usersModel->father_id = $father_info['user_id'];
                     if(!empty($father_info['father_id'])){
                         $usersModel->grand_id = $father_info['father_id'];
