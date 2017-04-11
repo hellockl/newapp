@@ -21,7 +21,7 @@
             width: 1220px;
         }
     </style>
-    <script type="text/javascript" src="/Public/web/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/Public/js/jquery-3.1.1.min.js"></script>
 <script src="/Public/web/js/layer.js"></script>
 <script src="/Public/web/js/jquery_003.js"></script>
 <script src="/Public/web/js/jquery.js"></script>
@@ -119,17 +119,7 @@
             </div>
         </div>
         <footer class="footer">
-
-
-            <link rel="stylesheet" href="/Public/web/css/footer.css">
-
-
-            <footer class="footer">
-                <p>©有限公司版权所有</p><span><a class="jingbei" href="#">粤ICP备#号</a></span>
-                <p>2016V2.0版本</p>
-            </footer>
-
-
-        </footer>
+    <p>©聚金</p> 　　　
+</footer>
     </body>
 </html>

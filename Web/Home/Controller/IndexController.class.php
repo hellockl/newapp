@@ -45,16 +45,15 @@ class IndexController extends BaseController {
             }
 
             if($v['status']==0){
-                
-                $helplist[$k]['status_name'] = '未匹配';
+                $helplist[$k]['status_name'] = "<span style='color:red'>未匹配</span>";
             }else if($v['status']==1){
-                $helplist[$k]['status_name'] = '已匹配，未支付';
+                $helplist[$k]['status_name'] ="<span style='color:green'>已匹配</span>";
             }else if($v['status']==2){
-                $helplist[$k]['status_name'] = '已匹配，已支付';
+                $helplist[$k]['status_name'] = "<span style='color:green'>已支付</span>";
             }else if($v['status']==3){
-                $helplist[$k]['status_name'] = '已确认打款';
+                $helplist[$k]['status_name'] = "<span style='color:green'>已确认打款</span>";
             }else {
-                $helplist[$k]['status_name'] = '已完成';
+                $helplist[$k]['status_name'] = "<span style='color:green'>已完成</span>";
             }
         }
         //var_dump($helplist);
@@ -85,11 +84,11 @@ class IndexController extends BaseController {
         foreach($match_list as $key=>$val){
             
             if($val['status']==0){
-                $match_list[$key]['status_name'] = "未匹配";
+                $match_list[$key]['status_name'] = "<span style='color:red'>未匹配</span>";
             }else if($val['status']==1){
-                $match_list[$key]['status_name'] = "已匹配,未打款";
+                $match_list[$key]['status_name'] = "<span style='color:green'>已匹配,未打款</span>";
             }else if($val['status']==2){
-                $match_list[$key]['status_name'] = "已匹配,已打款";
+                $match_list[$key]['status_name'] = "<span style='color:green'>已匹配,已打款</span>";
             }
         }
         //var_dump($match_list);
@@ -107,7 +106,7 @@ class IndexController extends BaseController {
         $givehelp_modle = M("Givehelp");
         $result = $givehelp_modle->where($where)->getField('status');
         if($result['status']==0){
-            $this->ajaxError('该帮助还未匹配，请先匹配');
+            $this->ajaxReturn(array('status'=>'error','msg'=>'该帮助还未匹配，请先匹配'));
         }
         $res = M("Givehelp")->where($where)->setField('status',2);
         if($res){
@@ -149,11 +148,11 @@ class IndexController extends BaseController {
                 ->where($where)->limit($Page->firstRow . ',' . $Page->listRows)->order("G.create_time desc")->select();
         foreach ($helplist as $key=>$val){
                 if($val['status']==0){
-                        $helplist[$key]['status_name'] = "未匹配";
+                        $helplist[$key]['status_name'] = "<span style='color:red'>未匹配</span>";
                     }else if($val['status']==1){
-                        $helplist[$key]['status_name'] = "已匹配,未打款";
+                        $helplist[$key]['status_name'] = "<span style='color:green'>已匹配</span>,<span style='color:red'>未打款</span>";
                     }else if($val['status']==2){
-                        $helplist[$key]['status_name'] = "已匹配,已打款";
+                        $helplist[$key]['status_name'] = "<span style='color:green'>已匹配,已打款</span>";
                     }
         }
         $this->assign("show", $show);
@@ -189,7 +188,7 @@ class IndexController extends BaseController {
             $last_givehelp =  $givehelp_modle->where($where)->order("create_time desc")->find();
             if(!empty($last_givehelp)){
                 $time_long = time() - $last_givehelp['create_time'];
-                if($time_long<=86400){
+                if($time_long<=864000){
                     $this->ajaxReturn(array('errorMsg'=>"10天后才能发布下个需求！",'errorCode'=>3));
                 }
             }
@@ -249,5 +248,60 @@ class IndexController extends BaseController {
     public function news(){
         $this->display();
     }
+    
+    public function upload(){
+        if(IS_POST){
+            $id = $_POST['id'];
+            $img = $_FILES['file1'];
+            
+            $upload = new \Think\Upload();// 实例化上传类
+            $upload->maxSize   = 3145728 ;// 设置附件上传大小
+            $upload->exts      = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+            $upload->rootPath  = './Public/'; // 设置附件上传根目录
+            $upload->savePath  = 'upload/'; // 设置附件上传（子）目录
+            // 上传文件
+            $info   =   $upload->uploadOne($img);
+            if(!$info) {// 上传错误提示错误信息
+                echo json_encode(array('status' => 'error','msg' => $upload->getError()));
+                exit;
+            }else{// 上传成功
+
+                $imgpath = $info['savepath'].$info['savename'];
+                
+                echo json_encode(array('status' => 'success','url'=>'/Public/'.$imgpath));
+                exit;
+            }
+
+        }else{
+            $this->assign('get_id',$_GET['get_id']);
+            $this->display();
+        }
+    }
+    
+    public function updata_img(){
+        $get_id = $_POST['get_id'];
+        $img = $_POST['image'];
+        $res = M('Gethelp')->where('id='.$get_id)->setField('image',$img);
+        if($res!==false){
+            $this->ajaxReturn(array('status'=>0,'msg'=>'上传成功！'));
+        }else{
+            $this->ajaxReturn(array('status'=>1,'msg'=>'上传失败！'));
+        }
+    }
+    
+    
+    public function getHelp(){
+        $userinfo = M('Users')->where(array('user_id'=>$_SESSION['users_info']['user_id']))->find();
+        $give_help = M("Givehelp")->field("sum(amount) as total_money,count(*) as givecount")->where("user_id=".$_SESSION['users_info']['user_id'])->select();
+        //var_dump($give_help);
+        $out_money = $give_help[0]['total_money']*1.2;
+        $this->assign('out_money',$out_money);
+        $this->assign('account',$userinfo['account']);
+        $this->display();
+    }
+    
+    
+    
+    
 
 }

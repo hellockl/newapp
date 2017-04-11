@@ -69,21 +69,16 @@ $(function () {
         $('input[type=id]').val("")
     })
     $('input[type=id]').blur(function () {
-        var sfid = $('#passport_selected').val();
-        if(sfid ==1){
-            if ($('input[type=id]').val() == "") {
-                $(".b_07").show()
-            } else if (shenfenz.test($('input[type=id]').val()) ) {//
-                $('input[type=id]').val()
-                flag4 = true;
-            } else {
-                $('.b_08').html("身份证书写不规范").show()
-            }
-        }else if(sfid ==2){
-            if ($('input[type=id]').val() == "") {
-                $(".b_08").html("护照不能为空").show()
-            }
+        
+        if ($('input[type=id]').val() == "") {
+            $(".b_07").show()
+        } else if (shenfenz.test($('input[type=id]').val()) ) {//
+            $('input[type=id]').val()
+            flag4 = true;
+        } else {
+            $('.b_08').html("身份证书写不规范").show()
         }
+        
 
     });
     $('input[type=id]').focus(function () {
@@ -104,12 +99,12 @@ $(function () {
     });
     // 支付宝 （选填）
     $('input[type=zfb]').blur(function () {
-    	flag6 = true;
-//        if ($('input[type=zfb]').val() == "") {
-//            $(".b_10").show()
-//        }else{
-//            flag6 = true;
-//        }
+    	//flag6 = true;
+        if ($('input[type=zfb]').val() == "") {
+            $(".b_10").show()
+        }else{
+            flag6 = true;
+        }
     });
     $('input[type=zfb]').focus(function () {
         $('.b_10').hide()

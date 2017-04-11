@@ -74,7 +74,7 @@
             </div>
         </div>
 <div>
-    <span style="float: right;margin-right: 346px;">在线人数：<?php echo ($user_info["online_num"]); ?></span>
+    <span style="float: right;margin-right: 346px;">会员人数：<?php echo ($user_info["online_num"]); ?></span>
 </div>
 
 
@@ -93,8 +93,8 @@
                     <tr>
                         <td class="one" width="10%">编号</td>
                         <td class="two">金额</td>
-                        <td class="two">今日收益</td>
-                        <td class="two">至今收益</td>
+<!--                        <td class="two">今日收益</td>
+                        <td class="two">至今收益</td>-->
                         <td class="three">时间</td>
                         <td class="four">状态</td>
                         <td class="four">操作</td>
@@ -104,8 +104,8 @@
                 <?php if(is_array($helplist)): $i = 0; $__LIST__ = $helplist;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><tr>
                         <td><?php echo ($vo["id"]); ?></td>
                         <td class="title"><span style="cursor:pointer" onclick="newsDetail(172)"><?php echo ($vo["amount"]); ?></span></td>
-                        <td><?php echo ($vo["today_sy"]); ?></td>
-                        <td><?php echo ($vo["total_sy"]); ?></td>
+<!--                        <td><?php echo ($vo["today_sy"]); ?></td>
+                        <td><?php echo ($vo["total_sy"]); ?></td>-->
                         <td><?php echo (date("Y-m-d H:i:s",$vo["create_time"])); ?></td>
                         <td><?php echo ($vo["status_name"]); ?></td>
                         <td>

@@ -25,7 +25,7 @@
             width: 1220px;
         }
     </style>
-    <script type="text/javascript" src="__PUBLIC__/web/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="__PUBLIC__/web/js/common.js"></script>
     <script type="text/javascript" src="__PUBLIC__/web/js/layer.js"></script>
     <script type="text/javascript" src="__PUBLIC__/web/js/complete.js"></script>
@@ -62,18 +62,20 @@
             
             
             <label class="zfb">身份证：</label>
-            <input id="info_alipay_account" name="idcard" required="required"  value="{$userinfo.idcard}" type="zfb">
+            <input id="info_alipay_account" name="idcard" required="required"  value="{$userinfo.idcard}" type="id">
             <span style="color: red">&nbsp;&nbsp;*</span>
             <b class="b_07">&nbsp;身份证不能为空</b>
             <b class="b_08">&nbsp;身份证不符合规范</b><br>
             <label class="zfb">支付宝：</label>
-            <input id="info_alipay_account" name="alipay" required="required"  value="{$userinfo.alipay}" type="zfb">     
+            <input id="info_alipay_account" name="alipay" required="required"  value="{$userinfo.alipay}" type="zfb">  
+            <span style="color: red">&nbsp;&nbsp;*</span>
+            <b class="b_10">&nbsp;支付宝账号不能为空</b>
             <b class="b_11">&nbsp;支付宝不符合规范</b><br>
             <label class="zfb">微信号：</label>
-            <input id="info_alipay_account" name="wechat" required="required"  value="{$userinfo.wechat}" type="zfb">
+            <input id="info_alipay_account" name="wechat" required="required"  value="{$userinfo.wechat}" type="wx">
             <span style="color: red">&nbsp;&nbsp;*</span>
-            <b class="b_07">&nbsp;微信号不能为空</b>
-            <b class="b_08">&nbsp;微信号不符合规范</b><br>
+            <b class="b_001" style=" display: none;">&nbsp;微信号不能为空</b>
+            <b class="b_002" style=" display: none;">&nbsp;微信号不符合规范</b><br>
             <label class="yh">银行卡：</label>
             <input id="info_bank_account" maxlength="30" name="bank_card" required="required"  value="{$userinfo.bank_card}" type="yh">
             <span style="color: red">&nbsp;&nbsp;*</span><b class="b_12">&nbsp;银行卡不能为空</b> <b class="b_13">&nbsp;银行卡不符合规范</b><br>
@@ -208,10 +210,7 @@
         </form>
     </aside>
 
-    <footer class="footer">
-        <p>©有限公司版权所有</p> 　　　　<span><a class="jingbei" href="http://www.miitbeian.gov.cn/">粤ICP备15076181号</a></span>
-        <p>2016V2.0版本</p>
-    </footer>
+    <include file="Public:footer"/>
 
 </body>
 </html>

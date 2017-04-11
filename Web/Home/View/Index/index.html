@@ -125,6 +125,14 @@
                 <br>
                 <span>得到帮助</span>
             </li>
+            <li>
+                <a href="{:U('User/myWallet')}">
+                    <img src="__PUBLIC__/web/img/icon_011.png" alt="">
+                </a>
+                <br>
+                <span>我的钱包</span>
+
+            </li>
 
         </ul>
     </div>
@@ -136,7 +144,7 @@
             <eq name="givecount" value="0">
             <span class="not1" style="margin-left: 120px;">暂无提供帮助数据</span>
             <else/>
-            <span class="not1" style="margin-left: 120px;">已提供：{$give_help.givecount}个帮助;总金额：{$give_help.total_money}</span>
+            <span class="not1" style="float:center">已提供：{$give_help.givecount}个帮助;总金额：{$give_help.total_money}</span>
             </eq>
             <span id="proivde_money"></span> 　　
             <span id="proivde_status"></span>　　
@@ -152,7 +160,7 @@
             <eq name="givecount" value="0">
             <span class="not1" style="margin-left: 120px;">暂无受助的数据</span>
             <else/>
-            <span class="not1" style="margin-left: 120px;">已得到：{$get_help.getcount}个帮助;总金额：{$get_help.total_money}</span>
+            <span class="not1" style=" float: center">已匹配：{$get_help.getcount}个帮助;总金额：{$get_help.total_money}</span>
             </eq>
             <span id="accepthelp_money"></span>　　
             <span id="accepthelp_status"></span>　　

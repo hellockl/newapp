@@ -1,0 +1,61 @@
+
+<link rel="stylesheet" href="__PUBLIC__/plugins/layui/css/layui.css" media="all" />
+	<!--<link rel="stylesheet" href="__PUBLIC__/css/global.css" media="all">-->
+	<link rel="stylesheet" href="__PUBLIC__/plugins/font-awesome/css/font-awesome.min.css">
+<fieldset class="layui-elem-field">
+
+<div class="back">
+    <input type="hidden" name="get_id" id="get_id" value="{$get_id}"/>
+    
+    
+    <div class="layui-input-inline">
+        <span>上传打款凭证：</span>
+        <input type="file" name="file1" id="bbbb" class="bbbb layui-upload-file">
+        <input type="hidden" name="idcard_imga" id="image_patha" value=""/>   
+        <img id="img_uploada" src="#" style="width: 200px;height: 100px;">
+    </div>          
+    <p class="xiangjie" id="image_b_p">支持jpg.png小 于5M,要求图片清晰，信息完整</p>  
+    <input id="provide_action_button" value="上传" class="button" onclick="checkform()" type="button">
+    
+</div>
+</fieldset>
+<!-- Ajax上传图片 Start -->
+<script type="text/javascript">
+    layui.use('upload', function(){
+        $ = layui.jquery;
+        
+        layui.upload({
+          url: "{:U('Index/upload')}"
+          ,title: '上传图片'
+          ,elem: '#bbbb' //指定原始元素，默认直接查找class="layui-upload-file"
+          ,ext: 'jpg|png|gif|jpeg'
+          ,method: 'post' //上传接口的http类型
+          ,success: function(res){
+            if(res.status == 'error'){
+              layer.msg(res.msg);
+            }else{
+              
+              $("#image_patha").val(res.url);
+              img_uploada.src = res.url;
+              //$("#c_"+gethelp_id).attr('class','layui-btn layui-btn-mini layui-btn-disabled');
+              
+            }
+          }
+        });
+    });
+    function checkform(){
+        var get_id = $("#get_id").val();
+        var image = $("#image_patha").val();
+        $.post("{:U('Index/updata_img')}",{get_id:get_id,image:image},function(result){
+            if(result.status==0){
+                layer.msg('上传成功');
+                   
+                   
+                   // parent.layer.close(index);
+            }else{
+                layer.msg('上传失败');
+            }
+        });
+        console.log('dddd');
+    }
+</script>

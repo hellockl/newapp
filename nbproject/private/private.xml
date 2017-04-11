@@ -4,12 +4,31 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/getHelpList.html</file>
-            <file>file:/E:/xampp/htdocs/newapp/Web/Home/Controller/IndexController.class.php</file>
-            <file>file:/E:/xampp/htdocs/newapp/Web/Common/Conf/config.php</file>
-            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/News/news.html</file>
-            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/News/newslist.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/givehelp.html</file>
             <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/index.html</file>
-            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/test.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/Controller/PublicController.class.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Public/register.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/web/js/donation.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/Controller/IndexController.class.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/web/js/owe.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Application/Admin/View/Help/matching.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Application/Admin/Model/HelpModel.class.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/upload.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/User/userinfo.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/web/js/GRcentre14.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/matchList.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/web/js/complete.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/js/js.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/User/register.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/web/js/money.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Public/js/all.js</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/gethelp.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Application/Admin/Controller/HelpController.class.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Common/Conf/config.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/Index/giveHelplist.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/View/User/myWallet.html</file>
+            <file>file:/E:/xampp/htdocs/newapp/Web/Home/Controller/UserController.class.php</file>
+            <file>file:/E:/xampp/htdocs/newapp/Application/Admin/View/Help/matchList.html</file>
         </group>
     </open-files>
 </project-private>

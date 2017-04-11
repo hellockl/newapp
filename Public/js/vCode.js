@@ -1,4 +1,4 @@
-﻿(function(){
+(function(){
     var randstr = function(length){
         var key = {
 
